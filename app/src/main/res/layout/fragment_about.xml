@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="8dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.byteflipper.ffsensitivities.ui.fragment.AboutFragment"
+    android:orientation="vertical">
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="21dp"
+        app:cardUseCompatPadding="true"
+        style="@style/Widget.Material3.CardView.Elevated">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="16dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="96dp"
+                    android:layout_height="96dp"
+                    android:padding="8dp"
+                    android:src="@drawable/ic_launcher_background"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="8dp"
+                    android:layout_gravity="center_vertical"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/app_name"
+                        android:singleLine="true"
+                        android:textSize="21sp"
+                        android:textStyle="bold"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="JVMFrog Squad"
+                        android:textSize="21sp"
+                        android:textStyle="bold"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/appVersionBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/version"
+                android:textSize="18sp"
+                app:icon="@drawable/info_24px"
+                app:iconPadding="16dp"
+                app:iconSize="24dp"
+                android:textAlignment="textStart"
+                style="@style/Widget.Material3.Button.TextButton"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/sourceCodeBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/source_code"
+                android:textSize="18sp"
+                app:icon="@drawable/code_24px"
+                app:iconPadding="16dp"
+                app:iconSize="18sp"
+                android:textAlignment="textStart"
+                style="@style/Widget.Material3.Button.TextButton"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/translateAppBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/improve_translation"
+                android:textSize="18sp"
+                app:icon="@drawable/translate_24px"
+                app:iconPadding="16dp"
+                app:iconSize="24dp"
+                android:textAlignment="textStart"
+                style="@style/Widget.Material3.Button.TextButton"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/donateBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Donate"
+                android:textSize="18sp"
+                app:icon="@drawable/payments_24px"
+                app:iconPadding="16dp"
+                app:iconSize="24dp"
+                android:textAlignment="textStart"
+                style="@style/Widget.Material3.Button.TextButton"/>
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="21dp"
+        app:cardUseCompatPadding="true"
+        style="@style/Widget.Material3.CardView.Elevated">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:orientation="vertical">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/ibragimBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/ibragim"
+                android:textSize="18sp"
+                app:icon="@drawable/person_24px"
+                app:iconPadding="16dp"
+                app:iconSize="24dp"
+                android:textAlignment="textStart"
+                style="@style/Widget.Material3.Button.TextButton"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/mailBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/report_a_bug"
+                android:textSize="18sp"
+                app:icon="@drawable/bug_report_24px"
+                app:iconPadding="16dp"
+                app:iconSize="24dp"
+                android:textAlignment="textStart"
+                style="@style/Widget.Material3.Button.TextButton"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/rateBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/rate_the_app"
+                android:textSize="18sp"
+                app:icon="@drawable/rate_review_24px"
+                app:iconPadding="16dp"
+                app:iconSize="24dp"
+                android:textAlignment="textStart"
+                style="@style/Widget.Material3.Button.TextButton"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/vkGroupBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/we_are_on_vk"
+                android:textSize="18sp"
+                app:iconPadding="16dp"
+                app:iconSize="24dp"
+                app:iconTintMode="screen"
+                app:iconTint="#00ffffff"
+                android:textAlignment="textStart"
+                style="@style/Widget.Material3.Button.TextButton"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/telegramBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Telegram"
+                android:textSize="18sp"
+                app:iconPadding="16dp"
+                app:iconSize="24dp"
+                app:iconTintMode="screen"
+                app:iconTint="#00ffffff"
+                android:textAlignment="textStart"
+                style="@style/Widget.Material3.Button.TextButton"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/otherAppsBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/other_apps"
+                android:textSize="18sp"
+                app:icon="@drawable/apps_24px"
+                app:iconPadding="16dp"
+                app:iconSize="24dp"
+                android:textAlignment="textStart"
+                style="@style/Widget.Material3.Button.TextButton"/>
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+</LinearLayout>

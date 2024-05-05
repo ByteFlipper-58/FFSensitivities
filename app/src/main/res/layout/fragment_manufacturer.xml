@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingHorizontal="8dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.byteflipper.ffsensitivities.ui.fragment.ManufacturerFragment">
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/setUserNameBtn"
+        style="@style/Widget.Material3.CardView.Elevated"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:focusable="true"
+        app:cardCornerRadius="21dp"
+        app:cardUseCompatPadding="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="72dp"
+                android:layout_height="72dp"
+                android:src="@drawable/person"
+                android:layout_gravity="center_vertical"
+                android:contentDescription="@string/welcome"/>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/welcome_and_user_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|center_horizontal|center_vertical"
+                android:padding="6dp"
+                android:text="@string/welcome"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:maxLines="2"/>
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.facebook.shimmer.ShimmerFrameLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/shimmer_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:shimmer_auto_start="true">
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:columnCount="2"
+            android:rowCount="6"
+            android:orientation="vertical">
+            <include layout="@layout/shimmer_placeholder_layout"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_columnWeight="1"
+                android:layout_margin="6dp"/>
+            <include layout="@layout/shimmer_placeholder_layout"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_columnWeight="1"
+                android:layout_margin="6dp"/>
+            <include layout="@layout/shimmer_placeholder_layout"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_columnWeight="1"
+                android:layout_margin="6dp"/>
+            <include layout="@layout/shimmer_placeholder_layout"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_columnWeight="1"
+                android:layout_margin="6dp"/>
+            <include layout="@layout/shimmer_placeholder_layout"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_columnWeight="1"
+                android:layout_margin="6dp"/>
+            <include layout="@layout/shimmer_placeholder_layout"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_columnWeight="1"
+                android:layout_margin="6dp"/>
+            <include layout="@layout/shimmer_placeholder_layout"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_columnWeight="1"
+                android:layout_margin="6dp"/>
+            <include layout="@layout/shimmer_placeholder_layout"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_columnWeight="1"
+                android:layout_margin="6dp"/>
+            <include layout="@layout/shimmer_placeholder_layout"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_columnWeight="1"
+                android:layout_margin="6dp"/>
+            <include layout="@layout/shimmer_placeholder_layout"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_columnWeight="1"
+                android:layout_margin="6dp"/>
+            <include layout="@layout/shimmer_placeholder_layout"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_columnWeight="1"
+                android:layout_margin="6dp"/>
+            <include layout="@layout/shimmer_placeholder_layout"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_columnWeight="1"
+                android:layout_margin="6dp"/>
+        </GridLayout>
+    </com.facebook.shimmer.ShimmerFrameLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="4dp"
+        android:visibility="gone"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="14dp"
+        android:orientation="vertical">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/dont_have_your_phone_model"
+            android:text="@string/dont_have_your_phone_model"
+            android:textSize="16sp"
+            style="@style/Widget.MaterialComponents.TextView"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/googleFormBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:contentDescription="@string/then_click_here"
+            android:singleLine="true"
+            android:text="@string/then_click_here"
+            android:textSize="16sp"
+            android:textColor="#FF559DEF"
+            style="@style/Widget.MaterialComponents.TextView"/>
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,83 @@
+plugins {
+    id 'com.android.application'
+    id 'com.google.gms.google-services'
+    //id 'com.google.firebase.crashlytics'
+}
+
+android {
+    compileSdk 34
+
+    defaultConfig {
+        applicationId "com.byteflipper.ffsensitivities"
+        minSdk 27
+        targetSdk 34
+        versionCode 30
+        versionName "v1.0.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+
+        debug {
+            //applicationIdSuffix '.debug'
+            versionNameSuffix ' Debug'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+    viewBinding {
+        enabled = true
+    }
+    namespace 'com.byteflipper.ffsensitivities'
+
+    buildFeatures {
+        viewBinding true
+        buildConfig true
+    }
+
+    bundle {
+        storeArchive {
+            enable = true
+        }
+    }
+}
+
+dependencies {
+    implementation libs.navigation.fragment
+    implementation libs.navigation.ui
+
+    implementation libs.legacy.support.v4
+    implementation libs.constraintlayout
+    implementation libs.appcompat
+    implementation libs.material.v190
+
+    implementation platform(libs.firebase.bom)
+    implementation libs.firebase.analytics
+    //implementation libs.firebase.crashlytics
+    implementation libs.firebase.messaging
+    implementation libs.firebase.inappmessaging.display
+    implementation libs.firebase.config
+
+    implementation libs.browser
+    implementation libs.core.splashscreen
+
+    implementation libs.gson
+    implementation libs.volley
+
+    implementation libs.shimmer
+    implementation libs.activity
+
+    testImplementation libs.junit
+    androidTestImplementation libs.ext.junit
+    androidTestImplementation libs.espresso.core
+}

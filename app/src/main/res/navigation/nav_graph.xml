@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/manufacturerFragment2">
+
+    <fragment
+        android:id="@+id/manufacturerFragment2"
+        android:name="com.byteflipper.ffsensitivities.ui.fragment.ManufacturerFragment"
+        android:label="@string/app_name"
+        tools:layout="@layout/fragment_manufacturer">
+        <action
+            android:id="@+id/action_manufacturerFragment2_to_devicesFragment"
+            app:destination="@id/devicesFragment"/>
+        <action
+            android:id="@+id/action_manufacturerFragment2_to_settingsFragment"
+            app:destination="@id/settingsFragment"/>
+    </fragment>
+    <fragment
+        android:id="@+id/devicesFragment"
+        android:name="com.byteflipper.ffsensitivities.ui.fragment.DevicesFragment"
+        android:label="@string/devices_list"
+        tools:layout="@layout/fragment_devices">
+        <action
+            android:id="@+id/action_devicesFragment_to_deviceSettingsFragment"
+            app:destination="@id/deviceSettingsFragment"/>
+    </fragment>
+    <fragment
+        android:id="@+id/deviceSettingsFragment"
+        android:name="com.byteflipper.ffsensitivities.ui.fragment.DeviceSettingsFragment"
+        tools:layout="@layout/fragment_device_settings"
+        android:label="@string/settings" />
+    <fragment
+        android:id="@+id/aboutAppFragment"
+        android:name="com.byteflipper.ffsensitivities.ui.fragment.AboutFragment"
+        android:label="@string/about_app"
+        tools:layout="@layout/fragment_about_app">
+        <action
+            android:id="@+id/action_aboutAppFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment"/>
+    </fragment>
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.byteflipper.ffsensitivities.ui.fragment.SettingsFragment"
+        android:label="@string/settings"
+        tools:layout="@layout/fragment_settings" />
+    <fragment
+        android:id="@+id/welcomeFragment"
+        android:name="com.byteflipper.ffsensitivities.ui.fragment.WelcomeFragment"
+        android:label="fragment_welcome"
+        tools:layout="@layout/fragment_welcome" >
+        <action
+            android:id="@+id/action_welcomeFragment_to_manufacturerFragment2"
+            app:destination="@id/manufacturerFragment2" />
+    </fragment>
+</navigation>
