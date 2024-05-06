@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatDelegate;
 import androidx.fragment.app.Fragment;
 
 import com.byteflipper.ffsensitivities.R;
+import com.byteflipper.ffsensitivities.callback.CallbackManager;
 import com.google.android.material.color.DynamicColors;
 import com.byteflipper.ffsensitivities.databinding.FragmentSettingsBinding;
 import com.byteflipper.ffsensitivities.utils.SharedPreferencesUtils;
@@ -51,11 +52,13 @@ public class SettingsFragment extends Fragment {
                 SharedPreferencesUtils.writeInteger(requireContext(), "nightMode", 2);
                 requireActivity().recreate();
             }
+            CallbackManager.invokeCallback(requireActivity());
         });
 
         binding.dynamicColorsSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
             SharedPreferencesUtils.writeBoolean(requireContext(), "useDynamicColors", isChecked);
             requireActivity().recreate();
+            CallbackManager.invokeCallback(requireActivity());
         });
     }
 
