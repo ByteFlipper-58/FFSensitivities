@@ -1,0 +1,213 @@
+{
+    "manufacturer": "Oppo",
+    "models": [
+    {
+        "__id__": "0c6ZB3ZrK59nWb3Pz2sI",
+        "manufacturer": "Oppo",
+        "name": "A53",
+        "settings_source_url": "",
+        "dpi": 0,
+        "fire_button": 44,
+        "sensitivities": {
+            "review": 97,
+            "collimator": 88,
+            "x2_scope": 99,
+            "x4_scope": 98,
+            "sniper_scope": 26,
+            "free_review": 48
+        }
+    },
+    {
+        "__id__": "7Rhw9x0WrlagmtcO8FHw",
+        "manufacturer": "Oppo",
+        "name": "A37",
+        "settings_source_url": "",
+        "dpi": 496,
+        "fire_button": 48,
+        "sensitivities": {
+            "review": 94,
+            "collimator": 95,
+            "x2_scope": 91,
+            "x4_scope": 99,
+            "sniper_scope": 27,
+            "free_review": 49
+        }
+    },
+    {
+        "__id__": "9KIaVFKpv0WtvXvsyb2H",
+        "manufacturer": "Oppo",
+        "name": "A52",
+        "settings_source_url": "",
+        "dpi": 642,
+        "fire_button": 45,
+        "sensitivities": {
+            "review": 94,
+            "collimator": 88,
+            "x2_scope": 99,
+            "x4_scope": 99,
+            "sniper_scope": 59,
+            "free_review": 38
+        }
+    },
+    {
+        "__id__": "EfY83h3YaP88GnDjkGl4",
+        "manufacturer": "Oppo",
+        "name": "A31",
+        "settings_source_url": "",
+        "dpi": 520,
+        "fire_button": 49,
+        "sensitivities": {
+            "review": 93,
+            "collimator": 93,
+            "x2_scope": 94,
+            "x4_scope": 99,
+            "sniper_scope": 46,
+            "free_review": 47
+        }
+    },
+    {
+        "__id__": "K7fARb0n1gqNhZ0tYprx",
+        "manufacturer": "Oppo",
+        "name": "A15s",
+        "settings_source_url": "https://www.tiktok.com/@777_honour_777/video/7110198079088790790?is_from_webapp=1&sender_device=pc&web_id=7109889579923113478",
+        "dpi": 0,
+        "fire_button": 44,
+        "sensitivities": {
+            "review": 94,
+            "collimator": 93,
+            "x2_scope": 94,
+            "x4_scope": 92,
+            "sniper_scope": 58,
+            "free_review": 43
+        }
+    },
+    {
+        "__id__": "KxutKW05YnCD5RbtR8bW",
+        "manufacturer": "Oppo",
+        "name": "A12 2020",
+        "settings_source_url": "https://www.tiktok.com/@ipman.pvp/video/7129651577111022854?_r=1&u_code=dj15bhad6ll0bb&preview_pb=0&language=ru&_d=e2lhi582j4aeb7&share_item_id=7129651577111022854&source=h5_m&timestamp=1660758905&user_id=6970031691679941637&sec_user_id=MS4wLjABAAAA9VEnNr3OTZIZwRyaljKP8rGsUnNkC8CA_r_UWWYn7-jul4BqD1V4tx-8sSN67lyL&utm_source=copy&utm_campaign=client_share&utm_medium=android&share_iid=7132842085208426245&share_link_id=6c4f475b-862b-4ee1-a241-8e1dea2d0f58&share_app_id=1233&ugbiz_name=Main",
+        "dpi": 752,
+        "fire_button": 65,
+        "sensitivities": {
+            "review": 100,
+            "collimator": 100,
+            "x2_scope": 100,
+            "x4_scope": 100,
+            "sniper_scope": 100,
+            "free_review": 100
+        }
+    },
+    {
+        "__id__": "Mw3Z6rTxZHxMQxrrNQkR",
+        "manufacturer": "Oppo",
+        "name": "A5s",
+        "settings_source_url": "",
+        "dpi": 502,
+        "fire_button": 44,
+        "sensitivities": {
+            "review": 97,
+            "collimator": 92,
+            "x2_scope": 93,
+            "x4_scope": 98,
+            "sniper_scope": 38,
+            "free_review": 36
+        }
+    },
+    {
+        "__id__": "N1UyXzJtvju652wG1g47",
+        "manufacturer": "Oppo",
+        "name": "F9",
+        "settings_source_url": "",
+        "dpi": 596,
+        "fire_button": 52,
+        "sensitivities": {
+            "review": 93,
+            "collimator": 94,
+            "x2_scope": 93,
+            "x4_scope": 95,
+            "sniper_scope": 57,
+            "free_review": 34
+        }
+    },
+    {
+        "__id__": "Vo9KKClWbz791RReQktS",
+        "manufacturer": "Oppo",
+        "name": "F5",
+        "settings_source_url": "",
+        "dpi": 454,
+        "fire_button": 41,
+        "sensitivities": {
+            "review": 95,
+            "collimator": 91,
+            "x2_scope": 98,
+            "x4_scope": 99,
+            "sniper_scope": 43,
+            "free_review": 37
+        }
+    },
+    {
+        "__id__": "mWLzHgDfkXgj3I8jIf28",
+        "manufacturer": "Oppo",
+        "name": "Reno 2F",
+        "settings_source_url": "",
+        "dpi": 581,
+        "fire_button": 50,
+        "sensitivities": {
+            "review": 98,
+            "collimator": 93,
+            "x2_scope": 100,
+            "x4_scope": 93,
+            "sniper_scope": 22,
+            "free_review": 30
+        }
+    },
+    {
+        "__id__": "qOD90HcbQnVEnkDB3UL6",
+        "manufacturer": "Oppo",
+        "name": "A9",
+        "settings_source_url": "",
+        "dpi": 651,
+        "fire_button": 45,
+        "sensitivities": {
+            "review": 96,
+            "collimator": 98,
+            "x2_scope": 93,
+            "x4_scope": 97,
+            "sniper_scope": 59,
+            "free_review": 35
+        }
+    },
+    {
+        "__id__": "qdGQcHtZPEY643b8sOq5",
+        "manufacturer": "Oppo",
+        "name": "A12",
+        "settings_source_url": "",
+        "dpi": 568,
+        "fire_button": 45,
+        "sensitivities": {
+            "review": 97,
+            "collimator": 91,
+            "x2_scope": 96,
+            "x4_scope": 92,
+            "sniper_scope": 19,
+            "free_review": 32
+        }
+    },
+    {
+        "__id__": "t3j8m7ozsei7tpyToCLj",
+        "manufacturer": "Oppo",
+        "name": "Reno 5 Lite",
+        "settings_source_url": "",
+        "dpi": 537,
+        "fire_button": 47,
+        "sensitivities": {
+            "review": 95,
+            "collimator": 98,
+            "x2_scope": 99,
+            "x4_scope": 99,
+            "sniper_scope": 51,
+            "free_review": 49
+        }
+    }
+]
+}

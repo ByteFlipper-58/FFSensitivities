@@ -1,0 +1,95 @@
+{
+    "manufacturer": "Infinix",
+    "models": [
+        {
+            "manufacturer": "Infinix",
+            "name": "Hot 20i",
+            "settings_source_url": "",
+            "dpi": 420,
+            "fire_button": 50,
+            "sensitivities": {
+              "review": 100,
+              "collimator": 60,
+              "x2_scope": 55,
+              "x4_scope": 50,
+              "sniper_scope": 23,
+              "free_review": 100
+            }
+        },
+        {
+        "manufacturer": "Infinix",
+        "name": "Hot 12 Pro",
+        "settings_source_url": "",
+        "dpi": 431,
+        "fire_button": 42,
+        "sensitivities": {
+          "review": 100,
+          "collimator": 100,
+          "x2_scope": 100,
+          "x4_scope": 100,
+          "sniper_scope": 100,
+          "free_review": 51
+        }
+      },
+      {
+        "manufacturer": "Infinix",
+        "name": "Hot 11s",
+        "settings_source_url": "",
+        "dpi": 360,
+        "fire_button": 70,
+        "sensitivities": {
+          "review": 100,
+          "collimator": 100,
+          "x2_scope": 100,
+          "x4_scope": 100,
+          "sniper_scope": 100,
+          "free_review": 100
+        }
+      },
+      {
+        "manufacturer": "Infinix",
+        "name": "Hot 10",
+        "settings_source_url": "",
+        "dpi": 393,
+        "fire_button": 49,
+        "sensitivities": {
+          "review": 100,
+          "collimator": 85,
+          "x2_scope": 100,
+          "x4_scope": 100,
+          "sniper_scope": 100,
+          "free_review": 65
+        }
+      },
+      {
+        "manufacturer": "Infinix",
+        "name": "Note 12",
+        "settings_source_url": "",
+        "dpi": 505,
+        "fire_button": 40,
+        "sensitivities": {
+          "review": 100,
+          "collimator": 100,
+          "x2_scope": 100,
+          "x4_scope": 100,
+          "sniper_scope": 22,
+          "free_review": 100
+        }
+      },
+      {
+        "manufacturer": "Infinix",
+        "name": "Smart 6",
+        "settings_source_url": "",
+        "dpi": 430,
+        "fire_button": 55,
+        "sensitivities": {
+          "review": 100,
+          "collimator": 100,
+          "x2_scope": 100,
+          "x4_scope": 100,
+          "sniper_scope": 22,
+          "free_review": 100
+        }
+      }
+    ]
+}
