@@ -2,21 +2,39 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="com.google.android.gms.permission.AD_ID" />
+
     <application
+        android:name="com.byteflipper.ffsensitivities.MyApp"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:localeConfig="@xml/locales_config"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/FFSensitivitiesTheme"
-        tools:targetApi="31">
+        tools:targetApi="34">
+
         <activity
-            android:name=".ui.WelcomeActivity"
+            android:name="com.byteflipper.ffsensitivities.ui.WelcomeActivity"
             android:exported="false" />
+
+        <service
+            android:name="androidx.appcompat.app.AppLocalesMetadataHolderService"
+            android:enabled="false"
+            android:exported="false">
+            <meta-data
+                android:name="autoStoreLocales"
+                android:value="true" />
+        </service>
+
         <activity
-            android:name=".ui.MainActivity"
+            android:name="com.byteflipper.ffsensitivities.ui.MainActivity"
+            android:configChanges="uiMode"
             android:exported="true"
             android:theme="@style/FFSensitivitiesTheme.SplashScreen">
             <intent-filter>

@@ -35,25 +35,21 @@ public class SettingsFragment extends Fragment {
         binding.themeDescription.setText(setNightModeDescription[SharedPreferencesUtils.getInteger(requireContext(), "nightMode", 0)]);
 
         binding.appThemeRadioGroup.setOnCheckedChangeListener((group, checkedId) -> {
-            switch (checkedId) {
-                case R.id.setFollowSystemTheme:
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
-                    SharedPreferencesUtils.writeInteger(requireContext(), "checkedButton", R.id.setFollowSystemTheme);
-                    SharedPreferencesUtils.writeInteger(requireContext(), "nightMode", 0);
-                    requireActivity().recreate();
-                    break;
-                case R.id.setLightTheme:
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-                    SharedPreferencesUtils.writeInteger(requireContext(), "checkedButton", R.id.setLightTheme);
-                    SharedPreferencesUtils.writeInteger(requireContext(), "nightMode", 1);
-                    requireActivity().recreate();
-                    break;
-                case R.id.setNightTheme:
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-                    SharedPreferencesUtils.writeInteger(requireContext(), "checkedButton", R.id.setNightTheme);
-                    SharedPreferencesUtils.writeInteger(requireContext(), "nightMode", 2);
-                    requireActivity().recreate();
-                    break;
+            if (checkedId == R.id.setFollowSystemTheme) {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
+                SharedPreferencesUtils.writeInteger(requireContext(), "checkedButton", R.id.setFollowSystemTheme);
+                SharedPreferencesUtils.writeInteger(requireContext(), "nightMode", 0);
+                requireActivity().recreate();
+            } else if (checkedId == R.id.setLightTheme) {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                SharedPreferencesUtils.writeInteger(requireContext(), "checkedButton", R.id.setLightTheme);
+                SharedPreferencesUtils.writeInteger(requireContext(), "nightMode", 1);
+                requireActivity().recreate();
+            } else if (checkedId == R.id.setNightTheme) {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                SharedPreferencesUtils.writeInteger(requireContext(), "checkedButton", R.id.setNightTheme);
+                SharedPreferencesUtils.writeInteger(requireContext(), "nightMode", 2);
+                requireActivity().recreate();
             }
         });
 

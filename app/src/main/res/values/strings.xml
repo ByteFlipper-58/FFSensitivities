@@ -90,4 +90,6 @@
     <string name="dynamic_colors_are_not_supported">Dynamic colors are not supported</string>
     <string name="devices_list">Devices list</string>
     <string name="sensitivity">Sensitivity</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

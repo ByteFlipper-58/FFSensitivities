@@ -22,7 +22,7 @@ public class ChangeUsernameDialog {
         View dialogView = inflater.inflate(R.layout.change_user_name_layout, null);
 
         builder.setTitle(R.string.enter_user_name);
-        builder.setIcon(R.drawable.ic_outline_account_circle_24);
+        builder.setIcon(R.drawable.person_24px);
         builder.setView(dialogView);
 
         TextInputEditText usernameInput = dialogView.findViewById(R.id.userNameInput);

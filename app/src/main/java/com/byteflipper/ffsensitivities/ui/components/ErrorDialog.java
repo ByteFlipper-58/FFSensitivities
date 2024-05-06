@@ -20,7 +20,7 @@ public class ErrorDialog extends MaterialAlertDialogBuilder {
     }
 
     public void showWith(String title, String message) {
-        builder.setIcon(R.drawable.ic_round_error_outline_24);
+        //builder.setIcon(R.drawable.ic_round_error_outline_24);
         builder.setTitle(title);
         builder.setMessage(message);
         builder.setPositiveButton("Copy error", (dialog, which) -> {

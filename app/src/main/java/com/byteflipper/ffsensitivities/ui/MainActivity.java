@@ -1,5 +1,6 @@
 package com.byteflipper.ffsensitivities.ui;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -8,6 +9,7 @@ import android.view.View;
 import android.view.ViewTreeObserver;
 import android.view.Window;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.splashscreen.SplashScreen;
 import androidx.navigation.NavController;
@@ -71,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.top_app_bar_menu, menu);
+        getMenuInflater().inflate(R.menu.toolbar, menu);
         return true;
     }
 

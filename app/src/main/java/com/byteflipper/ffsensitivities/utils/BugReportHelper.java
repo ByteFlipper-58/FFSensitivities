@@ -15,34 +15,15 @@ import com.byteflipper.ffsensitivities.R;
 public class BugReportHelper {
 
     public static void sendEmail(Context context) {
-
-        String manufacturer = android.os.Build.MANUFACTURER;
-        String model_name = Build.DEVICE;
-        String number_model = Build.MODEL;
-        String android_version_name = null;
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.R) {
-            android_version_name = Build.VERSION.RELEASE_OR_CODENAME;
-        }
-        int android_version_int = Build.VERSION.SDK_INT;
-        String device_info =
-                "Device Info:" + "\n" +
-                        "Device Name:" + " " + manufacturer + " " + model_name + "\n" +
-                        "Device Model:" + " " + number_model + "\n" +
-                        "Android Version:" + " " + Build.VERSION.CODENAME + " " + android_version_name + " " + "(" + android_version_int + ")" + "\n" +
-                        "Connection Type:" + " " + getNetworkClass(context);
-
-        String app_info = "\n\n\n" +
-                "App Info:" + "\n" +
-                context.getString(R.string.app_name) + "\n" +
-                BuildConfig.APPLICATION_ID + "\n" +
-                "App Version:" + " " + BuildConfig.VERSION_NAME + "(" + BuildConfig.VERSION_CODE + ")" + "\n" +
-                "Build Type:" + " " + BuildConfig.BUILD_TYPE;
+        String deviceInfo = getDeviceInfo(context);
+        String appInfo = getAppInfo(context);
 
         Intent intent = new Intent(Intent.ACTION_SENDTO);
         intent.setData(Uri.parse("mailto:"));
-        intent.putExtra(Intent.EXTRA_EMAIL , new String[]{"ibremminer837.dev@gmail.com"});
+        intent.putExtra(Intent.EXTRA_EMAIL, new String[]{"byteflipper.business@gmail.com"});
         intent.putExtra(Intent.EXTRA_SUBJECT, context.getString(R.string.bug_report));
-        intent.putExtra(Intent.EXTRA_TEXT , app_info + "\n\n" + device_info);
+        intent.putExtra(Intent.EXTRA_TEXT, appInfo + "\n\n" + deviceInfo);
+
         try {
             context.startActivity(Intent.createChooser(intent, ""));
         } catch (android.content.ActivityNotFoundException ex) {
@@ -50,13 +31,41 @@ public class BugReportHelper {
         }
     }
 
+    private static String getDeviceInfo(Context context) {
+        String manufacturer = Build.MANUFACTURER;
+        String model = Build.MODEL;
+        String androidVersion = null;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.R) {
+            androidVersion = Build.VERSION.RELEASE_OR_CODENAME;
+        }
+        int sdkInt = Build.VERSION.SDK_INT;
+
+        return "Device Info:\n" +
+                "Manufacturer: " + manufacturer + "\n" +
+                "Model: " + model + "\n" +
+                "Android Version: " + androidVersion + " (API " + sdkInt + ")\n" +
+                "Connection Type: " + getNetworkClass(context);
+    }
+
+    private static String getAppInfo(Context context) {
+        return "\n\n\n" +
+                "App Info:\n" +
+                context.getString(R.string.app_name) + "\n" +
+                BuildConfig.APPLICATION_ID + "\n" +
+                "App Version: " + BuildConfig.VERSION_NAME + " (" + BuildConfig.VERSION_CODE + ")\n" +
+                "Build Type: " + BuildConfig.BUILD_TYPE;
+    }
+
     private static String getNetworkClass(Context context) {
         ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo info = cm.getActiveNetworkInfo();
+
         if (info == null || !info.isConnected())
             return "Not Connected"; // not connected
+
         if (info.getType() == ConnectivityManager.TYPE_WIFI)
             return "WIFI";
+
         if (info.getType() == ConnectivityManager.TYPE_MOBILE) {
             int networkType = info.getSubtype();
             switch (networkType) {
@@ -64,8 +73,8 @@ public class BugReportHelper {
                 case TelephonyManager.NETWORK_TYPE_EDGE:
                 case TelephonyManager.NETWORK_TYPE_CDMA:
                 case TelephonyManager.NETWORK_TYPE_1xRTT:
-                case TelephonyManager.NETWORK_TYPE_IDEN:     // api< 8: replace by 11
-                case TelephonyManager.NETWORK_TYPE_GSM:      // api<25: replace by 16
+                case TelephonyManager.NETWORK_TYPE_IDEN:
+                case TelephonyManager.NETWORK_TYPE_GSM:
                     return "2G";
                 case TelephonyManager.NETWORK_TYPE_UMTS:
                 case TelephonyManager.NETWORK_TYPE_EVDO_0:
@@ -73,16 +82,16 @@ public class BugReportHelper {
                 case TelephonyManager.NETWORK_TYPE_HSDPA:
                 case TelephonyManager.NETWORK_TYPE_HSUPA:
                 case TelephonyManager.NETWORK_TYPE_HSPA:
-                case TelephonyManager.NETWORK_TYPE_EVDO_B:   // api< 9: replace by 12
-                case TelephonyManager.NETWORK_TYPE_EHRPD:    // api<11: replace by 14
-                case TelephonyManager.NETWORK_TYPE_HSPAP:    // api<13: replace by 15
-                case TelephonyManager.NETWORK_TYPE_TD_SCDMA: // api<25: replace by 17
+                case TelephonyManager.NETWORK_TYPE_EVDO_B:
+                case TelephonyManager.NETWORK_TYPE_EHRPD:
+                case TelephonyManager.NETWORK_TYPE_HSPAP:
+                case TelephonyManager.NETWORK_TYPE_TD_SCDMA:
                     return "3G";
-                case TelephonyManager.NETWORK_TYPE_LTE:      // api<11: replace by 13
-                case TelephonyManager.NETWORK_TYPE_IWLAN:    // api<25: replace by 18
+                case TelephonyManager.NETWORK_TYPE_LTE:
+                case TelephonyManager.NETWORK_TYPE_IWLAN:
                 case 19: // LTE_CA
                     return "4G";
-                case TelephonyManager.NETWORK_TYPE_NR:       // api<29: replace by 20
+                case TelephonyManager.NETWORK_TYPE_NR:
                     return "5G";
                 default:
                     return "Unknown";

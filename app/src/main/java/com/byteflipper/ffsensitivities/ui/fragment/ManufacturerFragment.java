@@ -61,7 +61,7 @@ public class ManufacturerFragment extends Fragment {
         });
 
         binding.setUserNameBtn.setOnClickListener(view1 -> ChangeUsernameDialog.showDialog(getActivity()));
-        binding.googleFormBtn.setOnClickListener(view1 -> new ChromeCustomTabUtil().OpenCustomTab(getActivity(), "https://t.me/freefiresettingsapp", R.color.md_theme_light_onSecondary));
+        //binding.googleFormBtn.setOnClickListener(view1 -> new ChromeCustomTabUtil().OpenCustomTab(getActivity(), "https://t.me/freefiresettingsapp", R.color.md_theme_light_onSecondary));
     }
 
     @Override

@@ -11,7 +11,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-=import com.byteflipper.ffsensitivities.R;
+import com.byteflipper.ffsensitivities.BuildConfig;
+import com.byteflipper.ffsensitivities.R;
 import com.byteflipper.ffsensitivities.databinding.FragmentAboutBinding;
 import com.byteflipper.ffsensitivities.utils.BugReportHelper;
 import com.byteflipper.ffsensitivities.utils.ChromeCustomTabUtil;
@@ -35,15 +36,18 @@ public class AboutFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
         binding.appVersionBtn.setText(getString(R.string.version) + ": " + BuildConfig.VERSION_NAME + "(" + BuildConfig.VERSION_CODE + ")");
-        binding.translateAppBtn.setOnClickListener(view1 -> new ChromeCustomTabUtil().OpenCustomTab(getActivity(), getString(R.string.crowdin), R.color.md_theme_light_onSecondary));
-        binding.donateBtn.setOnClickListener(v -> new ChromeCustomTabUtil().OpenCustomTab(getActivity(), "https://www.donationalerts.com/r/ibremminer837", R.color.md_theme_light_onSecondary));
-        binding.sourceCodeBtn.setOnClickListener(v -> new ChromeCustomTabUtil().OpenCustomTab(getActivity(), getString(R.string.source_code_url), R.color.md_theme_light_onSecondary));
-        binding.ibragimBtn.setOnClickListener(v -> new ChromeCustomTabUtil().OpenCustomTab(getActivity(), getString(R.string.ibragim_url), R.color.md_theme_light_onSecondary));
+        binding.translateAppBtn.setOnClickListener(view1 -> {
+            new ChromeCustomTabUtil.Builder(requireContext(), getString(R.string.crowdin)).open();
+        });
+        //binding.donateBtn.setOnClickListener(v -> new ChromeCustomTabUtil().OpenCustomTab(getActivity(), "https://www.donationalerts.com/r/ibremminer837", R.color.md_theme_light_onSecondary));
+        //binding.sourceCodeBtn.setOnClickListener(v -> new ChromeCustomTabUtil().OpenCustomTab(getActivity(), getString(R.string.source_code_url), R.color.md_theme_light_onSecondary));
+        //binding.ibragimBtn.setOnClickListener(v -> new ChromeCustomTabUtil().OpenCustomTab(getActivity(), getString(R.string.ibragim_url), R.color.md_theme_light_onSecondary));
         binding.mailBtn.setOnClickListener(v -> BugReportHelper.sendEmail(getActivity()));
         binding.rateBtn.setOnClickListener(v -> new OtherUtils(getActivity()).reviewAppInGooglePlay());
-        binding.vkGroupBtn.setOnClickListener(v -> new ChromeCustomTabUtil().OpenCustomTab(getActivity(), getString(R.string.JVMFrog_Squad), R.color.md_theme_light_onSecondary));
-        binding.telegramBtn.setOnClickListener(v -> new ChromeCustomTabUtil().OpenCustomTab(getActivity(), "https://t.me/freefiresettingsapp", R.color.md_theme_light_onSecondary));
+        //binding.vkGroupBtn.setOnClickListener(v -> new ChromeCustomTabUtil().OpenCustomTab(getActivity(), getString(R.string.JVMFrog_Squad), R.color.md_theme_light_onSecondary));
+        //binding.telegramBtn.setOnClickListener(v -> new ChromeCustomTabUtil().OpenCustomTab(getActivity(), "https://t.me/freefiresettingsapp", R.color.md_theme_light_onSecondary));
         binding.otherAppsBtn.setOnClickListener(view1 -> {
             try {
                 startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("rustore://apps.rustore.ru/app/" + BuildConfig.APPLICATION_ID)));

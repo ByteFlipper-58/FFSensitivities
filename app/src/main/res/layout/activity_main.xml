@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:animateLayoutChanges="true"
+    android:background="?attr/colorSurface"
     tools:context="com.byteflipper.ffsensitivities.ui.MainActivity">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -21,7 +22,7 @@
             app:layout_scrollFlags="scroll|enterAlways|snap"
             app:title="@string/app_name"
             app:menu="@menu/toolbar"
-            android:theme="@style/FFSettingsTheme.Widget.Toolbar"/>
+            style="@style/ThemeOverlay.Material3.Toolbar.Surface"/>
         <com.google.android.material.progressindicator.LinearProgressIndicator
             android:id="@+id/progressIndicator"
             android:layout_width="match_parent"
@@ -59,5 +60,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        app:menu="@menu/navigation_view"/>
+        app:menu="@menu/navigation_view"
+        style="@style/ThemeOverlay.Material3.BottomNavigationView"/>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

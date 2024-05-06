@@ -4,6 +4,8 @@ import android.app.Application;
 
 import androidx.appcompat.app.AppCompatDelegate;
 
+import com.byteflipper.ffsensitivities.utils.SharedPreferencesUtils;
+
 public class MyApp extends Application {
     public static MyApp instance = null;
 

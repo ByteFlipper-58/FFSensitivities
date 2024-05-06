@@ -8,19 +8,32 @@ import androidx.browser.customtabs.CustomTabsIntent;
 
 public class ChromeCustomTabUtil {
 
-    public void OpenCustomTab(Context context, String URL, int colorInt) {
-        CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
-        CustomTabsIntent customTabsIntent = builder.build();
-        customTabsIntent.launchUrl(context, Uri.parse(URL));
+    public static class Builder {
 
-        //Set tab color
-        CustomTabColorSchemeParams defaultColors = new CustomTabColorSchemeParams.Builder()
-                .setToolbarColor(colorInt)
-                .build();
-        builder/*intentBuilder*/.setDefaultColorSchemeParams(defaultColors);
+        private Context context;
+        private String url;
+        private int toolbarColor;
 
-        //Set animation
-        //builder.setStartAnimations(this, R.anim.slide_in_right, R.anim.slide_out_left);
-        //builder.setExitAnimations(this, R.anim.slide_in_left, R.anim.slide_out_right);
+        public Builder(Context context, String url) {
+            this.context = context;
+            this.url = url;
+        }
+
+        public Builder setToolbarColor(int toolbarColor) {
+            this.toolbarColor = toolbarColor;
+            return this;
+        }
+
+        public void open() {
+            CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
+            CustomTabsIntent customTabsIntent = builder.build();
+            customTabsIntent.launchUrl(context, Uri.parse(url));
+
+            // Set tab color
+            CustomTabColorSchemeParams defaultColors = new CustomTabColorSchemeParams.Builder()
+                    .setToolbarColor(toolbarColor)
+                    .build();
+            builder.setDefaultColorSchemeParams(defaultColors);
+        }
     }
 }
