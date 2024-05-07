@@ -1,4 +1,4 @@
-package com.byteflipper.ffsensitivities.utils;
+package com.byteflipper.ffsensitivities.manager;
 
 import static com.android.volley.RequestQueue.RequestEvent.REQUEST_CACHE_LOOKUP_FINISHED;
 import static com.android.volley.RequestQueue.RequestEvent.REQUEST_CACHE_LOOKUP_STARTED;
@@ -25,11 +25,11 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.byteflipper.ffsensitivities.model.ManufacturersModel;
+import com.byteflipper.ffsensitivities.model.ManufacturersDataModel;
 
 public class ManufacturerManager {
     private static final String GITHUB_MANUFACTURERS_FILES_PATH = "https://raw.githubusercontent.com/ByteFlipper-58/FFSensitivities/master/app/src/main/assets/sensitivity_settings/manufacturers.json";
-    private final List<ManufacturersModel> manufacturersSet = new ArrayList<>();
+    private final List<ManufacturersDataModel> manufacturersSet = new ArrayList<>();
     private final MutableLiveData<Boolean> isRequestFinished = new MutableLiveData<>();
     private final MutableLiveData<Boolean> isReadyLiveData = new MutableLiveData<>();
     private static ManufacturerManager instance;
@@ -46,7 +46,7 @@ public class ManufacturerManager {
         return instance;
     }
 
-    public List<ManufacturersModel> getManufacturersSet() {
+    public List<ManufacturersDataModel> getManufacturersSet() {
         return manufacturersSet;
     }
 
@@ -94,7 +94,7 @@ public class ManufacturerManager {
             String model = jsonObject.getString("model");
             Boolean showInProductionApp = jsonObject.getBoolean("showInProductionApp");
             Boolean isAvailable = jsonObject.getBoolean("isAvailable");
-            manufacturersSet.add(new ManufacturersModel(name, model, showInProductionApp, isAvailable));
+            manufacturersSet.add(new ManufacturersDataModel(name, model, showInProductionApp, isAvailable));
         }
         isReadyLiveData.postValue(true);
         isRequestFinished.postValue(true);

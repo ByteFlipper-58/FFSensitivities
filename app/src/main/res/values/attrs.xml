@@ -5,4 +5,9 @@
         <attr name="value" format="float"/>
         <attr name="enabled" format="boolean"/>
     </declare-styleable>
+    <declare-styleable name="CustomItemView">
+        <attr name="listTitle" format="string"/>
+        <attr name="listSubtitle" format="string"/>
+        <attr name="listIcon" format="integer"/>
+    </declare-styleable>
 </resources>

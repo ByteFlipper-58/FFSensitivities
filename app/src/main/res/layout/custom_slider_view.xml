@@ -20,8 +20,8 @@
                 android:layout_weight="5"
                 android:gravity="start"
                 android:text="Title"
-                android:textSize="21sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold"
+                android:textAppearance="?attr/textAppearanceHeadline6"/>
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/valueTextView"
@@ -39,6 +39,6 @@
             android:layout_height="wrap_content"
             android:value="58"
             android:valueFrom="0"
-            android:valueTo="100"/>
+            android:valueTo="200"/>
     </LinearLayout>
 </merge>

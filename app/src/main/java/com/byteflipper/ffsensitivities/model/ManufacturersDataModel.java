@@ -3,13 +3,13 @@ package com.byteflipper.ffsensitivities.model;
 import androidx.annotation.Keep;
 
 @Keep
-public class ManufacturersModel {
+public class ManufacturersDataModel {
     String name, model;
     Boolean showInProductionApp, isAvailable;
 
-    public ManufacturersModel() {};
+    public ManufacturersDataModel() {};
 
-    public ManufacturersModel(String name, String model, Boolean showInProductionApp, Boolean isAvailable) {
+    public ManufacturersDataModel(String name, String model, Boolean showInProductionApp, Boolean isAvailable) {
         this.name = name;
         this.model = model;
         this.showInProductionApp = showInProductionApp;

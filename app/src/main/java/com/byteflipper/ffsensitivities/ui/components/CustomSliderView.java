@@ -35,7 +35,6 @@ public class CustomSliderView extends LinearLayout {
         setOrientation(VERTICAL);
         setGravity(Gravity.CENTER);
 
-        // Инфлейтим макет
         LayoutInflater.from(context).inflate(R.layout.custom_slider_view, this, true);
 
         titleTextView = findViewById(R.id.titleTextView);
