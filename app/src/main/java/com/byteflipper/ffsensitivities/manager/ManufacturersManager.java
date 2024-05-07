@@ -27,21 +27,21 @@ import java.util.List;
 
 import com.byteflipper.ffsensitivities.model.ManufacturersDataModel;
 
-public class ManufacturerManager {
+public class ManufacturersManager {
     private static final String GITHUB_MANUFACTURERS_FILES_PATH = "https://raw.githubusercontent.com/ByteFlipper-58/FFSensitivities/master/app/src/main/assets/sensitivity_settings/manufacturers.json";
     private final List<ManufacturersDataModel> manufacturersSet = new ArrayList<>();
     private final MutableLiveData<Boolean> isRequestFinished = new MutableLiveData<>();
     private final MutableLiveData<Boolean> isReadyLiveData = new MutableLiveData<>();
-    private static ManufacturerManager instance;
+    private static ManufacturersManager instance;
 
     // Private constructor to prevent instantiation from outside
-    private ManufacturerManager() {
+    private ManufacturersManager() {
     }
 
     // Public method to get the singleton instance
-    public static synchronized ManufacturerManager getInstance() {
+    public static synchronized ManufacturersManager getInstance() {
         if (instance == null) {
-            instance = new ManufacturerManager();
+            instance = new ManufacturersManager();
         }
         return instance;
     }

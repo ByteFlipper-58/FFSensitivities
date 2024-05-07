@@ -20,7 +20,7 @@ import androidx.navigation.ui.NavigationUI;
 import com.google.android.material.color.DynamicColors;
 import com.byteflipper.ffsensitivities.R;
 import com.byteflipper.ffsensitivities.databinding.ActivityMainBinding;
-import com.byteflipper.ffsensitivities.manager.ManufacturerManager;
+import com.byteflipper.ffsensitivities.manager.ManufacturersManager;
 import com.byteflipper.ffsensitivities.utils.SharedPreferencesUtils;
 import com.google.android.material.color.MaterialColors;
 import com.google.android.material.elevation.SurfaceColors;
@@ -51,11 +51,11 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(binding.toolbar);
 
         final View content = findViewById(android.R.id.content);
-        ManufacturerManager.getInstance().updateAdapterData(this);
+        ManufacturersManager.getInstance().updateAdapterData(this);
         content.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
             @Override
             public boolean onPreDraw() {
-                if (ManufacturerManager.getInstance().isReady()) {
+                if (ManufacturersManager.getInstance().isReady()) {
                     content.getViewTreeObserver().removeOnPreDrawListener(this);
 
                     if (SharedPreferencesUtils.getBoolean(MainActivity.this, "isFirstOpen")) {

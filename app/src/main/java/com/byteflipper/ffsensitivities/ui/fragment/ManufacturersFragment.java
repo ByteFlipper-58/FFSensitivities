@@ -13,15 +13,15 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import com.google.android.material.progressindicator.LinearProgressIndicator;
 
 import com.byteflipper.ffsensitivities.R;
-import com.byteflipper.ffsensitivities.adapter.ManufacturerAdapter;
+import com.byteflipper.ffsensitivities.adapter.ManufacturersListAdapter;
 import com.byteflipper.ffsensitivities.databinding.FragmentManufacturerBinding;
 import com.byteflipper.ffsensitivities.ui.components.ChangeUsernameDialog;
-import com.byteflipper.ffsensitivities.manager.ManufacturerManager;
+import com.byteflipper.ffsensitivities.manager.ManufacturersManager;
 import com.byteflipper.ffsensitivities.utils.SharedPreferencesUtils;
 
-public class ManufacturerFragment extends Fragment {
+public class ManufacturersFragment extends Fragment {
     private FragmentManufacturerBinding binding;
-    private ManufacturerManager manager;
+    private ManufacturersManager manager;
     private LinearProgressIndicator indicator;
 
     @Override
@@ -29,7 +29,7 @@ public class ManufacturerFragment extends Fragment {
                              Bundle savedInstanceState) {
         binding = FragmentManufacturerBinding.inflate(inflater, container, false);
         indicator = requireActivity().findViewById(R.id.progressIndicator);
-        manager = ManufacturerManager.getInstance();
+        manager = ManufacturersManager.getInstance();
         return binding.getRoot();
     }
 
@@ -55,7 +55,7 @@ public class ManufacturerFragment extends Fragment {
                 binding.shimmerLayout.setVisibility(View.GONE);
                 binding.recview.setVisibility(View.VISIBLE);
                 binding.recview.setLayoutManager(new GridLayoutManager(requireActivity(), 2));
-                binding.recview.setAdapter(new ManufacturerAdapter(this, manager.getManufacturersSet()));
+                binding.recview.setAdapter(new ManufacturersListAdapter(this, manager.getManufacturersSet()));
             }
         });
 

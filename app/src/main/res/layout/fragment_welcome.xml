@@ -13,7 +13,7 @@
         android:layout_width="164dp"
         android:layout_height="164dp"
         android:layout_marginTop="120dp"
-        android:src="@drawable/ic_launcher_background"
+        android:src="@mipmap/ic_launcher"
         app:layout_constraintBottom_toTopOf="@+id/welcome_title"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

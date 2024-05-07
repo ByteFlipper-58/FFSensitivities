@@ -18,11 +18,11 @@ import java.util.Locale;
 import com.byteflipper.ffsensitivities.R;
 import com.byteflipper.ffsensitivities.model.ManufacturersDataModel;
 
-public class ManufacturerAdapter extends RecyclerView.Adapter<ManufacturerAdapter.ManufacturersHolder> {
+public class ManufacturersListAdapter extends RecyclerView.Adapter<ManufacturersListAdapter.ManufacturersHolder> {
     private final Fragment fragment;
     private final List<ManufacturersDataModel> models;
 
-    public ManufacturerAdapter(Fragment fragment, List<ManufacturersDataModel> models) {
+    public ManufacturersListAdapter(Fragment fragment, List<ManufacturersDataModel> models) {
         this.fragment = fragment;
         this.models = models;
     }

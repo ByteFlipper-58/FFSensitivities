@@ -7,9 +7,9 @@
 
     <fragment
         android:id="@+id/manufacturerFragment2"
-        android:name="com.byteflipper.ffsensitivities.ui.fragment.ManufacturerFragment"
+        android:name="com.byteflipper.ffsensitivities.ui.fragment.ManufacturersFragment"
         android:label="@string/app_name"
-        tools:layout="@layout/fragment_manufacturer">
+        tools:layout="@layout/fragment_manufacturers">
         <action
             android:id="@+id/action_manufacturerFragment2_to_devicesFragment"
             app:destination="@id/devicesFragment"/>
@@ -28,8 +28,8 @@
     </fragment>
     <fragment
         android:id="@+id/deviceSettingsFragment"
-        android:name="com.byteflipper.ffsensitivities.ui.fragment.DeviceSettingsFragment"
-        tools:layout="@layout/fragment_device_settings"
+        android:name="com.byteflipper.ffsensitivities.ui.fragment.SensitivitiesFragment"
+        tools:layout="@layout/fragment_sensitivities"
         android:label="@string/settings" />
     <fragment
         android:id="@+id/aboutAppFragment"

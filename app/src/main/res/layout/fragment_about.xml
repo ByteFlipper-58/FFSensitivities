@@ -22,13 +22,14 @@
             android:paddingBottom="16dp"
             android:orientation="vertical">
 
-            <ImageView
+            <com.google.android.material.imageview.ShapeableImageView
                 android:layout_width="96dp"
                 android:layout_height="96dp"
                 android:layout_marginTop="24dp"
                 android:layout_marginBottom="16dp"
                 android:layout_gravity="center"
-                android:src="@drawable/ic_launcher_background"/>
+                android:src="@mipmap/ic_launcher"
+                app:shapeAppearance="@style/ShapeAppearance.Material3.Corner.ExtraLarge"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -48,6 +49,7 @@
                 android:textStyle="bold"/>
 
             <com.byteflipper.ffsensitivities.ui.components.CustomItemView
+                android:id="@+id/bug_report_btn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:listTitle="@string/bug_report_title"
@@ -63,6 +65,7 @@
                 app:dividerInsetStart="32dp"/>
 
             <com.byteflipper.ffsensitivities.ui.components.CustomItemView
+                android:id="@+id/rate_review_btn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:listTitle="@string/rate_the_app_title"
@@ -78,6 +81,7 @@
                 app:dividerInsetStart="32dp"/>
 
             <com.byteflipper.ffsensitivities.ui.components.CustomItemView
+                android:id="@+id/other_apps_btn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:listTitle="@string/other_apps_title"
@@ -111,6 +115,7 @@
                 android:orientation="vertical"/-->
 
             <com.byteflipper.ffsensitivities.ui.components.CustomItemView
+                android:id="@+id/website_btn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:listTitle="@string/website_title"
@@ -126,6 +131,7 @@
                 app:dividerInsetStart="32dp"/>
 
             <com.byteflipper.ffsensitivities.ui.components.CustomItemView
+                android:id="@+id/vk_btn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:listTitle="@string/vk_title"
@@ -141,6 +147,7 @@
                 app:dividerInsetStart="32dp"/>
 
             <com.byteflipper.ffsensitivities.ui.components.CustomItemView
+                android:id="@+id/telegram_btn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:listTitle="@string/telegram_title"
@@ -156,6 +163,7 @@
                 app:dividerInsetStart="32dp"/>
 
             <com.byteflipper.ffsensitivities.ui.components.CustomItemView
+                android:id="@+id/github_btn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:listTitle="@string/github_title"
@@ -171,6 +179,7 @@
                 app:dividerInsetStart="32dp"/>
 
             <com.byteflipper.ffsensitivities.ui.components.CustomItemView
+                android:id="@+id/source_code"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:listTitle="@string/source_code_title"

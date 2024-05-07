@@ -19,13 +19,13 @@ import com.byteflipper.ffsensitivities.model.SensitivityDataModel;
 
 import com.byteflipper.ffsensitivities.R;
 
-public class DevicesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class DevicesListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private final Fragment fragment;
     private final List<SensitivityDataModel> models;
     private static final int VIEW_TYPE_DEFAULT = 0;
     private static final int VIEW_TYPE_BANNER = 1;
 
-    public DevicesAdapter(Fragment fragment, List<SensitivityDataModel> models) {
+    public DevicesListAdapter(Fragment fragment, List<SensitivityDataModel> models) {
         this.fragment = fragment;
         this.models = models;
     }
