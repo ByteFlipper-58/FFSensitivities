@@ -15,19 +15,19 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.byteflipper.ffsensitivities.R;
-import com.byteflipper.ffsensitivities.databinding.FragmentDeviceSettingsBinding;
+import com.byteflipper.ffsensitivities.databinding.FragmentSensitivitiesBinding;
 import com.byteflipper.ffsensitivities.utils.OtherUtils;
 
 public class SensitivitiesFragment extends Fragment {
 
-    private FragmentDeviceSettingsBinding binding;
+    private FragmentSensitivitiesBinding binding;
     private float dpi = 0f;
     private Bundle finalBundle;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        binding = FragmentDeviceSettingsBinding.inflate(inflater, container, false);
+        binding = FragmentSensitivitiesBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
 

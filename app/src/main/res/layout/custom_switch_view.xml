@@ -24,7 +24,7 @@
             android:paddingEnd="16dp"
             android:text="VK"
             android:textStyle="bold"
-            android:maxLines="1"
+            android:maxLines="2"
             android:textAppearance="?attr/textAppearanceSubtitle1"/>
 
         <com.google.android.material.textview.MaterialTextView
