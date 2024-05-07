@@ -16,8 +16,7 @@ import com.byteflipper.ffsensitivities.R;
 import com.byteflipper.ffsensitivities.adapter.ManufacturerAdapter;
 import com.byteflipper.ffsensitivities.databinding.FragmentManufacturerBinding;
 import com.byteflipper.ffsensitivities.ui.components.ChangeUsernameDialog;
-import com.byteflipper.ffsensitivities.utils.ChromeCustomTabUtil;
-import com.byteflipper.ffsensitivities.utils.ManufacturerManager;
+import com.byteflipper.ffsensitivities.manager.ManufacturerManager;
 import com.byteflipper.ffsensitivities.utils.SharedPreferencesUtils;
 
 public class ManufacturerFragment extends Fragment {

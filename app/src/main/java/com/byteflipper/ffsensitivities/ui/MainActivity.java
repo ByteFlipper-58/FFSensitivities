@@ -1,6 +1,5 @@
 package com.byteflipper.ffsensitivities.ui;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -10,10 +9,8 @@ import android.view.View;
 import android.view.ViewTreeObserver;
 import android.view.Window;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 import androidx.core.splashscreen.SplashScreen;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -23,7 +20,7 @@ import androidx.navigation.ui.NavigationUI;
 import com.google.android.material.color.DynamicColors;
 import com.byteflipper.ffsensitivities.R;
 import com.byteflipper.ffsensitivities.databinding.ActivityMainBinding;
-import com.byteflipper.ffsensitivities.utils.ManufacturerManager;
+import com.byteflipper.ffsensitivities.manager.ManufacturerManager;
 import com.byteflipper.ffsensitivities.utils.SharedPreferencesUtils;
 import com.google.android.material.color.MaterialColors;
 import com.google.android.material.elevation.SurfaceColors;
@@ -114,6 +111,9 @@ public class MainActivity extends AppCompatActivity {
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             window.setStatusBarColor(color);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                window.setStatusBarContrastEnforced(true);
+            }
         }
     }
 

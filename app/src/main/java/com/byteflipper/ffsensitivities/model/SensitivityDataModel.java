@@ -1,10 +1,10 @@
 package com.byteflipper.ffsensitivities.model;
 
-public class SensitivityModel {
+public class SensitivityDataModel {
     public String deviceName, manufacturerName, settingsSourceUrl;
     public int dpi, fireButton, review, collimator, x2Scope, x4Scope, sniperScope, freeReview;
 
-    public SensitivityModel(String deviceName, String manufacturerName, String settingsSourceUrl, int dpi, int fireButton, int review, int collimator, int x2Scope, int x4Scope, int sniperScope, int freeReview) {
+    public SensitivityDataModel(String deviceName, String manufacturerName, String settingsSourceUrl, int dpi, int fireButton, int review, int collimator, int x2Scope, int x4Scope, int sniperScope, int freeReview) {
         this.deviceName = deviceName;
         this.manufacturerName = manufacturerName;
         this.settingsSourceUrl = settingsSourceUrl;

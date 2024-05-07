@@ -40,6 +40,10 @@
                 app:value="58.0"
                 app:enabled="false"/>
 
+            <com.google.android.material.divider.MaterialDivider
+                android:layout_width="match_parent"
+                android:layout_height="1dp"/>
+
             <com.byteflipper.ffsensitivities.ui.components.CustomSliderView
                 android:id="@+id/collimator_slider"
                 android:layout_width="match_parent"
@@ -47,6 +51,10 @@
                 app:titleText="@string/collimator"
                 app:value="58.0"
                 app:enabled="false"/>
+
+            <com.google.android.material.divider.MaterialDivider
+                android:layout_width="match_parent"
+                android:layout_height="1dp"/>
 
             <com.byteflipper.ffsensitivities.ui.components.CustomSliderView
                 android:id="@+id/x2_scope_slider"
@@ -56,6 +64,10 @@
                 app:value="58.0"
                 app:enabled="false"/>
 
+            <com.google.android.material.divider.MaterialDivider
+                android:layout_width="match_parent"
+                android:layout_height="1dp"/>
+
             <com.byteflipper.ffsensitivities.ui.components.CustomSliderView
                 android:id="@+id/x4_scope_slider"
                 android:layout_width="match_parent"
@@ -63,6 +75,10 @@
                 app:titleText="@string/x4_scope"
                 app:value="58.0"
                 app:enabled="false"/>
+
+            <com.google.android.material.divider.MaterialDivider
+                android:layout_width="match_parent"
+                android:layout_height="1dp"/>
 
             <com.byteflipper.ffsensitivities.ui.components.CustomSliderView
                 android:id="@+id/sniper_scope"
@@ -72,6 +88,10 @@
                 app:value="58.0"
                 app:enabled="false"/>
 
+            <com.google.android.material.divider.MaterialDivider
+                android:layout_width="match_parent"
+                android:layout_height="1dp"/>
+
             <com.byteflipper.ffsensitivities.ui.components.CustomSliderView
                 android:id="@+id/free_look_slider"
                 android:layout_width="match_parent"
@@ -79,6 +99,10 @@
                 app:titleText="@string/free_review"
                 app:value="58.0"
                 app:enabled="false"/>
+
+            <com.google.android.material.divider.MaterialDivider
+                android:layout_width="match_parent"
+                android:layout_height="1dp"/>
 
             <com.byteflipper.ffsensitivities.ui.components.CustomSliderView
                 android:id="@+id/fire_button_slider"

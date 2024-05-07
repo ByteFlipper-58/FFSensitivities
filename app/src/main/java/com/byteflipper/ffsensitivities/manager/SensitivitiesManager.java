@@ -1,4 +1,4 @@
-package com.byteflipper.ffsensitivities.utils;
+package com.byteflipper.ffsensitivities.manager;
 
 import static com.android.volley.RequestQueue.RequestEvent.REQUEST_CACHE_LOOKUP_FINISHED;
 import static com.android.volley.RequestQueue.RequestEvent.REQUEST_CACHE_LOOKUP_STARTED;
@@ -24,14 +24,14 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.byteflipper.ffsensitivities.model.SensitivityModel;
+import com.byteflipper.ffsensitivities.model.SensitivityDataModel;
 
 public class SensitivitiesManager {
     public static String GITHUB_SENSITIVITIES_FILES_PATH = "https://raw.githubusercontent.com/ByteFlipper-58/FFSensitivities/master/app/src/main/assets/sensitivity_settings/";
-    private final List<SensitivityModel> sensitivitiesSet = new ArrayList<>();
+    private final List<SensitivityDataModel> sensitivitiesSet = new ArrayList<>();
     private final MutableLiveData<Boolean> isRequestFinished = new MutableLiveData<>();
 
-    public List<SensitivityModel> getSensitivitiesSet() {
+    public List<SensitivityDataModel> getSensitivitiesSet() {
         return sensitivitiesSet;
     }
 
@@ -77,7 +77,7 @@ public class SensitivitiesManager {
             int x4_scope = jsonObject.getJSONObject("sensitivities").getInt("x4_scope");
             int sniper_scope = jsonObject.getJSONObject("sensitivities").getInt("sniper_scope");
             int free_review = jsonObject.getJSONObject("sensitivities").getInt("free_review");
-            sensitivitiesSet.add(new SensitivityModel(deviceName, manufacturerName, settingsSourceURL, dpi, fire_button,
+            sensitivitiesSet.add(new SensitivityDataModel(deviceName, manufacturerName, settingsSourceURL, dpi, fire_button,
                     review, collimator, x2_scope, x4_scope, sniper_scope,free_review
             ));
         }

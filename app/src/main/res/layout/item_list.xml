@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackground"
+        android:minHeight="64dp"
+        android:paddingBottom="16dp">
+
+        <ImageView
+            android:id="@+id/list_view_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:src="@drawable/vk_24"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/list_view_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/list_view_icon"
+            android:paddingTop="16dp"
+            android:paddingEnd="16dp"
+            android:text="VK"
+            android:textStyle="bold"
+            android:maxLines="1"
+            android:textAppearance="?attr/textAppearanceSubtitle1"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/list_view_subtitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/list_view_title"
+            android:layout_gravity="center_vertical"
+            android:layout_toEndOf="@id/list_view_icon"
+            android:paddingEnd="16dp"
+            android:text="Our new VK"
+            android:maxLines="2"
+            android:textAppearance="?attr/textAppearanceBody2"/>
+    </RelativeLayout>
+</merge>

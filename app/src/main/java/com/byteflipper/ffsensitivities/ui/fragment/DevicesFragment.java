@@ -17,7 +17,7 @@ import com.google.android.material.progressindicator.LinearProgressIndicator;
 import com.byteflipper.ffsensitivities.R;
 import com.byteflipper.ffsensitivities.adapter.DevicesAdapter;
 import com.byteflipper.ffsensitivities.databinding.FragmentDevicesBinding;
-import com.byteflipper.ffsensitivities.utils.SensitivitiesManager;
+import com.byteflipper.ffsensitivities.manager.SensitivitiesManager;
 
 public class DevicesFragment extends Fragment {
     private FragmentDevicesBinding binding;

@@ -16,13 +16,13 @@ import java.util.List;
 import java.util.Locale;
 
 import com.byteflipper.ffsensitivities.R;
-import com.byteflipper.ffsensitivities.model.ManufacturersModel;
+import com.byteflipper.ffsensitivities.model.ManufacturersDataModel;
 
 public class ManufacturerAdapter extends RecyclerView.Adapter<ManufacturerAdapter.ManufacturersHolder> {
     private final Fragment fragment;
-    private final List<ManufacturersModel> models;
+    private final List<ManufacturersDataModel> models;
 
-    public ManufacturerAdapter(Fragment fragment, List<ManufacturersModel> models) {
+    public ManufacturerAdapter(Fragment fragment, List<ManufacturersDataModel> models) {
         this.fragment = fragment;
         this.models = models;
     }

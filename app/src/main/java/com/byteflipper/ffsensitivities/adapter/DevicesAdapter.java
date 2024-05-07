@@ -15,17 +15,17 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-import com.byteflipper.ffsensitivities.model.SensitivityModel;
+import com.byteflipper.ffsensitivities.model.SensitivityDataModel;
 
 import com.byteflipper.ffsensitivities.R;
 
 public class DevicesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private final Fragment fragment;
-    private final List<SensitivityModel> models;
+    private final List<SensitivityDataModel> models;
     private static final int VIEW_TYPE_DEFAULT = 0;
     private static final int VIEW_TYPE_BANNER = 1;
 
-    public DevicesAdapter(Fragment fragment, List<SensitivityModel> models) {
+    public DevicesAdapter(Fragment fragment, List<SensitivityDataModel> models) {
         this.fragment = fragment;
         this.models = models;
     }
@@ -47,7 +47,7 @@ public class DevicesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int position) {
-        SensitivityModel model = models.get(position);
+        SensitivityDataModel model = models.get(position);
         if (model == null)
             return;
         else if (viewHolder.getItemViewType() == VIEW_TYPE_BANNER) {

@@ -12,7 +12,7 @@ import android.widget.Toast;
 import com.byteflipper.ffsensitivities.BuildConfig;
 import com.byteflipper.ffsensitivities.R;
 
-public class BugReportHelper {
+public class FeedbackHelper {
 
     public static void sendEmail(Context context) {
         String deviceInfo = getDeviceInfo(context);
@@ -21,7 +21,7 @@ public class BugReportHelper {
         Intent intent = new Intent(Intent.ACTION_SENDTO);
         intent.setData(Uri.parse("mailto:"));
         intent.putExtra(Intent.EXTRA_EMAIL, new String[]{"byteflipper.business@gmail.com"});
-        intent.putExtra(Intent.EXTRA_SUBJECT, context.getString(R.string.bug_report));
+        intent.putExtra(Intent.EXTRA_SUBJECT, context.getString(R.string.bug_report_title));
         intent.putExtra(Intent.EXTRA_TEXT, appInfo + "\n\n" + deviceInfo);
 
         try {

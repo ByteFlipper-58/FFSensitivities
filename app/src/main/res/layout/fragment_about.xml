@@ -19,91 +19,73 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="16dp"
+            android:paddingBottom="16dp"
             android:orientation="vertical">
 
-            <LinearLayout
-                android:layout_width="match_parent"
+            <ImageView
+                android:layout_width="96dp"
+                android:layout_height="96dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="16dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_launcher_background"/>
+
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:layout_width="96dp"
-                    android:layout_height="96dp"
-                    android:padding="8dp"
-                    android:src="@drawable/ic_launcher_background"/>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="8dp"
-                    android:layout_gravity="center_vertical"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/app_name"
-                        android:singleLine="true"
-                        android:textSize="21sp"
-                        android:textStyle="bold"/>
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="JVMFrog Squad"
-                        android:textSize="21sp"
-                        android:textStyle="bold"/>
-                </LinearLayout>
-            </LinearLayout>
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/appVersionBtn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/version"
+                android:layout_gravity="center"
+                android:text="@string/app_name"
                 android:textSize="18sp"
-                app:icon="@drawable/info_24px"
-                app:iconPadding="16dp"
-                app:iconSize="24dp"
-                android:textAlignment="textStart"
-                style="@style/Widget.Material3.Button.TextButton"/>
+                android:textStyle="bold"/>
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/sourceCodeBtn"
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_gravity="center"
+                android:text="ByteFlipper"
+                android:textSize="18sp"
+                android:textStyle="bold"/>
+
+            <com.byteflipper.ffsensitivities.ui.components.CustomItemView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/source_code"
-                android:textSize="18sp"
-                app:icon="@drawable/code_24px"
-                app:iconPadding="16dp"
-                app:iconSize="18sp"
-                android:textAlignment="textStart"
-                style="@style/Widget.Material3.Button.TextButton"/>
+                app:listTitle="@string/bug_report_title"
+                app:listSubtitle="@string/bug_report_subtitle"
+                app:listIcon="@drawable/bug_report_24px"
+                android:clickable="true"
+                android:focusable="true"/>
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/translateAppBtn"
+            <com.google.android.material.divider.MaterialDivider
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                app:dividerInsetEnd="32dp"
+                app:dividerInsetStart="32dp"/>
+
+            <com.byteflipper.ffsensitivities.ui.components.CustomItemView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/improve_translation"
-                android:textSize="18sp"
-                app:icon="@drawable/translate_24px"
-                app:iconPadding="16dp"
-                app:iconSize="24dp"
-                android:textAlignment="textStart"
-                style="@style/Widget.Material3.Button.TextButton"/>
+                app:listTitle="@string/rate_the_app_title"
+                app:listSubtitle="@string/rate_the_app_subtitle"
+                app:listIcon="@drawable/rate_review_24px"
+                android:clickable="true"
+                android:focusable="true"/>
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/donateBtn"
+            <com.google.android.material.divider.MaterialDivider
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                app:dividerInsetEnd="32dp"
+                app:dividerInsetStart="32dp"/>
+
+            <com.byteflipper.ffsensitivities.ui.components.CustomItemView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Donate"
-                android:textSize="18sp"
-                app:icon="@drawable/payments_24px"
-                app:iconPadding="16dp"
-                app:iconSize="24dp"
-                android:textAlignment="textStart"
-                style="@style/Widget.Material3.Button.TextButton"/>
+                app:listTitle="@string/other_apps_title"
+                app:listSubtitle="@string/other_apps_subtitle"
+                app:listIcon="@drawable/apps_24px"
+                android:clickable="true"
+                android:focusable="true"/>
+
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 
@@ -117,82 +99,101 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="16dp"
+            android:paddingVertical="16dp"
             android:orientation="vertical">
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/ibragimBtn"
+            <!--ListView
+                android:id="@+id/list"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/ibragim"
-                android:textSize="18sp"
-                app:icon="@drawable/person_24px"
-                app:iconPadding="16dp"
-                app:iconSize="24dp"
-                android:textAlignment="textStart"
-                style="@style/Widget.Material3.Button.TextButton"/>
+                android:layout_height="match_parent"
+                android:dividerHeight="1dp"
+                tools:listitem="@layout/item_list"
+                android:orientation="vertical"/-->
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/mailBtn"
+            <com.byteflipper.ffsensitivities.ui.components.CustomItemView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/report_a_bug"
-                android:textSize="18sp"
-                app:icon="@drawable/bug_report_24px"
-                app:iconPadding="16dp"
-                app:iconSize="24dp"
-                android:textAlignment="textStart"
-                style="@style/Widget.Material3.Button.TextButton"/>
+                app:listTitle="@string/website_title"
+                app:listSubtitle="@string/website_subtitle"
+                app:listIcon="@drawable/web_24px"
+                android:clickable="true"
+                android:focusable="true"/>
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/rateBtn"
+            <com.google.android.material.divider.MaterialDivider
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/rate_the_app"
-                android:textSize="18sp"
-                app:icon="@drawable/rate_review_24px"
-                app:iconPadding="16dp"
-                app:iconSize="24dp"
-                android:textAlignment="textStart"
-                style="@style/Widget.Material3.Button.TextButton"/>
+                android:layout_height="1dp"
+                app:dividerInsetEnd="32dp"
+                app:dividerInsetStart="32dp"/>
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/vkGroupBtn"
+            <com.byteflipper.ffsensitivities.ui.components.CustomItemView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/we_are_on_vk"
-                android:textSize="18sp"
-                app:iconPadding="16dp"
-                app:iconSize="24dp"
-                app:iconTintMode="screen"
-                app:iconTint="#00ffffff"
-                android:textAlignment="textStart"
-                style="@style/Widget.Material3.Button.TextButton"/>
+                app:listTitle="@string/vk_title"
+                app:listSubtitle="@string/vk_subtitle"
+                app:listIcon="@drawable/vk_24"
+                android:clickable="true"
+                android:focusable="true"/>
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/telegramBtn"
+            <com.google.android.material.divider.MaterialDivider
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Telegram"
-                android:textSize="18sp"
-                app:iconPadding="16dp"
-                app:iconSize="24dp"
-                app:iconTintMode="screen"
-                app:iconTint="#00ffffff"
-                android:textAlignment="textStart"
-                style="@style/Widget.Material3.Button.TextButton"/>
+                android:layout_height="1dp"
+                app:dividerInsetEnd="32dp"
+                app:dividerInsetStart="32dp"/>
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/otherAppsBtn"
+            <com.byteflipper.ffsensitivities.ui.components.CustomItemView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/other_apps"
-                android:textSize="18sp"
-                app:icon="@drawable/apps_24px"
-                app:iconPadding="16dp"
-                app:iconSize="24dp"
-                android:textAlignment="textStart"
-                style="@style/Widget.Material3.Button.TextButton"/>
+                app:listTitle="@string/telegram_title"
+                app:listSubtitle="@string/telegram_subtitle"
+                app:listIcon="@drawable/telegram_24"
+                android:clickable="true"
+                android:focusable="true"/>
+
+            <com.google.android.material.divider.MaterialDivider
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                app:dividerInsetEnd="32dp"
+                app:dividerInsetStart="32dp"/>
+
+            <com.byteflipper.ffsensitivities.ui.components.CustomItemView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:listTitle="@string/github_title"
+                app:listSubtitle="@string/github_subtitle"
+                app:listIcon="@drawable/github_24"
+                android:clickable="true"
+                android:focusable="true"/>
+
+            <com.google.android.material.divider.MaterialDivider
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                app:dividerInsetEnd="32dp"
+                app:dividerInsetStart="32dp"/>
+
+            <com.byteflipper.ffsensitivities.ui.components.CustomItemView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:listTitle="@string/source_code_title"
+                app:listSubtitle="@string/source_code_subtitle"
+                app:listIcon="@drawable/code_24px"
+                android:clickable="true"
+                android:focusable="true"/>
+
+            <com.google.android.material.divider.MaterialDivider
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                app:dividerInsetEnd="32dp"
+                app:dividerInsetStart="32dp"/>
+
+            <com.byteflipper.ffsensitivities.ui.components.CustomItemView
+                android:id="@+id/version"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:listTitle="@string/version"
+                app:listSubtitle="Version 1.0.0"
+                app:listIcon="@drawable/info_24px"
+                android:clickable="true"
+                android:focusable="true"/>
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 </LinearLayout>
