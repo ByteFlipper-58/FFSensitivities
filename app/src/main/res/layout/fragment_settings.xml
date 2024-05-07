@@ -21,19 +21,19 @@
         <com.google.android.material.textview.MaterialTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="8dp"
+            android:paddingTop="8dp"
             android:text="@string/app_theme"
             android:textSize="21sp"
             android:textStyle="bold"/>
 
-        <com.google.android.material.materialswitch.MaterialSwitch
+        <com.byteflipper.ffsensitivities.ui.components.CustomSwitchView
             android:id="@+id/dynamicColorsSwitch"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingHorizontal="8dp"
-            android:text="@string/use_dynamic_colors"
-            android:textSize="16sp"
-            style="@style/Widget.Material3.CompoundButton.MaterialSwitch"/>
+            app:switchTitle="@string/switch_use_dynamic_colors_title"
+            app:switchSubtitleOn="@string/switch_use_dynamic_colors_subtitle_on"
+            app:switchSubtitleOff="@string/switch_use_dynamic_colors_subtitle_off"
+            app:switchValue="false"/>
 
         <com.google.android.material.divider.MaterialDivider
             android:layout_width="match_parent"

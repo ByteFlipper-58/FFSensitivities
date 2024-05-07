@@ -10,4 +10,10 @@
         <attr name="listSubtitle" format="string"/>
         <attr name="listIcon" format="integer"/>
     </declare-styleable>
+    <declare-styleable name="CustomSwitchView">
+        <attr name="switchTitle" format="string"/>
+        <attr name="switchSubtitleOn" format="string"/>
+        <attr name="switchSubtitleOff" format="string"/>
+        <attr name="switchValue" format="boolean"/>
+    </declare-styleable>
 </resources>

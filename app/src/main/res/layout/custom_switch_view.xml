@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackground"
+        android:paddingBottom="16dp">
+
+        <com.google.android.material.materialswitch.MaterialSwitch
+            android:id="@+id/switch_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/switch_view_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toStartOf="@id/switch_view"
+            android:paddingTop="16dp"
+            android:paddingEnd="16dp"
+            android:text="VK"
+            android:textStyle="bold"
+            android:maxLines="1"
+            android:textAppearance="?attr/textAppearanceSubtitle1"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/switch_view_subtitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toStartOf="@id/switch_view"
+            android:layout_below="@id/switch_view_title"
+            android:layout_gravity="center_vertical"
+            android:paddingEnd="16dp"
+            android:text="Our new VK"
+            android:maxLines="2"
+            android:textAppearance="?attr/textAppearanceBody2"/>
+    </RelativeLayout>
+</merge>

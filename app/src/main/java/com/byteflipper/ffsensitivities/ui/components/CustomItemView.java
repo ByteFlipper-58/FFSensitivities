@@ -5,9 +5,6 @@ import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
 import android.util.AttributeSet;
-import android.util.TypedValue;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
@@ -36,7 +33,7 @@ public class CustomItemView extends RelativeLayout {
 
     private void init(AttributeSet attrs) {
         // Inflate layout
-        inflate(getContext(), R.layout.item_list, this);
+        inflate(getContext(), R.layout.custom_item_view, this);
 
         // Find views
         mImageView = findViewById(R.id.list_view_icon);
