@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardUseCompatPadding="true"
+    android:background="?attr/selectableItemBackground"
+    android:paddingLeft="@dimen/list_item_spacing"
+    android:paddingTop="@dimen/list_item_spacing_half"
+    android:paddingRight="@dimen/list_item_spacing"
+    android:paddingBottom="@dimen/list_item_spacing_half"
+    style="@style/Widget.Material3.CardView.Filled">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <com.byteflipper.ffsensitivities.ui.components.CustomItemView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:listIcon="@drawable/schedule_24px"
+            app:listTitle="May 23, 2020"
+            app:listSubtitle="Version 1.0.0"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/changelog"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:text="Changelog"/>
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>

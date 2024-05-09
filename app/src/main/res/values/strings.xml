@@ -4,8 +4,8 @@
     <string name="welcome_screen_title">Welcome to our application!</string>
     <string name="welcome_screen_message">Hello Fighter! Everyone will find a setting for themselves here; otherwise, you can request them</string>
     <string name="privacy_policy_message" translatable="false">Continuing, you accept our Terms of Service and acknowledge that you have read our Privacy Policy.</string>
-    <string name="privacy_policy">Privacy Policy</string>
-    <string name="terms_of_service">Terms of Service</string>
+    <string name="privacy_policy" translatable="false">Privacy Policy</string>
+    <string name="terms_of_service" translatable="false">Terms of Service</string>
     <string name="continue_button">Continue</string>
 
     <string name="google_play_store" translatable="false">https://play.google.com/store/apps/dev?id=6878164003588576864</string>

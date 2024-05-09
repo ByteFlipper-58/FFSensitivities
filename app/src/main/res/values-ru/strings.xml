@@ -3,9 +3,9 @@
 
     <string name="welcome_screen_title">Добро пожаловать в наше приложение!</string>
     <string name="welcome_screen_message">Приветствую, боец! Здесь каждый найдет настройки под себя; в противном случае, вы можете запросить их</string>
-    <string name="privacy_policy_message" translatable="false">Продолжая, вы принимаете наши Условия обслуживания и подтверждаете, что прочитали нашу Политику конфиденциальности.</string>
-    <string name="privacy_policy">Политика конфиденциальности</string>
-    <string name="terms_of_service">Условия обслуживания</string>
+    <!--string name="privacy_policy_message">Продолжая, вы принимаете наши Условия обслуживания и подтверждаете, что прочитали нашу Политику конфиденциальности.</string-->
+    <!--string name="privacy_policy">Политика конфиденциальности</string-->
+    <!--string name="terms_of_service">Условия обслуживания</string-->
     <string name="continue_button">Продолжить</string>
 
     <string name="google_play_store" translatable="false">https://play.google.com/store/apps/dev?id=6878164003588576864</string>

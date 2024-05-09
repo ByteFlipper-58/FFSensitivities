@@ -39,7 +39,6 @@ public class AboutFragment extends Fragment {
 
         binding.bugReportBtn.setOnClickListener(v -> {
             FeedbackHelper.sendEmail(getActivity());
-
         });
 
         binding.rateReviewBtn.setOnClickListener(v -> {

@@ -44,19 +44,19 @@ public class WelcomeFragment extends Fragment {
         String message = getString(R.string.privacy_policy_message);
         SpannableString spannableString = new SpannableString(message);
 
-        int termsStart = message.indexOf("Terms of Service");
-        int termsEnd = termsStart + "Terms of Service".length();
+        int termsStart = message.indexOf(getString(R.string.terms_of_service));
+        int termsEnd = termsStart + getString(R.string.terms_of_service).length();
 
-        int privacyPolicyStart = message.indexOf("Privacy Policy");
-        int privacyPolicyEnd = privacyPolicyStart + "Privacy Policy".length();
+        int privacyPolicyStart = message.indexOf(getString(R.string.privacy_policy));
+        int privacyPolicyEnd = privacyPolicyStart + getString(R.string.privacy_policy).length();
 
         ClickableSpan termsClickableSpan = new ClickableSpan() {
             @Override
             public void onClick(@NonNull View widget) {
                 new MaterialAlertDialogBuilder(requireContext())
                         .setIcon(R.drawable.gpp_maybe_24px)
-                        .setTitle(R.string.privacy_policy)
-                        .setMessage(Html.fromHtml(new OtherUtils(requireContext()).readFileFromAssets("terms_condition.html"), Html.FROM_HTML_MODE_LEGACY))
+                        .setTitle(R.string.terms_of_service)
+                        .setMessage(Html.fromHtml(new OtherUtils(requireContext()).readFileFromAssets("terms.html"), Html.FROM_HTML_MODE_LEGACY))
                         .setPositiveButton("OK", null)
                         .create().show();
             }
@@ -68,7 +68,7 @@ public class WelcomeFragment extends Fragment {
                 new MaterialAlertDialogBuilder(requireContext())
                         .setIcon(R.drawable.gpp_maybe_24px)
                         .setTitle(R.string.privacy_policy)
-                        .setMessage(Html.fromHtml(new OtherUtils(requireContext()).readFileFromAssets("privacy_policy.html"), Html.FROM_HTML_MODE_LEGACY))
+                        .setMessage(Html.fromHtml(new OtherUtils(requireContext()).readFileFromAssets("privacy.html"), Html.FROM_HTML_MODE_LEGACY))
                         .setPositiveButton("OK", null)
                         .create().show();
             }
@@ -76,6 +76,10 @@ public class WelcomeFragment extends Fragment {
 
         spannableString.setSpan(termsClickableSpan, termsStart, termsEnd, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         spannableString.setSpan(privacyPolicyClickableSpan, privacyPolicyStart, privacyPolicyEnd, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+        spannableString.setSpan(termsClickableSpan, termsStart, termsEnd, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        spannableString.setSpan(privacyPolicyClickableSpan, privacyPolicyStart, privacyPolicyEnd, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+
 
         binding.termsUseMessage.setText(spannableString);
         binding.termsUseMessage.setMovementMethod(LinkMovementMethod.getInstance());
