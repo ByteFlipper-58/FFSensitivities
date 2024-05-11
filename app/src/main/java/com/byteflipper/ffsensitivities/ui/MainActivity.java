@@ -40,8 +40,7 @@ public class MainActivity extends AppCompatActivity {
             DynamicColors.applyToActivityIfAvailable(this);
 
         DynamicColors.OnAppliedCallback callback = activity -> {
-            setStatusBarColor(MaterialColors.getColor(this, com.google.android.material.R.attr.colorSurface, SurfaceColors.SURFACE_2.getColor(this)));
-            setNavigationBarColor(MaterialColors.getColor(this, com.google.android.material.R.attr.colorSurface, SurfaceColors.SURFACE_2.getColor(this)));
+            setStatusAndNavigationBarColor(MaterialColors.getColor(this, com.google.android.material.R.attr.colorSurface, SurfaceColors.SURFACE_2.getColor(this)));
         };
 
         callback.onApplied(this);
@@ -58,15 +57,13 @@ public class MainActivity extends AppCompatActivity {
                 if (ManufacturersManager.getInstance().isReady()) {
                     content.getViewTreeObserver().removeOnPreDrawListener(this);
 
-                    if (SharedPreferencesUtils.getBoolean(MainActivity.this, "isFirstOpen")) {
-                        return true;
-                    } else {
+                    if (!SharedPreferencesUtils.getBoolean(MainActivity.this, "isFirstOpen")) {
                         Intent intent = new Intent(MainActivity.this, WelcomeActivity.class);
                         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                         startActivity(intent);
                         finish();
-                        return true;
                     }
+                    return true;
                 } else {
                     return false;
                 }
@@ -106,22 +103,13 @@ public class MainActivity extends AppCompatActivity {
                 || super.onSupportNavigateUp();
     }
 
-    private void setStatusBarColor(int color) {
+    private void setStatusAndNavigationBarColor(int color) {
         Window window = getWindow();
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            window.setStatusBarColor(color);
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-                window.setStatusBarContrastEnforced(true);
-            }
-        }
-    }
-
-    private void setNavigationBarColor(int color) {
-        Window window = getWindow();
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            window.setNavigationBarColor(color);
+        window.setStatusBarColor(color);
+        window.setNavigationBarColor(color);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            window.setStatusBarContrastEnforced(true);
         }
     }
 }

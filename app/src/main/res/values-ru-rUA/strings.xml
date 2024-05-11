@@ -1,0 +1,99 @@
+<resources>
+    <string name="app_name" translatable="false">FF Sensitivities</string>
+
+    <string name="welcome_screen_title">Ласкаво просимо до нашого додатка!</string>
+    <string name="welcome_screen_message">Привіт, Боєць! Тут кожен знайде налаштування для себе; інакше, ви можете запитати їх</string>
+    <!--string name="privacy_policy_message" translatable="false">Продовжуючи, ви приймаєте наші Умови обслуговування і підтверджуєте, що прочитали нашу Політику конфіденційності.</string>
+    <string name="privacy_policy" translatable="false">Політика конфіденційності</string>
+    <string name="terms_of_service" translatable="false">Умови використання</string-->
+    <string name="continue_button">Продовжити</string>
+
+    <string name="google_play_store" translatable="false">https://play.google.com/store/apps/dev?id=6878164003588576864</string>
+    <string name="email" translatable="false">byteflipper.business@gmail.com</string>
+
+    <string name="review">Загальне</string>
+    <string name="collimator">Червоний пункт</string>
+    <string name="x2_scope">x2 Збільшення</string>
+    <string name="x4_scope">x4 Збільшення</string>
+    <string name="sniper_scope">Снайперський приціл</string>
+    <string name="free_review">Вільний огляд</string>
+    <string name="dpi">DPI</string>
+    <string name="fire_button">Кнопка вогню</string>
+    <string name="source">Джерело</string>
+
+    <string name="dont_have_your_phone_model">Не маєте вашу модель телефону? Зробіть запит!</string>
+
+    <string name="improve_translation">Покращити переклад</string>
+    <string name="copy">Копіювати</string>
+    <string name="copied">Скопійовано</string>
+    <string name="link">Посилання</string>
+    <string name="copy_link">Скопіювати посилання</string>
+    <string name="open_link">Відкрити посилання</string>
+    <string name="error">Помилка</string>
+
+    <!--- About -->
+
+    <string name="about_app">Про додаток</string>
+    <string name="home">Головна</string>
+    <string name="version">Версія</string>
+
+    <string name="source_code_title">Вихідний код</string>
+    <string name="source_code_subtitle">Вихідний код додатку на GitHub</string>
+    <string name="source_code_url" translatable="false">https://github.com/ByteFlipper-58/FFSensitivities</string>
+
+    <string name="bug_report_title">Повідомлення про помилку</string>
+    <string name="bug_report_subtitle">Будь ласка, опишіть проблему та надішліть нам</string>
+
+    <string name="not_installed_email_client">Email-клієнт не встановлено</string>
+    <string name="rate_the_app_title">Оцініть додаток</string>
+    <string name="rate_the_app_subtitle">Оцініть додаток на Google Play</string>
+
+    <string name="website_title">Веб-сайт ByteFlipper</string>
+    <string name="website_subtitle">Наш веб-сайт</string>
+    <string name="website_url" translatable="false">https://byteflipper.web.app/</string>
+
+    <string name="github_title">Github</string>
+    <string name="github_subtitle">Наш репозиторій на Github</string>
+    <string name="github_url" translatable="false">https://github.com/ByteFlipper-58/</string>
+
+    <string name="vk_title">VK</string>
+    <string name="vk_subtitle">Наша спільнота на VK</string>
+    <string name="vk_url" translatable="false">https://vk.com/byteflipper</string>
+
+    <string name="telegram_title">Телеграм</string>
+    <string name="telegram_subtitle">Наш канал в Telegram</string>
+    <string name="telegram_url" translatable="false">https://t.me/byte_flipper</string>
+
+    <string name="youtube_title">YouTube</string>
+    <string name="youtube_subtitle">Наш канал на YouTube</string>
+    <string name="youtube_url" translatable="false">https://www.youtube.com/</string>
+
+    <string name="discord_title">Discord</string>
+    <string name="discord_subtitle">Наш сервер на Discord</string>
+    <string name="discord_url" translatable="false">https://discord.gg/byteflipper</string>
+
+    <string name="other_apps_title">Інші додатки</string>
+    <string name="other_apps_subtitle">Наші інші додатки</string>
+    <string name="other_apps_url" translatable="false">https://www.google.com/</string>
+
+    <!--- Settings -->
+    <string name="settings">Налаштування</string>
+    <string name="app_theme">Тема додатка</string>
+    <string name="auto_theme">Автоматична тема</string>
+    <string name="system_theme">Системна тема</string>
+    <string name="light_theme">Світла тема</string>
+    <string name="night_theme">Темна тема</string>
+    <string name="auto_theme_description">Зовнішній вигляд додатка буде автоматично змінюватися залежно від часу сходження та заходження сонця</string>
+    <string name="auto_level_of_charge_theme_description">Зовнішній вигляд додатка буде автоматично змінюватися залежно від рівня заряду телефону</string>
+    <string name="light_theme_description">Обрана світла тема</string>
+    <string name="night_theme_description">Обрана темна тема</string>
+    <string name="system_theme_description">Зовнішній вигляд додатка буде змінюватися залежно від теми Android</string>
+
+    <string name="switch_use_dynamic_colors_title">Використовувати динамічні кольори</string>
+    <string name="switch_use_dynamic_colors_subtitle_on">Динамічні кольори увімкнено</string>
+    <string name="switch_use_dynamic_colors_subtitle_off">Динамічні кольори вимкнено</string>
+    <string name="switch_dynamic_colors_are_not_supported">Динамічні кольори не підтримуються</string>
+
+    <string name="devices_list">Список пристроїв</string>
+    <string name="sensitivity">Чутливість</string>
+</resources>

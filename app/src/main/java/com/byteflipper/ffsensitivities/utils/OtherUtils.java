@@ -23,12 +23,6 @@ public class OtherUtils {
         clipboardManager.setPrimaryClip(clipData);
     }
 
-    public void reviewAppInGooglePlay() {
-        Intent intent = new Intent(Intent.ACTION_VIEW);
-        intent.setData(android.net.Uri.parse("market://details?id=" + context.getPackageName()));
-        context.startActivity(intent);
-    }
-
     public String readFileFromAssets(String fileName) {
         StringBuilder stringBuilder = new StringBuilder();
         try {

@@ -1,0 +1,99 @@
+<resources>
+    <string name="app_name" translatable="false">FF Czułości</string>
+
+    <string name="welcome_screen_title">Witaj w naszej aplikacji!</string>
+    <string name="welcome_screen_message">Cześć Wojowniku! Każdy znajdzie tutaj odpowiednie ustawienia dla siebie; w przeciwnym razie możesz je poprosić</string>
+    <!--string name="privacy_policy_message" translatable="false">Kontynuując, akceptujesz nasze Warunki Korzystania i potwierdzasz, że przeczytałeś naszą Politykę Prywatności.</string>
+    <string name="privacy_policy" translatable="false">Polityka Prywatności</string>
+    <string name="terms_of_service" translatable="false">Warunki Korzystania</string-->
+    <string name="continue_button">Kontynuuj</string>
+
+    <string name="google_play_store" translatable="false">https://play.google.com/store/apps/dev?id=6878164003588576864</string>
+    <string name="email" translatable="false">byteflipper.business@gmail.com</string>
+
+    <string name="review">Ogólne</string>
+    <string name="collimator">Kolimator</string>
+    <string name="x2_scope">x2 Powiększenie</string>
+    <string name="x4_scope">x4 Powiększenie</string>
+    <string name="sniper_scope">Celownik Snajperski</string>
+    <string name="free_review">Wolny Ruch</string>
+    <string name="dpi">DPI</string>
+    <string name="fire_button">Przycisk Ognia</string>
+    <string name="source">Źródło</string>
+
+    <string name="dont_have_your_phone_model">Nie masz swojego modelu telefonu? Złóż prośbę!</string>
+
+    <string name="improve_translation">Popraw tłumaczenie</string>
+    <string name="copy">Kopiuj</string>
+    <string name="copied">Skopiowano</string>
+    <string name="link">Link</string>
+    <string name="copy_link">Kopiuj link</string>
+    <string name="open_link">Otwórz link</string>
+    <string name="error">Błąd</string>
+
+    <!--- O aplikacji -->
+
+    <string name="about_app">O Aplikacji</string>
+    <string name="home">Strona główna</string>
+    <string name="version">Wersja</string>
+
+    <string name="source_code_title">Kod Źródłowy</string>
+    <string name="source_code_subtitle">Kod źródłowy aplikacji na GitHubie</string>
+    <string name="source_code_url" translatable="false">https://github.com/ByteFlipper-58/FFSensitivities</string>
+
+    <string name="bug_report_title">Zgłoszenie Błędu</string>
+    <string name="bug_report_subtitle">Opisz problem i wyślij go do nas</string>
+
+    <string name="not_installed_email_client">Klient poczty e-mail nie jest zainstalowany</string>
+    <string name="rate_the_app_title">Oceń aplikację</string>
+    <string name="rate_the_app_subtitle">Oceń aplikację w Google Play</string>
+
+    <string name="website_title">Strona internetowa ByteFlipper</string>
+    <string name="website_subtitle">Nasza Strona</string>
+    <string name="website_url" translatable="false">https://byteflipper.web.app/</string>
+
+    <string name="github_title">GitHub</string>
+    <string name="github_subtitle">Nasz Repozytorium na GitHubie</string>
+    <string name="github_url" translatable="false">https://github.com/ByteFlipper-58/</string>
+
+    <string name="vk_title">VK</string>
+    <string name="vk_subtitle">Nasza społeczność na VK</string>
+    <string name="vk_url" translatable="false">https://vk.com/byteflipper</string>
+
+    <string name="telegram_title">Telegram</string>
+    <string name="telegram_subtitle">Nasz Kanał na Telegramie</string>
+    <string name="telegram_url" translatable="false">https://t.me/byte_flipper</string>
+
+    <string name="youtube_title">YouTube</string>
+    <string name="youtube_subtitle">Nasz Kanał na YouTube</string>
+    <string name="youtube_url" translatable="false">https://www.youtube.com/</string>
+
+    <string name="discord_title">Discord</string>
+    <string name="discord_subtitle">Nasz Serwer Discord</string>
+    <string name="discord_url" translatable="false">https://discord.gg/byteflipper</string>
+
+    <string name="other_apps_title">Inne Aplikacje</string>
+    <string name="other_apps_subtitle">Nasze Inne Aplikacje</string>
+    <string name="other_apps_url" translatable="false">https://www.google.com/</string>
+
+    <!--- Ustawienia -->
+    <string name="settings">Ustawienia</string>
+    <string name="app_theme">Motyw Aplikacji</string>
+    <string name="auto_theme">Automatyczny motyw</string>
+    <string name="system_theme">Motyw systemowy</string>
+    <string name="light_theme">Jasny motyw</string>
+    <string name="night_theme">Nocny motyw</string>
+    <string name="auto_theme_description">Wygląd aplikacji będzie automatycznie zmieniał się w zależności od wschodu i zachodu słońca</string>
+    <string name="auto_level_of_charge_theme_description">Wygląd aplikacji będzie automatycznie zmieniał się w zależności od poziomu naładowania telefonu</string>
+    <string name="light_theme_description">Wybrano jasny motyw</string>
+    <string name="night_theme_description">Wybrano nocny motyw</string>
+    <string name="system_theme_description">Wygląd aplikacji będzie zmieniał się w zależności od motywu Androida</string>
+
+    <string name="switch_use_dynamic_colors_title">Użyj dynamicznych kolorów</string>
+    <string name="switch_use_dynamic_colors_subtitle_on">Dynamiczne kolory są włączone</string>
+    <string name="switch_use_dynamic_colors_subtitle_off">Dynamiczne kolory są wyłączone</string>
+    <string name="switch_dynamic_colors_are_not_supported">Dynamiczne kolory nie są obsługiwane</string>
+
+    <string name="devices_list">Lista urządzeń</string>
+    <string name="sensitivity">Czułość</string>
+</resources>

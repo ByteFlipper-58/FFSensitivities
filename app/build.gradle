@@ -51,6 +51,10 @@ android {
             enable = true
         }
     }
+
+    lintOptions {
+        disable 'NonConstantResourceId'
+    }
 }
 
 dependencies {

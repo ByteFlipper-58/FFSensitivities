@@ -42,14 +42,18 @@ public class AboutFragment extends Fragment {
         });
 
         binding.rateReviewBtn.setOnClickListener(v -> {
-            new OtherUtils(getActivity()).reviewAppInGooglePlay();
+            try {
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + BuildConfig.APPLICATION_ID)));
+            } catch (android.content.ActivityNotFoundException anfe) {
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + BuildConfig.APPLICATION_ID)));
+            }
         });
 
         binding.otherAppsBtn.setOnClickListener(v -> {
             try {
-                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + BuildConfig.APPLICATION_ID)));
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://dev?id=6878164003588576864")));
             } catch (android.content.ActivityNotFoundException anfe) {
-                //open play store
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/dev?id=6878164003588576864")));
             }
         });
 

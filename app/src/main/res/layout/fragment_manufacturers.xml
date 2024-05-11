@@ -29,10 +29,10 @@
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:padding="6dp"
-                android:src="@mipmap/ic_launcher"
+                android:src="@drawable/app_logo"
                 android:scaleType="centerCrop"
                 android:layout_gravity="center_vertical"
-                app:shapeAppearance="@style/ShapeAppearance.Material3.Corner.Full"/>
+                app:shapeAppearance="@style/ShapeAppearance.Material3.Corner.Large"/>
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/welcome_and_user_name"
