@@ -36,6 +36,7 @@
         android:layout_height="match_parent"
         android:paddingBottom="128dp"
         android:clipToPadding="false"
+        android:fillViewport="true"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <fragment

@@ -3,6 +3,7 @@ package com.byteflipper.ffsensitivities.ui.fragment;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,10 +17,26 @@ import com.byteflipper.ffsensitivities.R;
 import com.byteflipper.ffsensitivities.databinding.FragmentAboutBinding;
 import com.byteflipper.ffsensitivities.utils.ChromeCustomTabUtil;
 import com.byteflipper.ffsensitivities.utils.FeedbackHelper;
-import com.byteflipper.ffsensitivities.utils.OtherUtils;
+import com.pengrad.telegrambot.Callback;
+import com.pengrad.telegrambot.TelegramBot;
+import com.pengrad.telegrambot.model.Message;
+import com.pengrad.telegrambot.model.request.ForceReply;
+import com.pengrad.telegrambot.model.request.ParseMode;
+import com.pengrad.telegrambot.request.SendMessage;
+import com.pengrad.telegrambot.response.SendResponse;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
 public class AboutFragment extends Fragment {
     private FragmentAboutBinding binding;
+    TelegramBot bot = new TelegramBot("7043829891:AAHr-dUynjVTrkRVrqRixAm4XGUaV-k9t0s");
+    String botToken = "7043829891:AAHr-dUynjVTrkRVrqRixAm4XGUaV-k9t0s";
+    String chatId = "108342909";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

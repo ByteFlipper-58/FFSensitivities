@@ -4,6 +4,14 @@ import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
+
+import com.google.android.gms.tasks.Task;
+import com.google.android.play.core.review.ReviewException;
+import com.google.android.play.core.review.ReviewInfo;
+import com.google.android.play.core.review.ReviewManager;
+import com.google.android.play.core.review.ReviewManagerFactory;
+import com.google.android.play.core.review.model.ReviewErrorCode;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -21,6 +29,31 @@ public class OtherUtils {
         ClipboardManager clipboardManager = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
         ClipData clipData = ClipData.newPlainText("Copied Text", text);
         clipboardManager.setPrimaryClip(clipData);
+    }
+
+    public void reviewApp() {
+        SharedPreferencesUtils.writeInteger(context, "click_count", SharedPreferencesUtils.getInteger(context, "click_count", 0));
+        int clickCount = SharedPreferencesUtils.getInteger(context, "click_count", 0);
+        if (clickCount == 10)
+            showReviewDialog();
+        if (clickCount == 50)
+            showReviewDialog();
+        else
+            SharedPreferencesUtils.writeInteger(context, "click_count", clickCount + 1);
+    }
+
+    private void showReviewDialog() {
+        ReviewManager manager = ReviewManagerFactory.create(context);
+        Task<ReviewInfo> request = manager.requestReviewFlow();
+        request.addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                // We can get the ReviewInfo object
+                ReviewInfo reviewInfo = task.getResult();
+            } else {
+                @ReviewErrorCode int reviewErrorCode = ((ReviewException) task.getException()).getErrorCode();
+                Log.d("TAG", "showReviewDialog: " + reviewErrorCode);
+            }
+        });
     }
 
     public String readFileFromAssets(String fileName) {
