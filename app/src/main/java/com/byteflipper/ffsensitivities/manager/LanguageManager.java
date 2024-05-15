@@ -64,22 +64,8 @@ public class LanguageManager {
         SharedPreferences prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
         prefs.edit().putString(KEY_LANGUAGE, languageCode).apply();
 
-        Locale locale = new Locale(languageCode);
-        String languageTag = locale.toLanguageTag();
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            AppCompatDelegate.setApplicationLocales(LocaleListCompat.create(locale));
-            Log.i(TAG, "Per-App Language set to: " + languageTag);
-            setLocaleForLowerAndroid(context, locale);
-        } else {
-            setLocaleForLowerAndroid(context, locale);
-            Log.i(TAG, "App Language set to: " + languageTag);
-
-            if (AppCompatDelegate.getApplicationLocales() != null) {
-                AppCompatDelegate.setApplicationLocales(LocaleListCompat.create(locale));
-                Log.i(TAG, "Per-App Language synchronized to: " + languageTag);
-            }
-        }
+        // Обновляем локаль приложения
+        updateLocale(context, languageCode);
     }
 
     public static void loadLocale(Context context) {
@@ -87,16 +73,38 @@ public class LanguageManager {
         String languageCode = prefs.getString(KEY_LANGUAGE, "");
 
         if (!languageCode.isEmpty()) {
-            setLanguage(context, languageCode);
+            updateLocale(context, languageCode);
         }
     }
 
-    private static void setLocaleForLowerAndroid(Context context, Locale locale) {
+    private static void updateLocale(Context context, String languageCode) {
+        Locale locale = new Locale(languageCode);
         Locale.setDefault(locale);
 
         Resources resources = context.getResources();
-        Configuration config = resources.getConfiguration();
+        Configuration config = new Configuration(resources.getConfiguration());
         config.setLocale(locale);
         resources.updateConfiguration(config, resources.getDisplayMetrics());
+
+        // Синхронизируем локаль для Per-App Language API, если доступно
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU && AppCompatDelegate.getApplicationLocales() != null) {
+            AppCompatDelegate.setApplicationLocales(LocaleListCompat.create(locale));
+            Log.i(TAG, "Per-App Language synchronized to: " + locale.toLanguageTag());
+        }
+    }
+
+    public static String getCurrentLanguage(Context context) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            // Android 13+: получить локаль из Per-App Language API
+            LocaleListCompat appLocales = AppCompatDelegate.getApplicationLocales();
+            if (appLocales != null && !appLocales.isEmpty()) {
+                return appLocales.get(0).getDisplayName();
+            }
+        }
+
+        // Android 12 и ниже: получить локаль из Configuration
+        Resources resources = context.getResources();
+        Configuration config = resources.getConfiguration();
+        return config.getLocales().get(0).getDisplayName();
     }
 }

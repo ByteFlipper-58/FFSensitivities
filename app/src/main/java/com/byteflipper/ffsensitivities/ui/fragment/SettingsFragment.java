@@ -107,6 +107,8 @@ public class SettingsFragment extends Fragment {
             LanguageManager.showLanguageDialog(requireActivity());
         });
 
+        binding.setLanguageButton.setSubtitleText(LanguageManager.getCurrentLanguage(requireActivity()));
+
         binding.dynamicColorsSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
             SharedPreferencesUtils.writeBoolean(requireContext(), "useDynamicColors", isChecked);
             requireActivity().recreate();
