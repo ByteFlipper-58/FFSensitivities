@@ -59,14 +59,14 @@ public class MainActivity extends AppCompatActivity implements AppUpdateHelper.U
         if (SharedPreferencesUtils.getBoolean(this, "useDynamicColors"))
             DynamicColors.applyToActivityIfAvailable(this);
 
-        languageManager = new LanguageManager();
-        languageManager.setAppLanguage(this, languageManager.getAppLanguage(this));
-
         DynamicColors.OnAppliedCallback callback = activity -> {
             setStatusAndNavigationBarColor(MaterialColors.getColor(this, com.google.android.material.R.attr.colorSurface, SurfaceColors.SURFACE_2.getColor(this)));
         };
 
         callback.onApplied(this);
+
+        if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.S_V2)
+            LanguageManager.loadLocale(this);
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());

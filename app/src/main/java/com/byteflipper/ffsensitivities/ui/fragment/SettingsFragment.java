@@ -104,7 +104,7 @@ public class SettingsFragment extends Fragment {
 
         LanguageManager languageManager = new LanguageManager();
         binding.setLanguageButton.setOnClickListener(v -> {
-            languageManager.showLanguageDialog(requireActivity());
+            LanguageManager.showLanguageDialog(requireActivity());
         });
 
         binding.dynamicColorsSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {

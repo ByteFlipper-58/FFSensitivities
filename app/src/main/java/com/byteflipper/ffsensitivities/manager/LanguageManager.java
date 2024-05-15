@@ -1,127 +1,102 @@
 package com.byteflipper.ffsensitivities.manager;
 
-import android.app.Activity;
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.content.res.Configuration;
-import android.util.Log;
-import android.widget.Toast;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Locale;
 
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.res.Configuration;
+import android.content.res.Resources;
+import android.os.Build;
+import android.util.Log;
+
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.os.LocaleListCompat;
+import android.content.SharedPreferences;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
-import java.util.Locale;
-
 public class LanguageManager {
 
-    private static final String PREF_LANGUAGE = "pref_language";
-    private String[] languages = {
-            "English",
-            "Belarusian",
-            "German",
-            "French",
-            "Polish",
-            "Russian",
-            "Turkish",
-            "Ukrainian"
-    };
+    private static final String TAG = "LanguageManager";
+    private static final String PREFS_NAME = "language_prefs";
+    private static final String KEY_LANGUAGE = "language";
+    private static final List<String> SUPPORTED_LANGUAGE_CODES = Arrays.asList(
+            "en", "be", "de", "fr", "pl", "ru", "tr", "uk" // Добавьте нужные коды языков
+    );
 
-    private String[] languageCodes = {
-            "en",
-            "be_BY",
-            "de",
-            "fr",
-            "pl",
-            "ru",
-            "tr",
-            "uk"
-    };
+    public static List<String> getSupportedLanguages() {
+        return SUPPORTED_LANGUAGE_CODES;
+    }
 
-    public void setSystemLanguage(Context context) {
-        SharedPreferences prefs = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
-        String savedLanguage = prefs.getString(PREF_LANGUAGE, "");
-        if (!savedLanguage.isEmpty()) {
-            setAppLanguage(context, savedLanguage);
-        } else {
-            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.S) {
-                // Получаем поддерживаемые языки приложения
-                LocaleListCompat supportedLocales = AppCompatDelegate.getApplicationLocales();
-                if (supportedLocales.size() > 0) {
-                    Locale systemLocale = supportedLocales.get(0);
-                    updateAppLanguage(context, systemLocale);
-                } else {
-                    setAppLanguage(context, "en");
-                }
-            } else {
-                Locale systemLocale;
-                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
-                    systemLocale = context.getResources().getConfiguration().getLocales().get(0);
-                } else {
-                    systemLocale = context.getResources().getConfiguration().locale;
-                }
+    public static String getLanguageDisplayName(String languageCode) {
+        Locale locale = new Locale(languageCode);
+        return locale.getDisplayLanguage(locale);
+    }
 
-                updateAppLanguage(context, systemLocale);
-            }
+    public static void showLanguageDialog(Context context) {
+        String[] languageNames = new String[SUPPORTED_LANGUAGE_CODES.size()];
+        for (int i = 0; i < SUPPORTED_LANGUAGE_CODES.size(); i++) {
+            languageNames[i] = getLanguageDisplayName(SUPPORTED_LANGUAGE_CODES.get(i));
         }
-    }
 
-    private void updateAppLanguage(Context context, Locale locale) {
-        Locale.setDefault(locale);
-        Configuration config = new Configuration();
-        config.setLocale(locale);
-        context.getResources().updateConfiguration(config, context.getResources().getDisplayMetrics());
-    }
-
-    public void setAppLanguage(Context context, String language) {
-        String languageCode = getLanguageCode(language);
-        if (languageCode != null) {
-            Locale locale = new Locale(languageCode);
-            updateAppLanguage(context, locale);
-
-            SharedPreferences prefs = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
-            SharedPreferences.Editor editor = prefs.edit();
-            editor.putString(PREF_LANGUAGE, languageCode);
-            editor.apply();
-
-            if (context instanceof Activity) {
-                ((Activity) context).recreate();
-            }
-        } else {
-            // Обработка неподдерживаемого языка
-            Log.e("LanguageManager", "Unsupported language: " + language);
-        }
-    }
-
-    // Метод для получения кода языка по его названию
-    private String getLanguageCode(String language) {
-        for (int i = 0; i < languages.length; i++) {
-            if (languages[i].equalsIgnoreCase(language)) {
-                return languageCodes[i];
-            }
-        }
-        return null; // Неизвестный язык
-    }
-
-    // Метод для отображения диалогового окна выбора языка
-    public void showLanguageDialog(final Context context) {
-        MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(context);
-        builder.setTitle("Choose Language")
-                .setItems(languages, (dialog, which) -> {
-                    String selectedLanguage = languages[which];
-                    setAppLanguage(context, selectedLanguage);
-                    Log.d("LanguageManager", "Selected language: " + selectedLanguage);
-                    Log.d("LanguageManager", "Get language code: " + languages[which]);
-                    Log.d("LanguageManager", "App language: " + getAppLanguage(context));
-                    Toast.makeText(context, "This feature is still in development and may not work correctly.", Toast.LENGTH_SHORT).show();
+        new MaterialAlertDialogBuilder(context)
+                .setTitle("Выберите язык")
+                .setItems(languageNames, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        String selectedLanguageCode = SUPPORTED_LANGUAGE_CODES.get(which);
+                        setLanguage(context, selectedLanguageCode);
+                    }
                 })
                 .show();
     }
 
-    // Метод для получения текущего языка приложения
-    public String getAppLanguage(Context context) {
-        SharedPreferences prefs = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
-        return prefs.getString(PREF_LANGUAGE, "en");
+    public static void setLanguage(Context context, String languageCode) {
+        if (!SUPPORTED_LANGUAGE_CODES.contains(languageCode)) {
+            Log.w(TAG, "Language not supported: " + languageCode);
+            return;
+        }
+
+        // Сохраняем выбранный язык в SharedPreferences
+        SharedPreferences prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+        prefs.edit().putString(KEY_LANGUAGE, languageCode).apply();
+
+        Locale locale = new Locale(languageCode);
+        String languageTag = locale.toLanguageTag();
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            AppCompatDelegate.setApplicationLocales(LocaleListCompat.create(locale));
+            Log.i(TAG, "Per-App Language set to: " + languageTag);
+            setLocaleForLowerAndroid(context, locale);
+        } else {
+            setLocaleForLowerAndroid(context, locale);
+            Log.i(TAG, "App Language set to: " + languageTag);
+
+            if (AppCompatDelegate.getApplicationLocales() != null) {
+                AppCompatDelegate.setApplicationLocales(LocaleListCompat.create(locale));
+                Log.i(TAG, "Per-App Language synchronized to: " + languageTag);
+            }
+        }
+    }
+
+    public static void loadLocale(Context context) {
+        SharedPreferences prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+        String languageCode = prefs.getString(KEY_LANGUAGE, "");
+
+        if (!languageCode.isEmpty()) {
+            setLanguage(context, languageCode);
+        }
+    }
+
+    private static void setLocaleForLowerAndroid(Context context, Locale locale) {
+        Locale.setDefault(locale);
+
+        Resources resources = context.getResources();
+        Configuration config = resources.getConfiguration();
+        config.setLocale(locale);
+        resources.updateConfiguration(config, resources.getDisplayMetrics());
     }
 }
