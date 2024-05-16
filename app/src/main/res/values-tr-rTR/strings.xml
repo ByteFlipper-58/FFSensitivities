@@ -23,6 +23,10 @@
     <string name="source">Kaynak</string>
 
     <string name="dont_have_your_phone_model">Telefon modeliniz yok mu? Talep oluşturun!</string>
+    <string name="request_sensitivities_settings_title">Duyarlılık ayarlarını iste</string>
+    <string name="request_sensitivities_settings_message">Geliştiriciye gönderilecek bilgiler</string>
+    <string name="request_sensitivities_settings_message_two">Ayarlar isteği göndermek için İste düğmesine tıklayın, bu işlem geri alınamaz.</string>
+    <string name="request_sensitivities_settings_button">İste</string>
 
     <string name="improve_translation">Çeviriyi İyileştir</string>
     <string name="copy">Kopyala</string>
@@ -94,6 +98,8 @@
     <string name="switch_use_dynamic_colors_subtitle_on">Dinamik renkler etkin</string>
     <string name="switch_use_dynamic_colors_subtitle_off">Dinamik renkler devre dışı</string>
     <string name="switch_dynamic_colors_are_not_supported">Dinamik renkler desteklenmiyor</string>
+
+    <string name="change_language">Dil değiştir</string>
 
     <string name="devices_list">Cihazlar Listesi</string>
     <string name="sensitivity">Hassasiyet</string>

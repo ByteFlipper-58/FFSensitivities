@@ -4,13 +4,13 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 
+import com.byteflipper.ffsensitivities.requestsettings.SensitivitiesRequestDialog;
 import com.byteflipper.ffsensitivities.databinding.FragmentManufacturersBinding;
 import com.google.android.material.progressindicator.LinearProgressIndicator;
 
@@ -53,7 +53,7 @@ public class ManufacturersFragment extends Fragment {
         });
 
         binding.setUserNameBtn.setOnClickListener(v -> {
-            Toast.makeText(requireActivity(), "Function in development", Toast.LENGTH_SHORT).show();
+            SensitivitiesRequestDialog.showSettingsDialog(requireActivity());
         });
     }
 

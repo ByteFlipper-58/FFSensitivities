@@ -23,6 +23,10 @@
     <string name="source">Источник</string>
 
     <string name="dont_have_your_phone_model">Нет вашей модели телефона? Сделайте запрос!</string>
+    <string name="request_sensitivities_settings_title">Запросить настройки</string>
+    <string name="request_sensitivities_settings_message">Информация, которая будет отправлена разработчику</string>
+    <string name="request_sensitivities_settings_message_two">Нажмите кнопку "Запросить", чтобы отправить запрос на настройки.\nЭто действие нельзя отменить.</string>
+    <string name="request_sensitivities_settings_button">Запросить</string>
 
     <string name="improve_translation">Улучшить перевод</string>
     <string name="copy">Копировать</string>
@@ -94,6 +98,8 @@
     <string name="switch_use_dynamic_colors_subtitle_on">Динамические цвета включены</string>
     <string name="switch_use_dynamic_colors_subtitle_off">Динамические цвета отключены</string>
     <string name="switch_dynamic_colors_are_not_supported">Динамические цвета не поддерживаются</string>
+
+    <string name="change_language">Изменить язык</string>
 
     <string name="devices_list">Список устройств</string>
     <string name="sensitivity">Чувствительность</string>

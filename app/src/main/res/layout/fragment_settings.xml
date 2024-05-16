@@ -78,7 +78,7 @@
                 android:id="@+id/setLanguageButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:listTitle="Change language"
+                app:listTitle="@android:string/la"
                 app:listSubtitle="In development"
                 app:listIcon="@drawable/language_24px"/>
         </LinearLayout>

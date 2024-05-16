@@ -23,6 +23,10 @@
     <string name="source">Крыніца</string>
 
     <string name="dont_have_your_phone_model">Няма вашага мадэля тэлефона? Зрабіце запыт!</string>
+    <string name="request_sensitivities_settings_title">Запыт налады чутлівасці</string>
+    <string name="request_sensitivities_settings_message">Інфармацыя, якая будзе адпраўлена распрацоўніку</string>
+    <string name="request_sensitivities_settings_message_two">Націсніце кнопку "Запыт", каб адправіць запыт на налады.\nГэта дзеянне не можа быць адмянена.</string>
+    <string name="request_sensitivities_settings_button">Запыт</string>
 
     <string name="improve_translation">Палепшыць пераклад</string>
     <string name="copy">Скапіяваць</string>
@@ -94,6 +98,8 @@
     <string name="switch_use_dynamic_colors_subtitle_on">Дынамічныя колеры ўключаны</string>
     <string name="switch_use_dynamic_colors_subtitle_off">Дынамічныя колеры адключаны</string>
     <string name="switch_dynamic_colors_are_not_supported">Дынамічныя колеры не падтрымліваюцца</string>
+
+    <string name="change_language">Змяніць мову</string>
 
     <string name="devices_list">Спіс прылад</string>
     <string name="sensitivity">Чулкавасць</string>

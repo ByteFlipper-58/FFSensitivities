@@ -23,6 +23,10 @@
     <string name="source">Quelle</string>
 
     <string name="dont_have_your_phone_model">Haben Sie Ihr Telefonmodell nicht? Stellen Sie eine Anfrage!</string>
+    <string name="request_sensitivities_settings_title">Anfrage Sensitivitätseinstellungen</string>
+    <string name="request_sensitivities_settings_message">Informationen, die an den Entwickler gesendet werden</string>
+    <string name="request_sensitivities_settings_message_two">Klicken Sie auf die Schaltfläche "Anfrage", um eine Einstellungsanfrage zu senden.\nDiese Aktion kann nicht rückgängig gemacht werden.</string>
+    <string name="request_sensitivities_settings_button">Anfrage</string>
 
     <string name="improve_translation">Übersetzung verbessern</string>
     <string name="copy">Kopieren</string>
@@ -94,6 +98,8 @@
     <string name="switch_use_dynamic_colors_subtitle_on">Dynamische Farben sind aktiviert</string>
     <string name="switch_use_dynamic_colors_subtitle_off">Dynamische Farben sind deaktiviert</string>
     <string name="switch_dynamic_colors_are_not_supported">Dynamische Farben werden nicht unterstützt</string>
+
+    <string name="change_language">Taal wijzigen</string>
 
     <string name="devices_list">Geräteliste</string>
     <string name="sensitivity">Empfindlichkeit</string>

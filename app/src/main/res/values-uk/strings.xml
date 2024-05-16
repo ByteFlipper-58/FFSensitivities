@@ -23,6 +23,10 @@
     <string name="source">Джерело</string>
 
     <string name="dont_have_your_phone_model">Не маєте вашу модель телефону? Зробіть запит!</string>
+    <string name="request_sensitivities_settings_title">Запит налаштувань чутливості</string>
+    <string name="request_sensitivities_settings_message">Інформація, яка буде відправлена розробнику</string>
+    <string name="request_sensitivities_settings_message_two">Клацніть кнопку "Запит", щоб надіслати запит на налаштування.\nЦю дію не можна скасувати.</string>
+    <string name="request_sensitivities_settings_button">Запит</string>
 
     <string name="improve_translation">Покращити переклад</string>
     <string name="copy">Копіювати</string>
@@ -94,6 +98,8 @@
     <string name="switch_use_dynamic_colors_subtitle_on">Динамічні кольори увімкнено</string>
     <string name="switch_use_dynamic_colors_subtitle_off">Динамічні кольори вимкнено</string>
     <string name="switch_dynamic_colors_are_not_supported">Динамічні кольори не підтримуються</string>
+
+    <string name="change_language">Змінити мову</string>
 
     <string name="devices_list">Список пристроїв</string>
     <string name="sensitivity">Чутливість</string>

@@ -23,6 +23,10 @@
     <string name="source">Source</string>
 
     <string name="dont_have_your_phone_model">Don\'t have your phone model? Make a request!</string>
+    <string name="request_sensitivities_settings_title">Request sensitivities settings</string>
+    <string name="request_sensitivities_settings_message">Information that will be sent to the developer</string>
+    <string name="request_sensitivities_settings_message_two">Click the Request button to submit a settings request, this action cannot be undone.</string>
+    <string name="request_sensitivities_settings_button">Request</string>
 
     <string name="improve_translation">Improve Translation</string>
     <string name="copy">Copy</string>
@@ -94,6 +98,8 @@
     <string name="switch_use_dynamic_colors_subtitle_on">Dynamic colors are enabled</string>
     <string name="switch_use_dynamic_colors_subtitle_off">Dynamic colors are disabled</string>
     <string name="switch_dynamic_colors_are_not_supported">Dynamic colors are not supported</string>
+
+    <string name="change_language">Change language</string>
 
     <string name="devices_list">Devices list</string>
     <string name="sensitivity">Sensitivity</string>

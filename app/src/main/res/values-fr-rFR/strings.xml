@@ -23,6 +23,10 @@
     <string name="source">Source</string>
 
     <string name="dont_have_your_phone_model">Vous n\'avez pas votre modèle de téléphone ? Faites une demande !</string>
+    <string name="request_sensitivities_settings_title">Demander les réglages de sensibilité</string>
+    <string name="request_sensitivities_settings_message">Informations qui seront envoyées au développeur</string>
+    <string name="request_sensitivities_settings_message_two">Cliquez sur le bouton Demander pour soumettre une demande de réglages.\nCette action est irréversible.</string>
+    <string name="request_sensitivities_settings_button">Demander</string>
 
     <string name="improve_translation">Améliorer la traduction</string>
     <string name="copy">Copier</string>
@@ -94,6 +98,8 @@
     <string name="switch_use_dynamic_colors_subtitle_on">Couleurs dynamiques activées</string>
     <string name="switch_use_dynamic_colors_subtitle_off">Couleurs dynamiques désactivées</string>
     <string name="switch_dynamic_colors_are_not_supported">Les couleurs dynamiques ne sont pas prises en charge</string>
+
+    <string name="change_language">Changer de langue</string>
 
     <string name="devices_list">Liste des appareils</string>
     <string name="sensitivity">Sensibilité</string>
