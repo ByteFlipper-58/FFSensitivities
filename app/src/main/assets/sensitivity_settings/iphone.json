@@ -63,6 +63,21 @@
     },
     {
       "manufacturer": "iPhone",
+      "name": "15",
+      "settings_source_url": null,
+      "dpi": 0,
+      "fire_button": 1,
+      "sensitivities": {
+        "review": 0,
+        "collimator": 0,
+        "x2_scope": 0,
+        "x4_scope": 0,
+        "sniper_scope": 0,
+        "free_review": 0
+      }
+    },
+    {
+      "manufacturer": "iPhone",
       "name": "13 Pro Max",
       "settings_source_url": null,
       "dpi": 0,
