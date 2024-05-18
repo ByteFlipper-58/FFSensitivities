@@ -1,4 +1,4 @@
-package com.byteflipper.ffsensitivities.requestsettings;
+package com.byteflipper.ffsensitivities.settingsrequest;
 
 import android.os.AsyncTask;
 import android.util.Log;

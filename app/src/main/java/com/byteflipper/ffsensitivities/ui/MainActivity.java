@@ -18,11 +18,14 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.splashscreen.SplashScreen;
 import androidx.navigation.NavController;
+import androidx.navigation.NavDestination;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.byteflipper.ffsensitivities.R;
+import com.byteflipper.ffsensitivities.ads.AdMobInitializer;
+import com.byteflipper.ffsensitivities.ads.UMPConsentHelper;
 import com.byteflipper.ffsensitivities.databinding.ActivityMainBinding;
 import com.byteflipper.ffsensitivities.manager.LanguageManager;
 import com.byteflipper.ffsensitivities.manager.ManufacturersManager;
@@ -41,15 +44,19 @@ import com.google.android.play.core.appupdate.AppUpdateManagerFactory;
 import com.google.android.play.core.install.InstallState;
 import com.google.android.play.core.install.model.AppUpdateType;
 import com.google.android.play.core.install.model.InstallStatus;
+import com.google.android.ump.ConsentForm;
+import com.google.android.ump.ConsentInformation;
+import com.google.android.ump.FormError;
 
 public class MainActivity extends AppCompatActivity implements AppUpdateHelper.UpdateListener {
     private AppBarConfiguration appBarConfiguration;
     private NavController navController;
     private ActivityMainBinding binding;
 
-    private LanguageManager languageManager;
     private AppUpdateHelper appUpdateHelper;
     private Handler handler = new Handler();
+
+    private AdMobInitializer adMobInitializer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,6 +103,42 @@ public class MainActivity extends AppCompatActivity implements AppUpdateHelper.U
         appUpdateHelper = new AppUpdateHelper(this, this);
         appUpdateHelper.checkForAppUpdate();
 
+        adMobInitializer = new AdMobInitializer();
+        adMobInitializer.initialize(this);
+
+        UMPConsentHelper.requestConsentInfoUpdate(this, new UMPConsentHelper.ConsentStatusCallback() {
+            @Override
+            public void onConsentInfoUpdated(ConsentInformation consentInformation, boolean loadConsentForm) {
+                if (loadConsentForm) {
+                    // Загрузите и покажите форму согласия
+                    UMPConsentHelper.loadConsentForm(MainActivity.this, this);
+                } else {
+                    // Обработка согласия пользователя (если нужно)
+                    Log.d("MainActivity", "Consent status: " + consentInformation.getConsentStatus());
+                }
+            }
+
+            @Override
+            public void onConsentFormLoadFailure(FormError formError) {
+                // Обработка ошибки загрузки формы согласия
+                Log.e("MainActivity", "UMP form load failed: " + formError.getMessage());
+            }
+
+            @Override
+            public void onConsentFormLoadSuccess(ConsentForm consentForm) {
+                // Отображение формы согласия
+                consentForm.show(MainActivity.this, new ConsentForm.OnConsentFormDismissedListener() {
+                    @Override
+                    public void onConsentFormDismissed(@Nullable FormError formError) {
+                        // Обработка закрытия формы согласия (если нужно)
+                        if (formError != null) {
+                            Log.e("MainActivity", "UMP form dismissed with error: " + formError.getMessage());
+                        }
+                    }
+                });
+            }
+        });
+
         navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
         NavigationUI.setupWithNavController(binding.bottomAppBar, navController);
@@ -113,6 +156,10 @@ public class MainActivity extends AppCompatActivity implements AppUpdateHelper.U
         int id = item.getItemId();
         if (id == R.id.settings) {
             NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
+            NavDestination currentDestination = navController.getCurrentDestination();
+            if (currentDestination != null && currentDestination.getId() == R.id.settingsFragment) {
+                return true;
+            }
             navController.navigate(R.id.settingsFragment);
             return true;
         }
@@ -125,6 +172,12 @@ public class MainActivity extends AppCompatActivity implements AppUpdateHelper.U
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         return NavigationUI.navigateUp(navController, appBarConfiguration)
                 || super.onSupportNavigateUp();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        adMobInitializer.showAppOpenAd(this);
     }
 
     private void setStatusAndNavigationBarColor(int color) {

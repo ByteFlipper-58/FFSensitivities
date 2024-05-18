@@ -10,7 +10,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 
-import com.byteflipper.ffsensitivities.requestsettings.SensitivitiesRequestDialog;
+import com.byteflipper.ffsensitivities.settingsrequest.SensitivitiesRequestDialog;
 import com.byteflipper.ffsensitivities.databinding.FragmentManufacturersBinding;
 import com.google.android.material.progressindicator.LinearProgressIndicator;
 

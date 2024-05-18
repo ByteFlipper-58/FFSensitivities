@@ -1,9 +1,12 @@
 package com.byteflipper.ffsensitivities.manager;
 
+import static androidx.core.app.ActivityCompat.recreate;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.res.Configuration;
@@ -16,6 +19,7 @@ import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.os.LocaleListCompat;
 import android.content.SharedPreferences;
 
+import com.byteflipper.ffsensitivities.R;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 public class LanguageManager {
@@ -44,12 +48,9 @@ public class LanguageManager {
 
         new MaterialAlertDialogBuilder(context)
                 .setTitle("Выберите язык")
-                .setItems(languageNames, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        String selectedLanguageCode = SUPPORTED_LANGUAGE_CODES.get(which);
-                        setLanguage(context, selectedLanguageCode);
-                    }
+                .setItems(languageNames, (dialog, which) -> {
+                    String selectedLanguageCode = SUPPORTED_LANGUAGE_CODES.get(which);
+                    setLanguage(context, selectedLanguageCode);
                 })
                 .show();
     }
@@ -85,6 +86,7 @@ public class LanguageManager {
         Configuration config = new Configuration(resources.getConfiguration());
         config.setLocale(locale);
         resources.updateConfiguration(config, resources.getDisplayMetrics());
+        //context.createConfigurationContext(new Configuration());
 
         // Синхронизируем локаль для Per-App Language API, если доступно
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU && AppCompatDelegate.getApplicationLocales() != null) {

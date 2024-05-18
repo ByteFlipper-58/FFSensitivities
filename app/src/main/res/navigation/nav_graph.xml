@@ -39,7 +39,7 @@
         android:id="@+id/aboutAppFragment"
         android:name="com.byteflipper.ffsensitivities.ui.fragment.AboutFragment"
         android:label="@string/about_app"
-        tools:layout="@layout/fragment_about_app">
+        tools:layout="@layout/fragment_about">
         <action
             android:id="@+id/action_aboutAppFragment_to_settingsFragment"
             app:destination="@id/settingsFragment"/>

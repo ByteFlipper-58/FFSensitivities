@@ -6,7 +6,6 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="com.google.android.gms.permission.AD_ID" />
 
-
     <application
         android:name="com.byteflipper.ffsensitivities.MyApp"
         android:allowBackup="true"
@@ -19,6 +18,14 @@
         android:supportsRtl="true"
         android:theme="@style/FFSensitivitiesTheme"
         tools:targetApi="34">
+
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-4346225518624754~7987012984"/>
+        <property
+            android:name="android.adservices.AD_SERVICES_CONFIG"
+            android:resource="@xml/gma_ad_services_config"
+            tools:replace="android:resource" />
 
         <service
             android:name="androidx.appcompat.app.AppLocalesMetadataHolderService"
@@ -48,12 +55,11 @@
 
         <activity
             android:name="com.byteflipper.ffsensitivities.ui.MainActivity"
-            android:configChanges="uiMode"
+            android:configChanges="uiMode|locale"
             android:exported="true"
             android:theme="@style/FFSensitivitiesTheme.SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

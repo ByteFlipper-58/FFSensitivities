@@ -11,8 +11,8 @@ android {
         applicationId "com.byteflipper.ffsensitivities"
         minSdk 27
         targetSdk 34
-        versionCode 15
-        versionName "v1.0.5"
+        versionCode 16
+        versionName "v1.1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -55,6 +55,10 @@ android {
     lintOptions {
         disable 'NonConstantResourceId'
     }
+
+    defaultConfig {
+        resourceConfigurations += ["en", "de", "be", "fr", "pl", "ru", "tr", "uk"]
+    }
 }
 
 dependencies {
@@ -79,6 +83,8 @@ dependencies {
     implementation 'androidx.core:core-splashscreen:1.0.1'
     implementation 'com.google.android.play:app-update:2.1.0'
     implementation 'com.google.android.play:review:2.0.1'
+    implementation 'com.google.android.gms:play-services-ads:23.0.0'
+    implementation 'com.google.android.ump:user-messaging-platform:2.2.0'
 
     implementation 'com.google.code.gson:gson:2.10.1'
     implementation 'com.android.volley:volley:1.2.1'
