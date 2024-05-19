@@ -11,8 +11,8 @@ android {
         applicationId "com.byteflipper.ffsensitivities"
         minSdk 27
         targetSdk 34
-        versionCode 16
-        versionName "v1.1.0"
+        versionCode 20
+        versionName "v1.1.6"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -55,10 +55,6 @@ android {
     lintOptions {
         disable 'NonConstantResourceId'
     }
-
-    defaultConfig {
-        resourceConfigurations += ["en", "de", "be", "fr", "pl", "ru", "tr", "uk"]
-    }
 }
 
 dependencies {
@@ -83,7 +79,7 @@ dependencies {
     implementation 'androidx.core:core-splashscreen:1.0.1'
     implementation 'com.google.android.play:app-update:2.1.0'
     implementation 'com.google.android.play:review:2.0.1'
-    implementation 'com.google.android.gms:play-services-ads:23.0.0'
+    implementation 'com.google.android.gms:play-services-ads:23.1.0'
     implementation 'com.google.android.ump:user-messaging-platform:2.2.0'
 
     implementation 'com.google.code.gson:gson:2.10.1'
@@ -95,6 +91,13 @@ dependencies {
     implementation 'com.github.pengrad:java-telegram-bot-api:7.2.1'
 
     implementation 'com.facebook.shimmer:shimmer:0.5.0'
+
+
+    implementation "androidx.lifecycle:lifecycle-extensions:2.2.0"
+
+    def lifecycle_version = '2.6.2'
+    implementation "androidx.lifecycle:lifecycle-process:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-runtime:$lifecycle_version"
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'

@@ -177,7 +177,6 @@ public class MainActivity extends AppCompatActivity implements AppUpdateHelper.U
     @Override
     protected void onStart() {
         super.onStart();
-        adMobInitializer.showAppOpenAd(this);
     }
 
     private void setStatusAndNavigationBarColor(int color) {
