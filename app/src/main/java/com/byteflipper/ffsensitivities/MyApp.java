@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -38,7 +37,6 @@ public class MyApp extends Application implements Application.ActivityLifecycleC
         instance = this;
         setNightMode();
 
-        // Initialize the Google Mobile Ads SDK
         MobileAds.initialize(this, initializationStatus -> Log.d(TAG, "AdMob initialized successfully."));
 
         this.registerActivityLifecycleCallbacks(this);
@@ -56,8 +54,14 @@ public class MyApp extends Application implements Application.ActivityLifecycleC
     public void onStart(@NonNull LifecycleOwner owner) {
         DefaultLifecycleObserver.super.onStart(owner);
 
-        // Загружаем рекламу и показываем, если она доступна
-        appOpenAdManager.loadAndShowAdIfAvailable(currentActivity);
+        // Загружаем рекламу и показываем, если она доступна, только если currentActivity не null
+        if (currentActivity != null) {
+            appOpenAdManager.loadAndShowAdIfAvailable(currentActivity, () -> {
+                // Действия после завершения показа рекламы
+            });
+        } else {
+            Log.d(TAG, "currentActivity is null in onStart");
+        }
     }
 
     @Override
@@ -66,7 +70,8 @@ public class MyApp extends Application implements Application.ActivityLifecycleC
 
     @Override
     public void onActivityStarted(@NonNull Activity activity) {
-        // Updating the currentActivity only when an ad is not showing
+        // Обновляем currentActivity только тогда, когда реклама не отображается
+        Log.d(TAG, "onActivityStarted: " + activity);
         if (!appOpenAdManager.isShowingAd) {
             currentActivity = activity;
         }
@@ -75,7 +80,10 @@ public class MyApp extends Application implements Application.ActivityLifecycleC
     @Override
     public void onActivityResumed(@NonNull Activity activity) {
         // Показываем рекламу, если она доступна, при возвращении в приложение
-        appOpenAdManager.showAdIfAvailable(activity);
+        Log.d(TAG, "onActivityResumed: " + activity);
+        appOpenAdManager.showAdIfAvailable(activity, () -> {
+            // Действия после завершения показа рекламы
+        });
     }
 
     @Override
@@ -109,7 +117,7 @@ public class MyApp extends Application implements Application.ActivityLifecycleC
 
     private class AppOpenAdManager {
         private static final String LOG_TAG = "AppOpenAdManager";
-        private static final String AD_UNIT_ID = "ca-app-pub-4346225518624754/1080825292"; // Замените на ваш реальный ID
+        private static final String AD_UNIT_ID = "ca-app-pub-4346225518624754/1080825292";
 
         private AppOpenAd appOpenAd = null;
         private boolean isLoadingAd = false;
@@ -139,14 +147,12 @@ public class MyApp extends Application implements Application.ActivityLifecycleC
                             loadTime = new Date().getTime();
 
                             Log.d(LOG_TAG, "onAdLoaded.");
-                            Toast.makeText(context, "onAdLoaded", Toast.LENGTH_SHORT).show();
                         }
 
                         @Override
                         public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
                             isLoadingAd = false;
                             Log.d(LOG_TAG, "onAdFailedToLoad: " + loadAdError.getMessage());
-                            Toast.makeText(context, "onAdFailedToLoad", Toast.LENGTH_SHORT).show();
                         }
                     });
         }
@@ -161,20 +167,12 @@ public class MyApp extends Application implements Application.ActivityLifecycleC
             return appOpenAd != null && wasLoadTimeLessThanNHoursAgo(4);
         }
 
-        public void loadAndShowAdIfAvailable(@NonNull final Activity activity) {
+        public void loadAndShowAdIfAvailable(@NonNull final Activity activity, @NonNull OnShowAdCompleteListener onShowAdCompleteListener) {
             if (isAdAvailable()) {
-                showAdIfAvailable(activity);
+                showAdIfAvailable(activity, onShowAdCompleteListener);
             } else {
                 loadAd(activity);
             }
-        }
-
-        private void showAdIfAvailable(@NonNull final Activity activity) {
-            showAdIfAvailable(
-                    activity,
-                    () -> {
-                        // Empty because the user will go back to the activity that shows the ad.
-                    });
         }
 
         private void showAdIfAvailable(@NonNull final Activity activity,
@@ -186,7 +184,9 @@ public class MyApp extends Application implements Application.ActivityLifecycleC
 
             if (!isAdAvailable()) {
                 Log.d(LOG_TAG, "The app open ad is not ready yet.");
-                onShowAdCompleteListener.onShowAdComplete();
+                if (onShowAdCompleteListener != null) {
+                    onShowAdCompleteListener.onShowAdComplete();
+                }
                 return;
             }
 
@@ -203,9 +203,9 @@ public class MyApp extends Application implements Application.ActivityLifecycleC
                                     isShowingAd = false;
 
                                     Log.d(LOG_TAG, "onAdDismissedFullScreenContent.");
-                                    Toast.makeText(activity, "onAdDismissedFullScreenContent", Toast.LENGTH_SHORT).show();
-
-                                    onShowAdCompleteListener.onShowAdComplete();
+                                    if (onShowAdCompleteListener != null) {
+                                        onShowAdCompleteListener.onShowAdComplete();
+                                    }
                                     loadAd(activity); // Загружаем новую рекламу после показа
                                 }
 
@@ -215,16 +215,15 @@ public class MyApp extends Application implements Application.ActivityLifecycleC
                                     isShowingAd = false;
 
                                     Log.d(LOG_TAG, "onAdFailedToShowFullScreenContent: " + adError.getMessage());
-                                    Toast.makeText(activity, "onAdFailedToShowFullScreenContent", Toast.LENGTH_SHORT).show();
-
-                                    onShowAdCompleteListener.onShowAdComplete();
+                                    if (onShowAdCompleteListener != null) {
+                                        onShowAdCompleteListener.onShowAdComplete();
+                                    }
                                     loadAd(activity); // Загружаем новую рекламу после ошибки
                                 }
 
                                 @Override
                                 public void onAdShowedFullScreenContent() {
                                     Log.d(LOG_TAG, "onAdShowedFullScreenContent.");
-                                    Toast.makeText(activity, "onAdShowedFullScreenContent", Toast.LENGTH_SHORT).show();
                                 }
                             });
 
@@ -232,7 +231,9 @@ public class MyApp extends Application implements Application.ActivityLifecycleC
                     appOpenAd.show(activity);
                 } else {
                     Log.d(LOG_TAG, "AppOpenAd not shown: Activity not in focus");
-                    onShowAdCompleteListener.onShowAdComplete();
+                    if (onShowAdCompleteListener != null) {
+                        onShowAdCompleteListener.onShowAdComplete();
+                    }
                 }
             }, 1000);
         }

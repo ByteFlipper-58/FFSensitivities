@@ -11,8 +11,8 @@ android {
         applicationId "com.byteflipper.ffsensitivities"
         minSdk 27
         targetSdk 34
-        versionCode 20
-        versionName "v1.1.6"
+        versionCode 22
+        versionName "v1.1.6b"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }

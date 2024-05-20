@@ -24,7 +24,7 @@ public class UMPConsentHelper {
     public static void requestConsentInfoUpdate(Context context, ConsentStatusCallback callback) {
         ConsentDebugSettings debugSettings = new ConsentDebugSettings.Builder(context)
                 .setDebugGeography(ConsentDebugSettings.DebugGeography.DEBUG_GEOGRAPHY_EEA)
-                .addTestDeviceHashedId("3C2DFEFB9C4FCD9821E061B1C51E049C")
+                .addTestDeviceHashedId("")
                 .build();
 
         ConsentRequestParameters params = new ConsentRequestParameters
