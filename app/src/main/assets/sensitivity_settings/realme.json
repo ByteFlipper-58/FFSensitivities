@@ -1,22 +1,36 @@
 {
     "manufacturer": "Realme",
     "models": [
-    {
-        "__id__": "309x4f8RMnwA5ahuokWh",
-        "manufacturer": "Realme",
-        "name": "C15",
-        "settings_source_url": "",
-        "dpi": 644,
-        "fire_button": 53,
-        "sensitivities": {
-            "review": 95,
-            "collimator": 90,
-            "x2_scope": 90,
-            "x4_scope": 93,
-            "sniper_scope": 51,
-            "free_review": 32
-        }
-    },
+        {
+            "manufacturer": "Realme",
+            "name": "C25",
+            "settings_source_url": "",
+            "dpi": 644,
+            "fire_button": 46,
+            "sensitivities": {
+                "review": 191,
+                "collimator": 180,
+                "x2_scope": 189,
+                "x4_scope": 182,
+                "sniper_scope": 200,
+                "free_review": 200
+            }
+        },
+        {
+            "manufacturer": "Realme",
+            "name": "C15",
+            "settings_source_url": "",
+            "dpi": 644,
+            "fire_button": 53,
+            "sensitivities": {
+                "review": 95,
+                "collimator": 90,
+                "x2_scope": 90,
+                "x4_scope": 93,
+                "sniper_scope": 51,
+                "free_review": 32
+            }
+        },
     {
         "__id__": "DMGIAnrrTbbdmPQjOREn",
         "manufacturer": "Realme",
