@@ -2,7 +2,6 @@
   "manufacturer": "Sumsang",
   "models": [
     {
-      "__id__": "79hEE4AUFCa4EvUfZ7LA",
       "manufacturer": "Samsung",
       "name": "S24 Ultra",
       "settings_source_url": "",
@@ -18,7 +17,6 @@
       }
     },
     {
-      "__id__": "79hEE4AUFCa4EvUfZ7LA",
       "manufacturer": "Samsung",
       "name": "S23 Ultra",
       "settings_source_url": "",
@@ -34,7 +32,6 @@
       }
     },
     {
-      "__id__": "79hEE4AUFCa4EvUfZ7LA",
       "manufacturer": "Samsung",
       "name": "S23",
       "settings_source_url": "",
@@ -50,7 +47,6 @@
       }
     },
     {
-      "__id__": "79hEE4AUFCa4EvUfZ7LA",
       "manufacturer": "Samsung",
       "name": "S22 Ultra",
       "settings_source_url": "",
@@ -66,7 +62,6 @@
       }
     },
     {
-      "__id__": "79hEE4AUFCa4EvUfZ7LA",
       "manufacturer": "Samsung",
       "name": "S22 Plus",
       "settings_source_url": "",
@@ -82,7 +77,6 @@
       }
     },
     {
-      "__id__": "79hEE4AUFCa4EvUfZ7LA",
       "manufacturer": "Samsung",
       "name": "S22",
       "settings_source_url": "",
@@ -98,7 +92,6 @@
       }
     },
     {
-      "__id__": "79hEE4AUFCa4EvUfZ7LA",
       "manufacturer": "Samsung",
       "name": "S21 Plus",
       "settings_source_url": "",
@@ -114,7 +107,6 @@
       }
     },
     {
-      "__id__": "79hEE4AUFCa4EvUfZ7LA",
       "manufacturer": "Samsung",
       "name": "S21",
       "settings_source_url": "",
@@ -597,7 +589,7 @@
     {
       "manufacturer": "Samsung",
       "name": "A50",
-      "settings_source_url": "https://www.tiktok.com/@777_honour_777/video/7118657265531424005",
+      "settings_source_url": "",
       "dpi": 612,
       "fire_button": 56,
       "sensitivities": {
@@ -610,7 +602,6 @@
       }
     },
     {
-      "__id__": "RLG4tNctSBkFI7Ixviyi",
       "manufacturer": "Samsung",
       "name": "A40",
       "settings_source_url": "",
@@ -777,7 +768,7 @@
     },
     {
       "manufacturer": "Samsung",
-      "name": "Samsung A01 Core",
+      "name": "A01 Core",
       "settings_source_url": "",
       "dpi": 839,
       "fire_button": 38,
@@ -792,7 +783,7 @@
     },
     {
       "manufacturer": "Samsung",
-      "name": "Samsung A01",
+      "name": "A01",
       "settings_source_url": "",
       "dpi": 800,
       "fire_button": 49,
@@ -912,7 +903,7 @@
     },
     {
       "manufacturer": "Samsung",
-      "name": "Samsung A6",
+      "name": "A6",
       "settings_source_url": "",
       "dpi": 512,
       "fire_button": 46,

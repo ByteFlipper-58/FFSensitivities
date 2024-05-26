@@ -198,8 +198,8 @@
     },
     {
       "manufacturer": "iPhone",
-      "name": "iPhone XS Max",
-      "settings_source_url": "https://vm.tiktok.com/ZMNt4U6b9/",
+      "name": "XS Max",
+      "settings_source_url": "",
       "dpi": 0,
       "fire_button": 57,
       "sensitivities": {
@@ -213,8 +213,8 @@
     },
     {
       "manufacturer": "iPhone",
-      "name": "iPhone XS",
-      "settings_source_url": "https://vm.tiktok.com/ZMNt4U6b9/",
+      "name": "XS",
+      "settings_source_url": "",
       "dpi": 0,
       "fire_button": 62,
       "sensitivities": {
@@ -228,8 +228,8 @@
     },
     {
       "manufacturer": "iPhone",
-      "name": "iPhone XR",
-      "settings_source_url": "https://vm.tiktok.com/ZMNt4U6b9/",
+      "name": "XR",
+      "settings_source_url": "",
       "dpi": 0,
       "fire_button": 47,
       "sensitivities": {
@@ -243,8 +243,8 @@
     },
     {
       "manufacturer": "iPhone",
-      "name": "iPhone X",
-      "settings_source_url": "https://vm.tiktok.com/ZMNt4U6b9/",
+      "name": "X",
+      "settings_source_url": "",
       "dpi": 0,
       "fire_button": 51,
       "sensitivities": {
