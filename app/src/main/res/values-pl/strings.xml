@@ -21,6 +21,8 @@
     <string name="dpi">DPI</string>
     <string name="fire_button">Przycisk Ognia</string>
     <string name="source">Źródło</string>
+    <string name="it_works">Działa?</string>
+    <string name="thank_for_review">Dziękujemy za opinię!</string>
 
     <string name="dont_have_your_phone_model">Nie masz swojego modelu telefonu? Złóż prośbę!</string>
     <string name="request_sensitivities_settings_title">Poproś o ustawienia wrażliwości</string>

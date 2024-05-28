@@ -17,6 +17,7 @@ import java.util.Locale;
 
 import com.byteflipper.ffsensitivities.R;
 import com.byteflipper.ffsensitivities.model.ManufacturersDataModel;
+import com.byteflipper.ffsensitivities.utils.NavigationOptionsUtil;
 
 public class ManufacturersListAdapter extends RecyclerView.Adapter<ManufacturersListAdapter.ManufacturersHolder> {
     private final Fragment fragment;
@@ -39,7 +40,7 @@ public class ManufacturersListAdapter extends RecyclerView.Adapter<Manufacturers
             Bundle finalBundle = new Bundle();
             finalBundle.putString("model", models.get(position).getModel().toLowerCase(Locale.ROOT));
             NavController navController = Navigation.findNavController(fragment.requireActivity(), R.id.nav_host_fragment_content_main);
-            navController.navigate(R.id.action_manufacturerFragment2_to_devicesFragment, finalBundle);
+            navController.navigate(R.id.action_manufacturerFragment2_to_devicesFragment, finalBundle, NavigationOptionsUtil.getNavOptions());
         });
     }
 

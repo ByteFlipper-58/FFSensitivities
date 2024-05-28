@@ -17,6 +17,7 @@ import java.util.List;
 
 import com.byteflipper.ffsensitivities.model.SensitivityDataModel;
 import com.byteflipper.ffsensitivities.R;
+import com.byteflipper.ffsensitivities.utils.NavigationOptionsUtil;
 import com.byteflipper.ffsensitivities.utils.OtherUtils;
 import com.byteflipper.ffsensitivities.utils.SharedPreferencesUtils;
 
@@ -58,7 +59,6 @@ public class DevicesListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             StringBuilder deviceName = new StringBuilder(model.getManufacturerName() + " " + model.getDeviceName());
             holder.deviceName.setText(deviceName);
             holder.itemView.setOnClickListener(v -> navigateToDeviceSettings(position));
-            new OtherUtils(fragment.getContext()).reviewApp();
         }
     }
 
@@ -76,7 +76,7 @@ public class DevicesListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         finalBundle.putFloat("fire_button", model.getFireButton());
         finalBundle.putString("settings_source_url", model.getSettingsSourceUrl());
         NavController navController = Navigation.findNavController(fragment.requireActivity(), R.id.nav_host_fragment_content_main);
-        navController.navigate(R.id.action_devicesFragment_to_deviceSettingsFragment, finalBundle);
+        navController.navigate(R.id.action_devicesFragment_to_deviceSettingsFragment, finalBundle, NavigationOptionsUtil.getNavOptions());
     }
 
     @Override
@@ -86,7 +86,6 @@ public class DevicesListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
     @Override
     public int getItemViewType(int position) {
-        // Возвращаем тип представления на основе позиции
         return VIEW_TYPE_DEFAULT;
     }
 

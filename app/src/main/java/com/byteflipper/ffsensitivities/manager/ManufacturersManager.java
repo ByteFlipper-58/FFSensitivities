@@ -8,6 +8,7 @@ import static com.android.volley.RequestQueue.RequestEvent.REQUEST_NETWORK_DISPA
 import static com.android.volley.RequestQueue.RequestEvent.REQUEST_QUEUED;
 
 import android.content.Context;
+import android.content.res.AssetManager;
 import android.util.Log;
 
 import androidx.lifecycle.MutableLiveData;
@@ -17,11 +18,16 @@ import com.android.volley.RequestQueue;
 import com.android.volley.RequestQueue.RequestEventListener;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.byteflipper.ffsensitivities.utils.NetworkCheckHelper;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -67,22 +73,51 @@ public class ManufacturersManager {
             isRequestFinished.setValue(false);
             isReadyLiveData.setValue(false);
             try {
-                RequestQueue queue = Volley.newRequestQueue(context);
-                JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, GITHUB_MANUFACTURERS_FILES_PATH, null,
-                        response -> {
-                            try {
-                                parseResponse(response);
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-                        },
-                        error -> Log.e("Volley", error.toString())
-                );
-                queue.addRequestEventListener(createRequestEventListener());
-                queue.add(jsonObjectRequest);
+                if (NetworkCheckHelper.isNetworkAvailable(context)) {
+                    loadManufacturersFromGitHub(context);
+                } else {
+                    loadManufacturersFromAssets(context);
+                }
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
+        }
+    }
+
+    private void loadManufacturersFromGitHub(Context context) {
+        RequestQueue queue = Volley.newRequestQueue(context);
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, GITHUB_MANUFACTURERS_FILES_PATH, null,
+                response -> {
+                    try {
+                        parseResponse(response);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                },
+                error -> Log.e("Volley", error.toString())
+        );
+        queue.addRequestEventListener(createRequestEventListener());
+        queue.add(jsonObjectRequest);
+    }
+
+    private void loadManufacturersFromAssets(Context context) {
+        try {
+            AssetManager assetManager = context.getAssets();
+            InputStream is = assetManager.open("sensitivity_settings/manufacturers.json");
+            BufferedReader reader = new BufferedReader(new InputStreamReader(is, "UTF-8"));
+            StringBuilder sb = new StringBuilder();
+            String line;
+            while ((line = reader.readLine()) != null) {
+                sb.append(line);
+            }
+            String jsonString = sb.toString();
+            JSONObject response = new JSONObject(jsonString);
+            parseResponse(response);
+        } catch (IOException | JSONException e) {
+            Log.e("ManufacturersManager", "Error loading manufacturers from assets", e);
+        } finally {
+            isReadyLiveData.postValue(true);
+            isRequestFinished.postValue(true);
         }
     }
 
@@ -100,23 +135,15 @@ public class ManufacturersManager {
         isRequestFinished.postValue(true);
     }
 
-    private RequestEventListener createRequestEventListener() {
+    private RequestQueue.RequestEventListener createRequestEventListener() {
         return (request, event) -> {
             switch (event) {
-                case REQUEST_QUEUED:
-                case REQUEST_CACHE_LOOKUP_STARTED:
-                case REQUEST_NETWORK_DISPATCH_STARTED:
-                    isRequestFinished.postValue(false);
-                    isReadyLiveData.postValue(false);
-                    break;
-                case REQUEST_FINISHED:
-                case REQUEST_CACHE_LOOKUP_FINISHED:
-                case REQUEST_NETWORK_DISPATCH_FINISHED:
-                    isRequestFinished.postValue(true);
-                    isReadyLiveData.postValue(true);
-                    break;
-                default:
-                    break;
+                case REQUEST_QUEUED, REQUEST_CACHE_LOOKUP_STARTED, REQUEST_NETWORK_DISPATCH_STARTED ->
+                        isRequestFinished.postValue(false);
+                case REQUEST_FINISHED, REQUEST_CACHE_LOOKUP_FINISHED, REQUEST_NETWORK_DISPATCH_FINISHED ->
+                        isRequestFinished.postValue(true);
+                default -> {
+                }
             }
         };
     }

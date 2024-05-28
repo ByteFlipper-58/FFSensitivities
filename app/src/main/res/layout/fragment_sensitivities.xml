@@ -21,17 +21,6 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/textViewDPI"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="18dp"
-                android:contentDescription="@string/dpi"
-                android:text="@string/dpi"
-                android:textSize="21sp"
-                android:textStyle="bold"
-                style="@style/Widget.MaterialComponents.TextView"/>
-
             <com.byteflipper.ffsensitivities.ui.components.CustomSliderView
                 android:id="@+id/review_slider"
                 android:layout_width="match_parent"
@@ -80,41 +69,60 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"/>
 
-            <com.byteflipper.ffsensitivities.ui.components.CustomSliderView
-                android:id="@+id/sniper_scope"
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/textViewDPI"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:titleText="@string/sniper_scope"
-                app:value="58.0"
-                app:enabled="false"/>
+                android:padding="18dp"
+                android:contentDescription="@string/dpi"
+                android:text="@string/dpi"
+                android:textStyle="bold"
+                android:textAppearance="?attr/textAppearanceHeadline6"/>
 
             <com.google.android.material.divider.MaterialDivider
                 android:layout_width="match_parent"
                 android:layout_height="1dp"/>
 
-            <com.byteflipper.ffsensitivities.ui.components.CustomSliderView
-                android:id="@+id/free_look_slider"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:titleText="@string/free_review"
-                app:value="58.0"
-                app:enabled="false"/>
-
-            <com.google.android.material.divider.MaterialDivider
-                android:layout_width="match_parent"
-                android:layout_height="1dp"/>
-
-            <com.byteflipper.ffsensitivities.ui.components.CustomSliderView
-                android:id="@+id/fire_button_slider"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:titleText="@string/fire_button"
-                app:value="58.0"
-                app:enabled="false"/>
         </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="16dp"
+            android:layout_marginVertical="8dp"
+            android:gravity="center_vertical">
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="@string/it_works"
+                android:textAppearance="?attr/textAppearanceHeadline6"/>
+            <com.google.android.material.button.MaterialButton
+                style="@style/Widget.Material3.Button.IconButton.Filled.Tonal"
+                android:id="@+id/work_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toStartOf="@id/not_work_btn"
+                app:icon="@drawable/thumb_up_24px"/>
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/not_work_btn"
+                style="@style/Widget.Material3.Button.IconButton.Filled.Tonal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_alignParentEnd="true"
+                app:icon="@drawable/thumb_down_24px" />
+        </RelativeLayout>
+
+        <com.google.android.material.divider.MaterialDivider
+            android:layout_width="match_parent"
+            android:layout_height="1dp"/>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginVertical="8dp"
             android:orientation="horizontal">
 
             <com.google.android.material.button.MaterialButton

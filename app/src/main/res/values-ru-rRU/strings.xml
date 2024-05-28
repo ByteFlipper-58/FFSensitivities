@@ -21,6 +21,8 @@
     <string name="dpi">DPI</string>
     <string name="fire_button">Кнопка огня</string>
     <string name="source">Источник</string>
+    <string name="it_works">Работает?</string>
+    <string name="thank_for_review">Спасибо за ваш отзыв!</string>
 
     <string name="dont_have_your_phone_model">Нет вашей модели телефона? Сделайте запрос!</string>
     <string name="request_sensitivities_settings_title">Запросить настройки</string>

@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.GridLayoutManager;
 
+import com.byteflipper.ffsensitivities.interfaces.IScrollHelper;
 import com.google.android.material.progressindicator.LinearProgressIndicator;
 
 import com.byteflipper.ffsensitivities.R;
@@ -20,7 +21,7 @@ import com.byteflipper.ffsensitivities.adapter.DevicesListAdapter;
 import com.byteflipper.ffsensitivities.databinding.FragmentDevicesBinding;
 import com.byteflipper.ffsensitivities.manager.SensitivitiesManager;
 
-public class DevicesFragment extends Fragment {
+public class DevicesFragment extends Fragment implements IScrollHelper {
 
     private FragmentDevicesBinding binding;
     private SensitivitiesManager manager;
@@ -94,5 +95,10 @@ public class DevicesFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
+    }
+
+    @Override
+    public void scrollToTop() {
+        binding.recview.smoothScrollToPosition(0);
     }
 }

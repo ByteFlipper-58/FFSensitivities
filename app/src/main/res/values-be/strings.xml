@@ -21,6 +21,8 @@
     <string name="dpi">DPI</string>
     <string name="fire_button">Кнопка стрэльбы</string>
     <string name="source">Крыніца</string>
+    <string name="it_works">Працоўвае?</string>
+    <string name="thank_for_review">Дзякуй за ваш водгук!</string>
 
     <string name="dont_have_your_phone_model">Няма вашага мадэля тэлефона? Зрабіце запыт!</string>
     <string name="request_sensitivities_settings_title">Запыт налады чутлівасці</string>

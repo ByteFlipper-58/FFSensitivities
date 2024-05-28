@@ -21,6 +21,8 @@
     <string name="dpi">DPI</string>
     <string name="fire_button">Ateş Tuşu</string>
     <string name="source">Kaynak</string>
+    <string name="it_works">Çalışıyor mu?</string>
+    <string name="thank_for_review">Değerlendirmeniz için teşekkürler!</string>
 
     <string name="dont_have_your_phone_model">Telefon modeliniz yok mu? Talep oluşturun!</string>
     <string name="request_sensitivities_settings_title">Duyarlılık ayarlarını iste</string>

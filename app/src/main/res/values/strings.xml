@@ -21,6 +21,8 @@
     <string name="dpi">DPI</string>
     <string name="fire_button">Fire Button</string>
     <string name="source">Source</string>
+    <string name="it_works">It Works?</string>
+    <string name="thank_for_review">Thank you for your review!</string>
 
     <string name="dont_have_your_phone_model">Don\'t have your phone model? Make a request!</string>
     <string name="request_sensitivities_settings_title">Request sensitivities settings</string>

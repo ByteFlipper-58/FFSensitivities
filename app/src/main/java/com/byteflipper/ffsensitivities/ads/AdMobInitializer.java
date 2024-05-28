@@ -29,8 +29,8 @@ public class AdMobInitializer {
     private static final String BANNER_AD_UNIT_ID = "ca-app-pub-4346225518624754/7047467848";
     private static final String TEST_BANNER_AD_UNIT_ID = "ca-app-pub-3940256099942544/6300978111";
 
-    private static final String TEST_DEVICE_ID = "";
-    private static final String TEST_DEVICE_HASHED_ID = "";
+    private static final String TEST_DEVICE_ID = "3C2DFEFB9C4FCD9821E061B1C51E049C";
+    private static final String TEST_DEVICE_HASHED_ID = "3C2DFEFB9C4FCD9821E061B1C51E049C";
 
     private static final String TAG = "AdMobInitializer";
 

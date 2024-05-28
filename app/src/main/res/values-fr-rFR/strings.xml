@@ -21,6 +21,8 @@
     <string name="dpi">PPP</string>
     <string name="fire_button">Bouton de Tir</string>
     <string name="source">Source</string>
+    <string name="it_works">Ça marche ?</string>
+    <string name="thank_for_review">Merci pour votre avis !</string>
 
     <string name="dont_have_your_phone_model">Vous n\'avez pas votre modèle de téléphone ? Faites une demande !</string>
     <string name="request_sensitivities_settings_title">Demander les réglages de sensibilité</string>
