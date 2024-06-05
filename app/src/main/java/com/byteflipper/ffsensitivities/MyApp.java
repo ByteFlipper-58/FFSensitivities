@@ -22,6 +22,10 @@ import com.google.android.gms.ads.FullScreenContentCallback;
 import com.google.android.gms.ads.LoadAdError;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.appopen.AppOpenAd;
+import com.google.android.material.color.DynamicColors;
+import com.google.android.material.color.DynamicColorsOptions;
+import com.google.android.material.color.HarmonizedColors;
+import com.google.android.material.color.HarmonizedColorsOptions;
 
 import java.util.Date;
 

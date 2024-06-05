@@ -1,7 +1,7 @@
 package com.byteflipper.ffsensitivities.ui;
 
 import android.content.Intent;
-import android.content.IntentSender;
+import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -11,17 +11,15 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.view.Window;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.core.splashscreen.SplashScreen;
-import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.NavDestination;
-import androidx.navigation.NavOptions;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
@@ -30,28 +28,13 @@ import com.byteflipper.ffsensitivities.R;
 import com.byteflipper.ffsensitivities.ads.AdMobInitializer;
 import com.byteflipper.ffsensitivities.ads.UMPConsentHelper;
 import com.byteflipper.ffsensitivities.databinding.ActivityMainBinding;
-import com.byteflipper.ffsensitivities.interfaces.IScrollHelper;
 import com.byteflipper.ffsensitivities.manager.LanguageManager;
 import com.byteflipper.ffsensitivities.manager.ManufacturersManager;
-import com.byteflipper.ffsensitivities.manager.SensitivitiesManager;
 import com.byteflipper.ffsensitivities.utils.AppUpdateHelper;
-import com.byteflipper.ffsensitivities.utils.NavigationOptionsUtil;
-import com.byteflipper.ffsensitivities.utils.PerAppLanguageManager;
 import com.byteflipper.ffsensitivities.utils.SharedPreferencesUtils;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.color.DynamicColors;
 import com.google.android.material.color.MaterialColors;
 import com.google.android.material.elevation.SurfaceColors;
-import com.google.android.material.navigation.NavigationBarView;
-import com.google.android.material.navigation.NavigationView;
-import com.google.android.material.snackbar.Snackbar;
-import com.google.android.play.core.appupdate.AppUpdateInfo;
-import com.google.android.play.core.appupdate.AppUpdateManager;
-import com.google.android.play.core.appupdate.AppUpdateManagerFactory;
-import com.google.android.play.core.install.InstallState;
-import com.google.android.play.core.install.model.AppUpdateType;
-import com.google.android.play.core.install.model.InstallStatus;
 import com.google.android.ump.ConsentForm;
 import com.google.android.ump.ConsentInformation;
 import com.google.android.ump.FormError;
@@ -62,9 +45,9 @@ public class MainActivity extends AppCompatActivity implements AppUpdateHelper.U
     private ActivityMainBinding binding;
 
     private AppUpdateHelper appUpdateHelper;
-    private Handler handler = new Handler();
-
     private AdMobInitializer adMobInitializer;
+
+    private static final int REQUEST_NOTIFICATION_PERMISSION = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -118,10 +101,8 @@ public class MainActivity extends AppCompatActivity implements AppUpdateHelper.U
             @Override
             public void onConsentInfoUpdated(ConsentInformation consentInformation, boolean loadConsentForm) {
                 if (loadConsentForm) {
-                    // Загрузите и покажите форму согласия
                     UMPConsentHelper.loadConsentForm(MainActivity.this, this);
                 } else {
-                    // Обработка согласия пользователя (если нужно)
                     Log.d("MainActivity", "Consent status: " + consentInformation.getConsentStatus());
                 }
             }
@@ -147,10 +128,30 @@ public class MainActivity extends AppCompatActivity implements AppUpdateHelper.U
             }
         });
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.POST_NOTIFICATIONS}, REQUEST_NOTIFICATION_PERMISSION);
+            } else {
+                // Разрешение уже предоставлено, можно отправлять уведомления
+            }
+        }
+
         navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
         NavigationUI.setupWithNavController(binding.bottomAppBar, navController);
         NavigationUI.setupWithNavController(binding.toolbar, navController, appBarConfiguration);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == REQUEST_NOTIFICATION_PERMISSION) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                // Разрешение предоставлено, можно отправлять уведомления
+            } else {
+                // Разрешение не предоставлено
+            }
+        }
     }
 
     @Override
@@ -237,15 +238,5 @@ public class MainActivity extends AppCompatActivity implements AppUpdateHelper.U
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         appUpdateHelper.onActivityResult(requestCode, resultCode);
-    }
-
-    private void setSubtitleAndDisappear(String subtitle, int visibility) {
-        binding.progressIndicator.setVisibility(visibility);
-        binding.toolbar.setSubtitle(subtitle);
-
-        handler.postDelayed(() -> {
-            binding.progressIndicator.setVisibility(View.GONE);
-            binding.toolbar.setSubtitle(null);
-        }, 2000); // 2000 миллисекунд = 2 секунды
     }
 }
