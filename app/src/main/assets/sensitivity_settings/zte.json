@@ -1,10 +1,25 @@
 {
     "manufacturer": "ZTE",
     "models": [
-    {
-        "__id__": "47fnGZRsIGNkElOkx9Cz",
-        "manufacturer": "ZTE",
-        "name": "Blade A31",
+        {
+            "manufacturer": "ZTE",
+            "name": "Blade A34",
+            "settings_source_url": "",
+            "dpi": 0,
+            "fire_button": 47,
+            "sensitivities": {
+                "review": 197,
+                "x2_scope": 191,
+                "x4_scope": 195,
+                "sniper_scope": 190,
+                "free_review": 157,
+                "collimator": 146
+            }
+        },
+        {
+            "__id__": "47fnGZRsIGNkElOkx9Cz",
+            "manufacturer": "ZTE",
+            "name": "Blade A31",
         "settings_source_url": "https://youtu.be/0_b1M991raY",
         "dpi": 0,
         "fire_button": 52,

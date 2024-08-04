@@ -258,9 +258,84 @@
     },
     {
       "manufacturer": "Samsung",
+      "name": "A35 5G",
+      "settings_source_url": "",
+      "dpi": 452,
+      "fire_button": 54,
+      "sensitivities": {
+        "review": 170,
+        "collimator": 105,
+        "x2_scope": 120,
+        "x4_scope": 145,
+        "sniper_scope": 100,
+        "free_review": 55
+      }
+    },
+    {
+      "manufacturer": "Samsung",
+      "name": "A15",
+      "settings_source_url": "",
+      "dpi": 455,
+      "fire_button": 45,
+      "sensitivities": {
+        "review": 165,
+        "collimator": 175,
+        "x2_scope": 200,
+        "x4_scope": 200,
+        "sniper_scope": 200,
+        "free_review": 135
+      }
+    },
+    {
+      "manufacturer": "Samsung",
+      "name": "A54",
+      "settings_source_url": "",
+      "dpi": 0,
+      "fire_button": 58,
+      "sensitivities": {
+        "review": 200,
+        "collimator": 200,
+        "x2_scope": 200,
+        "x4_scope": 200,
+        "sniper_scope": 155,
+        "free_review": 125
+      }
+    },
+    {
+      "manufacturer": "Samsung",
+      "name": "A14",
+      "settings_source_url": "",
+      "dpi": 0,
+      "fire_button": 40,
+      "sensitivities": {
+        "review": 186,
+        "collimator": 180,
+        "x2_scope": 155,
+        "x4_scope": 160,
+        "sniper_scope": 122,
+        "free_review": 76
+      }
+    },
+    {
+      "manufacturer": "Samsung",
+      "name": "A04 / A04s",
+      "settings_source_url": "",
+      "dpi": 0,
+      "fire_button": 51,
+      "sensitivities": {
+        "review": 180,
+        "collimator": 185,
+        "x2_scope": 200,
+        "x4_scope": 200,
+        "sniper_scope": 200,
+        "free_review": 130
+      }
+    },
+    {
+      "manufacturer": "Samsung",
       "name": "A53 5G",
       "settings_source_url": "",
-      "dpi": 606,
+      "dpi": 506,
       "fire_button": 33,
       "sensitivities": {
         "review": 197,
@@ -275,7 +350,7 @@
       "manufacturer": "Samsung",
       "name": "A33 5G",
       "settings_source_url": "",
-      "dpi": 752,
+      "dpi": 552,
       "fire_button": 64,
       "sensitivities": {
         "review": 200,
@@ -335,7 +410,7 @@
       "manufacturer": "Samsung",
       "name": "A03",
       "settings_source_url": "",
-      "dpi": 778,
+      "dpi": 578,
       "fire_button": 65,
       "sensitivities": {
         "review": 195,
@@ -410,7 +485,7 @@
       "manufacturer": "Samsung",
       "name": "A32",
       "settings_source_url": "",
-      "dpi": 726,
+      "dpi": 526,
       "fire_button": 59,
       "sensitivities": {
         "review": 179,
@@ -792,6 +867,21 @@
         "collimator": 137,
         "x2_scope": 172,
         "x4_scope": 188,
+        "sniper_scope": 200,
+        "free_review": 200
+      }
+    },
+    {
+      "manufacturer": "Samsung",
+      "name": "M34",
+      "settings_source_url": "",
+      "dpi": 563,
+      "fire_button": 43,
+      "sensitivities": {
+        "review": 180,
+        "collimator": 188,
+        "x2_scope": 140,
+        "x4_scope": 182,
         "sniper_scope": 200,
         "free_review": 200
       }
