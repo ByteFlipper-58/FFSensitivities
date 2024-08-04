@@ -22,10 +22,6 @@ import com.google.android.gms.ads.FullScreenContentCallback;
 import com.google.android.gms.ads.LoadAdError;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.appopen.AppOpenAd;
-import com.google.android.material.color.DynamicColors;
-import com.google.android.material.color.DynamicColorsOptions;
-import com.google.android.material.color.HarmonizedColors;
-import com.google.android.material.color.HarmonizedColorsOptions;
 
 import java.util.Date;
 
@@ -34,6 +30,7 @@ public class MyApp extends Application implements Application.ActivityLifecycleC
     public static MyApp instance = null;
     private AppOpenAdManager appOpenAdManager;
     private Activity currentActivity;
+    private boolean isAdShowing = false;  // Новый флаг для отслеживания состояния рекламы
 
     @Override
     public void onCreate() {
@@ -58,10 +55,9 @@ public class MyApp extends Application implements Application.ActivityLifecycleC
     public void onStart(@NonNull LifecycleOwner owner) {
         DefaultLifecycleObserver.super.onStart(owner);
 
-        // Загружаем рекламу и показываем, если она доступна, только если currentActivity не null
         if (currentActivity != null) {
             appOpenAdManager.loadAndShowAdIfAvailable(currentActivity, () -> {
-                // Действия после завершения показа рекламы
+                isAdShowing = false;  // Сбрасываем флаг после показа рекламы
             });
         } else {
             Log.d(TAG, "currentActivity is null in onStart");
@@ -74,7 +70,6 @@ public class MyApp extends Application implements Application.ActivityLifecycleC
 
     @Override
     public void onActivityStarted(@NonNull Activity activity) {
-        // Обновляем currentActivity только тогда, когда реклама не отображается
         Log.d(TAG, "onActivityStarted: " + activity);
         if (!appOpenAdManager.isShowingAd) {
             currentActivity = activity;
@@ -83,10 +78,9 @@ public class MyApp extends Application implements Application.ActivityLifecycleC
 
     @Override
     public void onActivityResumed(@NonNull Activity activity) {
-        // Показываем рекламу, если она доступна, при возвращении в приложение
         Log.d(TAG, "onActivityResumed: " + activity);
         appOpenAdManager.showAdIfAvailable(activity, () -> {
-            // Действия после завершения показа рекламы
+            isAdShowing = false;  // Сбрасываем флаг после показа рекламы
         });
     }
 
@@ -117,6 +111,14 @@ public class MyApp extends Application implements Application.ActivityLifecycleC
 
     public interface OnShowAdCompleteListener {
         void onShowAdComplete();
+    }
+
+    public boolean isAdShowing() {
+        return isAdShowing;
+    }
+
+    public void setAdShowing(boolean adShowing) {
+        isAdShowing = adShowing;
     }
 
     private class AppOpenAdManager {
@@ -157,6 +159,8 @@ public class MyApp extends Application implements Application.ActivityLifecycleC
                         public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
                             isLoadingAd = false;
                             Log.d(LOG_TAG, "onAdFailedToLoad: " + loadAdError.getMessage());
+
+                            new Handler(Looper.getMainLooper()).postDelayed(() -> loadAd(context), 30000);
                         }
                     });
         }
@@ -172,15 +176,15 @@ public class MyApp extends Application implements Application.ActivityLifecycleC
         }
 
         public void loadAndShowAdIfAvailable(@NonNull final Activity activity, @NonNull OnShowAdCompleteListener onShowAdCompleteListener) {
-            if (isAdAvailable()) {
+            if (isAdAvailable() && !isAdShowing) {  // Проверка флага перед показом рекламы
+                isAdShowing = true;  // Устанавливаем флаг перед показом рекламы
                 showAdIfAvailable(activity, onShowAdCompleteListener);
             } else {
                 loadAd(activity);
             }
         }
 
-        private void showAdIfAvailable(@NonNull final Activity activity,
-                                       @NonNull OnShowAdCompleteListener onShowAdCompleteListener) {
+        private void showAdIfAvailable(@NonNull final Activity activity, @NonNull OnShowAdCompleteListener onShowAdCompleteListener) {
             if (isShowingAd) {
                 Log.d(LOG_TAG, "The app open ad is already showing.");
                 return;
@@ -196,40 +200,40 @@ public class MyApp extends Application implements Application.ActivityLifecycleC
 
             Log.d(LOG_TAG, "Will show ad.");
 
-            // Откладываем показ рекламы на 1 секунду
             new Handler(Looper.getMainLooper()).postDelayed(() -> {
-                if (activity.hasWindowFocus()) { // Проверяем, активно ли окно Activity
-                    appOpenAd.setFullScreenContentCallback(
-                            new FullScreenContentCallback() {
-                                @Override
-                                public void onAdDismissedFullScreenContent() {
-                                    appOpenAd = null;
-                                    isShowingAd = false;
+                if (activity.hasWindowFocus()) {
+                    appOpenAd.setFullScreenContentCallback(new FullScreenContentCallback() {
+                        @Override
+                        public void onAdDismissedFullScreenContent() {
+                            appOpenAd = null;
+                            isShowingAd = false;
+                            isAdShowing = false;  // Сбрасываем флаг после показа рекламы
 
-                                    Log.d(LOG_TAG, "onAdDismissedFullScreenContent.");
-                                    if (onShowAdCompleteListener != null) {
-                                        onShowAdCompleteListener.onShowAdComplete();
-                                    }
-                                    loadAd(activity); // Загружаем новую рекламу после показа
-                                }
+                            Log.d(LOG_TAG, "onAdDismissedFullScreenContent.");
+                            if (onShowAdCompleteListener != null) {
+                                onShowAdCompleteListener.onShowAdComplete();
+                            }
+                            loadAd(activity);
+                        }
 
-                                @Override
-                                public void onAdFailedToShowFullScreenContent(AdError adError) {
-                                    appOpenAd = null;
-                                    isShowingAd = false;
+                        @Override
+                        public void onAdFailedToShowFullScreenContent(AdError adError) {
+                            appOpenAd = null;
+                            isShowingAd = false;
+                            isAdShowing = false;  // Сбрасываем флаг после показа рекламы
 
-                                    Log.d(LOG_TAG, "onAdFailedToShowFullScreenContent: " + adError.getMessage());
-                                    if (onShowAdCompleteListener != null) {
-                                        onShowAdCompleteListener.onShowAdComplete();
-                                    }
-                                    loadAd(activity); // Загружаем новую рекламу после ошибки
-                                }
+                            Log.d(LOG_TAG, "onAdFailedToShowFullScreenContent: " + adError.getMessage());
+                            if (onShowAdCompleteListener != null) {
+                                onShowAdCompleteListener.onShowAdComplete();
+                            }
+                            loadAd(activity);
+                        }
 
-                                @Override
-                                public void onAdShowedFullScreenContent() {
-                                    Log.d(LOG_TAG, "onAdShowedFullScreenContent.");
-                                }
-                            });
+                        @Override
+                        public void onAdShowedFullScreenContent() {
+                            Log.d(LOG_TAG, "onAdShowedFullScreenContent.");
+                        }
+                    });
 
                     isShowingAd = true;
                     appOpenAd.show(activity);

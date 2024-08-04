@@ -13,13 +13,12 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.List;
-
-import com.byteflipper.ffsensitivities.model.SensitivityDataModel;
 import com.byteflipper.ffsensitivities.R;
+import com.byteflipper.ffsensitivities.model.SensitivityDataModel;
+import com.byteflipper.ffsensitivities.ui.fragment.DevicesFragment;
 import com.byteflipper.ffsensitivities.utils.NavigationOptionsUtil;
-import com.byteflipper.ffsensitivities.utils.OtherUtils;
-import com.byteflipper.ffsensitivities.utils.SharedPreferencesUtils;
+
+import java.util.List;
 
 public class DevicesListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private final Fragment fragment;
@@ -50,15 +49,20 @@ public class DevicesListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int position) {
-        SensitivityDataModel model = models.get(position);
-        if (model == null)
-            return;
-
         if (viewHolder instanceof DeviceNameViewHolder) {
             DeviceNameViewHolder holder = (DeviceNameViewHolder) viewHolder;
-            StringBuilder deviceName = new StringBuilder(model.getManufacturerName() + " " + model.getDeviceName());
-            holder.deviceName.setText(deviceName);
-            holder.itemView.setOnClickListener(v -> navigateToDeviceSettings(position));
+            SensitivityDataModel model = models.get(position);
+            if (model != null) {
+                holder.deviceName.setText(model.getManufacturerName() + " " + model.getDeviceName());
+                holder.itemView.setOnClickListener(v -> showInterstitialAndNavigate(position));
+            }
+        }
+    }
+
+    private void showInterstitialAndNavigate(int position) {
+        if (fragment instanceof DevicesFragment) {
+            DevicesFragment devicesFragment = (DevicesFragment) fragment;
+            devicesFragment.showInterstitialAd(() -> navigateToDeviceSettings(position));
         }
     }
 

@@ -13,9 +13,9 @@ public class SendSensitivitiesRequestMessageToBot extends AsyncTask<String, Void
 
     private static final String TAG = "SendMessageToGroupTask";
 
-    private static final String BOT_TOKEN = "";
+    private static final String BOT_TOKEN = "7043829891:AAHr-dUynjVTrkRVrqRixAm4XGUaV-k9t0s";
 
-    private static final String GROUP_CHAT_ID = "";
+    private static final String GROUP_CHAT_ID = "-4120443586";
 
     @Override
     protected String doInBackground(String... params) {
