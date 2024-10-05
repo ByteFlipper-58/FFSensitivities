@@ -1,37 +1,21 @@
 package com.byteflipper.ffsensitivities.ui.fragment;
 
-import android.content.DialogInterface;
-import android.content.res.Configuration;
-import android.os.Build;
 import android.os.Bundle;
-import android.os.LocaleList;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatDelegate;
-import androidx.core.os.LocaleListCompat;
 import androidx.fragment.app.Fragment;
 
-import com.byteflipper.ffsensitivities.MyApp;
 import com.byteflipper.ffsensitivities.R;
 import com.byteflipper.ffsensitivities.callback.CallbackManager;
 import com.byteflipper.ffsensitivities.manager.LanguageManager;
 import com.google.android.material.color.DynamicColors;
 import com.byteflipper.ffsensitivities.databinding.FragmentSettingsBinding;
 import com.byteflipper.ffsensitivities.utils.SharedPreferencesUtils;
-import com.google.android.material.dialog.MaterialAlertDialogBuilder;
-
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Locale;
 
 public class SettingsFragment extends Fragment {
     private FragmentSettingsBinding binding;

@@ -3,7 +3,7 @@
 
     <style name="FFSensitivitiesTheme" parent="BaseFFSensitivitiesTheme"></style>
 
-    <style name="BaseFFSensitivitiesTheme" parent="Theme.Material3.Dark">
+    <style name="BaseFFSensitivitiesTheme" parent="Theme.Material3.DynamicColors.Dark.NoActionBar">
         <item name="colorPrimary">@color/md_dark_theme_primary</item>
         <item name="colorOnPrimary">@color/md_dark_theme_onPrimary</item>
         <item name="colorPrimaryContainer">@color/md_dark_theme_primaryContainer</item>

@@ -1,6 +1,7 @@
 package com.byteflipper.ffsensitivities.ui.fragment;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,10 +11,9 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.GridLayoutManager;
 
-import com.byteflipper.ffsensitivities.MyApp;
+import com.byteflipper.ffsensitivities.MyApplication;
 import com.byteflipper.ffsensitivities.interfaces.IScrollHelper;
 import com.google.android.material.progressindicator.LinearProgressIndicator;
 
@@ -41,7 +41,6 @@ public class DevicesFragment extends Fragment implements IScrollHelper {
         binding = FragmentDevicesBinding.inflate(inflater, container, false);
         setupActionBar();
         setupViews();
-        loadInterstitialAd();
         return binding.getRoot();
     }
 
@@ -57,56 +56,41 @@ public class DevicesFragment extends Fragment implements IScrollHelper {
         manager = new SensitivitiesManager();
     }
 
-    private void loadInterstitialAd() {
-        AdRequest adRequest = new AdRequest.Builder().build();
-        InterstitialAd.load(getContext(), "ca-app-pub-4346225518624754/3444991490", adRequest,
-                new InterstitialAdLoadCallback() {
-                    @Override
-                    public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
-                        mInterstitialAd = interstitialAd;
-                    }
-
-                    @Override
-                    public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
-                        mInterstitialAd = null;
-                    }
-                });
-    }
-
     public void showInterstitialAd(Runnable onAdDismissed) {
-        MyApp app = (MyApp) requireActivity().getApplication();
-        if (app.isAdShowing()) {
-            onAdDismissed.run();
-            return;
-        }
-        app.setAdShowing(true);  // Устанавливаем флаг перед показом рекламы
+        if (MyApplication.isAdReady()) {
+            InterstitialAd interstitialAd = MyApplication.getInterstitialAd();
+            Log.d("DevicesFragment", "Interstitial ad is ready, showing...");
 
-        if (mInterstitialAd != null) {
-            mInterstitialAd.setFullScreenContentCallback(new FullScreenContentCallback() {
+            interstitialAd.setFullScreenContentCallback(new FullScreenContentCallback() {
                 @Override
                 public void onAdDismissedFullScreenContent() {
-                    mInterstitialAd = null;
-                    loadInterstitialAd();
-                    app.setAdShowing(false);  // Сбрасываем флаг после показа рекламы
+                    Log.d("DevicesFragment", "Interstitial ad dismissed.");
+                    // Обязательно перезагружаем рекламу после показа
+                    MyApplication.reloadAd(getContext());
+                    // Выполняем переданный код после закрытия рекламы
                     onAdDismissed.run();
                 }
 
                 @Override
                 public void onAdFailedToShowFullScreenContent(AdError adError) {
-                    mInterstitialAd = null;
-                    loadInterstitialAd();
-                    app.setAdShowing(false);  // Сбрасываем флаг после показа рекламы
+                    Log.d("DevicesFragment", "Failed to show interstitial ad: " + adError.getMessage());
+                    // В случае ошибки показываем, что реклама не была показана
                     onAdDismissed.run();
                 }
 
                 @Override
                 public void onAdShowedFullScreenContent() {
-                    mInterstitialAd = null;
+                    Log.d("DevicesFragment", "Interstitial ad shown.");
+                    // Очищаем рекламу после показа, чтобы нельзя было её снова показать
+                    MyApplication.mInterstitialAd = null;
                 }
             });
-            mInterstitialAd.show(requireActivity());
+
+            // Показываем рекламу
+            interstitialAd.show(getActivity());
         } else {
-            app.setAdShowing(false);  // Сбрасываем флаг, если реклама не готова
+            Log.d("DevicesFragment", "Interstitial ad is not ready yet.");
+            // Если реклама не готова, просто выполняем переданный код
             onAdDismissed.run();
         }
     }

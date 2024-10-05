@@ -1,10 +1,12 @@
 package com.byteflipper.ffsensitivities.ui;
 
+import android.annotation.SuppressLint;
+import android.app.Application;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
+import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -24,20 +26,23 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import com.byteflipper.ffsensitivities.MyApplication;
 import com.byteflipper.ffsensitivities.R;
-import com.byteflipper.ffsensitivities.ads.AdMobInitializer;
-import com.byteflipper.ffsensitivities.ads.UMPConsentHelper;
+import com.byteflipper.ffsensitivities.ads.GoogleMobileAdsConsentManager;
 import com.byteflipper.ffsensitivities.databinding.ActivityMainBinding;
 import com.byteflipper.ffsensitivities.manager.LanguageManager;
 import com.byteflipper.ffsensitivities.manager.ManufacturersManager;
 import com.byteflipper.ffsensitivities.utils.AppUpdateHelper;
 import com.byteflipper.ffsensitivities.utils.SharedPreferencesUtils;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.RequestConfiguration;
 import com.google.android.material.color.DynamicColors;
 import com.google.android.material.color.MaterialColors;
 import com.google.android.material.elevation.SurfaceColors;
-import com.google.android.ump.ConsentForm;
-import com.google.android.ump.ConsentInformation;
-import com.google.android.ump.FormError;
+
+import java.util.Arrays;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class MainActivity extends AppCompatActivity implements AppUpdateHelper.UpdateListener {
     private AppBarConfiguration appBarConfiguration;
@@ -45,12 +50,26 @@ public class MainActivity extends AppCompatActivity implements AppUpdateHelper.U
     private ActivityMainBinding binding;
 
     private AppUpdateHelper appUpdateHelper;
-    private AdMobInitializer adMobInitializer;
+
+    private static final String LOG_TAG = "MainActivity";
+
+    private final AtomicBoolean isMobileAdsInitializeCalled = new AtomicBoolean(false);
+    private final AtomicBoolean gatherConsentFinished = new AtomicBoolean(false);
+    private GoogleMobileAdsConsentManager googleMobileAdsConsentManager;
+
+    /**
+     * Number of milliseconds to count down before showing the app open ad. This simulates the time
+     * needed to load the app.
+     */
+    private static final long COUNTER_TIME_MILLISECONDS = 5000;
+
+    private long secondsRemaining;
 
     private static final int REQUEST_NOTIFICATION_PERMISSION = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //EdgeToEdge.enable(this);
         super.onCreate(savedInstanceState);
         SplashScreen splashScreen = SplashScreen.installSplashScreen(this);
         supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -94,39 +113,38 @@ public class MainActivity extends AppCompatActivity implements AppUpdateHelper.U
         appUpdateHelper = new AppUpdateHelper(this, this);
         appUpdateHelper.checkForAppUpdate();
 
-        adMobInitializer = new AdMobInitializer();
-        adMobInitializer.initialize(this);
+        googleMobileAdsConsentManager =
+                GoogleMobileAdsConsentManager.getInstance(getApplicationContext());
 
-        UMPConsentHelper.requestConsentInfoUpdate(this, new UMPConsentHelper.ConsentStatusCallback() {
-            @Override
-            public void onConsentInfoUpdated(ConsentInformation consentInformation, boolean loadConsentForm) {
-                if (loadConsentForm) {
-                    UMPConsentHelper.loadConsentForm(MainActivity.this, this);
-                } else {
-                    Log.d("MainActivity", "Consent status: " + consentInformation.getConsentStatus());
-                }
-            }
+        createTimer();
 
-            @Override
-            public void onConsentFormLoadFailure(FormError formError) {
-                // Обработка ошибки загрузки формы согласия
-                Log.e("MainActivity", "UMP form load failed: " + formError.getMessage());
-            }
+        googleMobileAdsConsentManager =
+                GoogleMobileAdsConsentManager.getInstance(getApplicationContext());
+        googleMobileAdsConsentManager.gatherConsent(
+                this,
+                consentError -> {
+                    if (consentError != null) {
+                        // Consent not obtained in current session.
+                        Log.w(
+                                LOG_TAG,
+                                String.format("%s: %s", consentError.getErrorCode(), consentError.getMessage()));
+                    }
 
-            @Override
-            public void onConsentFormLoadSuccess(ConsentForm consentForm) {
-                // Отображение формы согласия
-                consentForm.show(MainActivity.this, new ConsentForm.OnConsentFormDismissedListener() {
-                    @Override
-                    public void onConsentFormDismissed(@Nullable FormError formError) {
-                        // Обработка закрытия формы согласия (если нужно)
-                        if (formError != null) {
-                            Log.e("MainActivity", "UMP form dismissed with error: " + formError.getMessage());
-                        }
+                    gatherConsentFinished.set(true);
+
+                    if (googleMobileAdsConsentManager.canRequestAds()) {
+                        initializeMobileAdsSdk();
+                    }
+
+                    if (secondsRemaining <= 0) {
+                        //startMainActivity();
                     }
                 });
-            }
-        });
+
+        // This sample attempts to load ads using consent obtained in the previous session.
+        if (googleMobileAdsConsentManager.canRequestAds()) {
+            initializeMobileAdsSdk();
+        }
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
@@ -239,4 +257,55 @@ public class MainActivity extends AppCompatActivity implements AppUpdateHelper.U
         super.onActivityResult(requestCode, resultCode, data);
         appUpdateHelper.onActivityResult(requestCode, resultCode);
     }
+
+    /** Create the countdown timer, which counts down to zero and show the app open ad. */
+    private void createTimer() {
+
+        CountDownTimer countDownTimer =
+                new CountDownTimer(COUNTER_TIME_MILLISECONDS, 1000) {
+                    @SuppressLint("SetTextI18n")
+                    @Override
+                    public void onTick(long millisUntilFinished) {
+                        secondsRemaining = TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) + 1;
+                    }
+
+                    @SuppressLint("SetTextI18n")
+                    @Override
+                    public void onFinish() {
+                        secondsRemaining = 0;
+
+                        Application application = getApplication();
+                        ((MyApplication) application)
+                                .showAdIfAvailable(
+                                        MainActivity.this,
+                                        (MyApplication.OnShowAdCompleteListener) () -> {
+                                            // Check if the consent form is currently on screen before moving to the
+                                            // main activity.
+                                            if (gatherConsentFinished.get()) {
+                                                //startMainActivity();
+                                            }
+                                        });
+                    }
+                };
+        countDownTimer.start();
+    }
+
+    private void initializeMobileAdsSdk() {if (isMobileAdsInitializeCalled.getAndSet(true)) {return;}
+
+        MobileAds.setRequestConfiguration(
+                new RequestConfiguration.Builder()
+                        .setTestDeviceIds(Arrays.asList(MyApplication.TEST_DEVICE_HASHED_ID))
+                        .build());
+
+        new Thread(
+                () -> {
+                    MobileAds.initialize(this, initializationStatus -> {});
+
+                    runOnUiThread(() -> {
+                                Application application = getApplication();
+                                ((MyApplication) application).loadAd(this);
+                            });
+                }).start();
+    }
+
 }
