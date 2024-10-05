@@ -1,5 +1,6 @@
 package com.byteflipper.ffsensitivities.ui.fragment;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,25 +16,30 @@ import androidx.recyclerview.widget.GridLayoutManager;
 
 import com.byteflipper.ffsensitivities.MyApplication;
 import com.byteflipper.ffsensitivities.interfaces.IScrollHelper;
-import com.google.android.material.progressindicator.LinearProgressIndicator;
+import com.byteflipper.ffsensitivities.interfaces.ProgressIndicatorListener;
 
-import com.byteflipper.ffsensitivities.R;
 import com.byteflipper.ffsensitivities.adapter.DevicesListAdapter;
 import com.byteflipper.ffsensitivities.databinding.FragmentDevicesBinding;
 import com.byteflipper.ffsensitivities.manager.SensitivitiesManager;
 import com.google.android.gms.ads.AdError;
-import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.FullScreenContentCallback;
-import com.google.android.gms.ads.LoadAdError;
 import com.google.android.gms.ads.interstitial.InterstitialAd;
-import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
 
 public class DevicesFragment extends Fragment implements IScrollHelper {
 
     private FragmentDevicesBinding binding;
     private SensitivitiesManager manager;
-    private LinearProgressIndicator indicator;
-    private InterstitialAd mInterstitialAd;
+    private ProgressIndicatorListener progressIndicatorListener;
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        if (context instanceof ProgressIndicatorListener) {
+            progressIndicatorListener = (ProgressIndicatorListener) context;
+        } else {
+            throw new RuntimeException(context + " must implement ProgressIndicatorListener");
+        }
+    }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -52,7 +58,6 @@ public class DevicesFragment extends Fragment implements IScrollHelper {
     }
 
     private void setupViews() {
-        indicator = requireActivity().findViewById(R.id.progressIndicator);
         manager = new SensitivitiesManager();
     }
 
@@ -67,27 +72,24 @@ public class DevicesFragment extends Fragment implements IScrollHelper {
                     Log.d("DevicesFragment", "Interstitial ad dismissed.");
                     // Обязательно перезагружаем рекламу после показа
                     MyApplication.reloadAd(getContext());
-                    // Выполняем переданный код после закрытия рекламы
                     onAdDismissed.run();
                 }
 
                 @Override
-                public void onAdFailedToShowFullScreenContent(AdError adError) {
+                public void onAdFailedToShowFullScreenContent(@NonNull AdError adError) {
                     Log.d("DevicesFragment", "Failed to show interstitial ad: " + adError.getMessage());
-                    // В случае ошибки показываем, что реклама не была показана
                     onAdDismissed.run();
                 }
 
                 @Override
                 public void onAdShowedFullScreenContent() {
                     Log.d("DevicesFragment", "Interstitial ad shown.");
-                    // Очищаем рекламу после показа, чтобы нельзя было её снова показать
                     MyApplication.mInterstitialAd = null;
                 }
             });
 
             // Показываем рекламу
-            interstitialAd.show(getActivity());
+            interstitialAd.show(requireActivity());
         } else {
             Log.d("DevicesFragment", "Interstitial ad is not ready yet.");
             // Если реклама не готова, просто выполняем переданный код
@@ -120,14 +122,14 @@ public class DevicesFragment extends Fragment implements IScrollHelper {
     }
 
     private void showLoadingState() {
-        indicator.setVisibility(View.VISIBLE);
+        progressIndicatorListener.showProgress();
         binding.shimmerLayout.startShimmer();
         binding.shimmerLayout.setVisibility(View.VISIBLE);
         binding.recview.setVisibility(View.GONE);
     }
 
     private void hideLoadingState() {
-        indicator.setVisibility(View.GONE);
+        progressIndicatorListener.hideProgress();
         binding.shimmerLayout.stopShimmer();
         binding.shimmerLayout.setVisibility(View.GONE);
         binding.recview.setVisibility(View.VISIBLE);

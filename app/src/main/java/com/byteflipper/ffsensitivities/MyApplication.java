@@ -6,7 +6,7 @@ import android.app.Application.ActivityLifecycleCallbacks;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.DefaultLifecycleObserver;
@@ -166,13 +166,13 @@ public class MyApplication extends Application
                          * @param ad the loaded app open ad.
                          */
                         @Override
-                        public void onAdLoaded(AppOpenAd ad) {
+                        public void onAdLoaded(@NonNull AppOpenAd ad) {
                             appOpenAd = ad;
                             isLoadingAd = false;
                             loadTime = (new Date()).getTime();
 
                             Log.d(LOG_TAG, "onAdLoaded.");
-                            Toast.makeText(context, "onAdLoaded", Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(context, "onAdLoaded", Toast.LENGTH_SHORT).show();
                         }
 
                         /**
@@ -181,10 +181,10 @@ public class MyApplication extends Application
                          * @param loadAdError the error.
                          */
                         @Override
-                        public void onAdFailedToLoad(LoadAdError loadAdError) {
+                        public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
                             isLoadingAd = false;
                             Log.d(LOG_TAG, "onAdFailedToLoad: " + loadAdError.getMessage());
-                            Toast.makeText(context, "onAdFailedToLoad", Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(context, "onAdFailedToLoad", Toast.LENGTH_SHORT).show();
                         }
                     });
         }
@@ -212,11 +212,8 @@ public class MyApplication extends Application
         private void showAdIfAvailable(@NonNull final Activity activity) {
             showAdIfAvailable(
                     activity,
-                    new OnShowAdCompleteListener() {
-                        @Override
-                        public void onShowAdComplete() {
-                            // Empty because the user will go back to the activity that shows the ad.
-                        }
+                    () -> {
+                        // Empty because the user will go back to the activity that shows the ad.
                     });
         }
 
@@ -257,7 +254,7 @@ public class MyApplication extends Application
                             isShowingAd = false;
 
                             Log.d(LOG_TAG, "onAdDismissedFullScreenContent.");
-                            Toast.makeText(activity, "onAdDismissedFullScreenContent", Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(activity, "onAdDismissedFullScreenContent", Toast.LENGTH_SHORT).show();
 
                             onShowAdCompleteListener.onShowAdComplete();
                             if (googleMobileAdsConsentManager.canRequestAds()) {
@@ -267,13 +264,13 @@ public class MyApplication extends Application
 
                         /** Called when fullscreen content failed to show. */
                         @Override
-                        public void onAdFailedToShowFullScreenContent(AdError adError) {
+                        public void onAdFailedToShowFullScreenContent(@NonNull AdError adError) {
                             appOpenAd = null;
                             isShowingAd = false;
 
                             Log.d(LOG_TAG, "onAdFailedToShowFullScreenContent: " + adError.getMessage());
-                            Toast.makeText(activity, "onAdFailedToShowFullScreenContent", Toast.LENGTH_SHORT)
-                                    .show();
+                            //Toast.makeText(activity, "onAdFailedToShowFullScreenContent", Toast.LENGTH_SHORT)
+                            //        .show();
 
                             onShowAdCompleteListener.onShowAdComplete();
                             if (googleMobileAdsConsentManager.canRequestAds()) {
@@ -285,7 +282,7 @@ public class MyApplication extends Application
                         @Override
                         public void onAdShowedFullScreenContent() {
                             Log.d(LOG_TAG, "onAdShowedFullScreenContent.");
-                            Toast.makeText(activity, "onAdShowedFullScreenContent", Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(activity, "onAdShowedFullScreenContent", Toast.LENGTH_SHORT).show();
                         }
                     });
 

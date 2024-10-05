@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.view.Window;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -30,6 +31,7 @@ import com.byteflipper.ffsensitivities.MyApplication;
 import com.byteflipper.ffsensitivities.R;
 import com.byteflipper.ffsensitivities.ads.GoogleMobileAdsConsentManager;
 import com.byteflipper.ffsensitivities.databinding.ActivityMainBinding;
+import com.byteflipper.ffsensitivities.interfaces.ProgressIndicatorListener;
 import com.byteflipper.ffsensitivities.manager.LanguageManager;
 import com.byteflipper.ffsensitivities.manager.ManufacturersManager;
 import com.byteflipper.ffsensitivities.utils.AppUpdateHelper;
@@ -39,14 +41,16 @@ import com.google.android.gms.ads.RequestConfiguration;
 import com.google.android.material.color.DynamicColors;
 import com.google.android.material.color.MaterialColors;
 import com.google.android.material.elevation.SurfaceColors;
+import com.google.android.material.progressindicator.LinearProgressIndicator;
 
 import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-public class MainActivity extends AppCompatActivity implements AppUpdateHelper.UpdateListener {
+public class MainActivity extends AppCompatActivity implements AppUpdateHelper.UpdateListener, ProgressIndicatorListener {
+    private LinearProgressIndicator progressIndicator;
+
     private AppBarConfiguration appBarConfiguration;
-    private NavController navController;
     private ActivityMainBinding binding;
 
     private AppUpdateHelper appUpdateHelper;
@@ -110,6 +114,8 @@ public class MainActivity extends AppCompatActivity implements AppUpdateHelper.U
             }
         });
 
+        progressIndicator = binding.progressIndicator;
+
         appUpdateHelper = new AppUpdateHelper(this, this);
         appUpdateHelper.checkForAppUpdate();
 
@@ -150,11 +156,11 @@ public class MainActivity extends AppCompatActivity implements AppUpdateHelper.U
             if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
                 ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.POST_NOTIFICATIONS}, REQUEST_NOTIFICATION_PERMISSION);
             } else {
-                // Разрешение уже предоставлено, можно отправлять уведомления
+                Log.d("MainActivity", "Разрешение на отправку уведомлений предоставлено");
             }
         }
 
-        navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
         NavigationUI.setupWithNavController(binding.bottomAppBar, navController);
         NavigationUI.setupWithNavController(binding.toolbar, navController, appBarConfiguration);
@@ -165,9 +171,9 @@ public class MainActivity extends AppCompatActivity implements AppUpdateHelper.U
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == REQUEST_NOTIFICATION_PERMISSION) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                // Разрешение предоставлено, можно отправлять уведомления
+                Log.d("MainActivity", "Разрешение на отправку уведомлений предоставлено");
             } else {
-                // Разрешение не предоставлено
+                Log.d("MainActivity", "Разрешение на отправку уведомлений не предоставлено");
             }
         }
     }
@@ -297,15 +303,28 @@ public class MainActivity extends AppCompatActivity implements AppUpdateHelper.U
                         .setTestDeviceIds(Arrays.asList(MyApplication.TEST_DEVICE_HASHED_ID))
                         .build());
 
-        new Thread(
-                () -> {
+        new Thread(() -> {
                     MobileAds.initialize(this, initializationStatus -> {});
 
                     runOnUiThread(() -> {
                                 Application application = getApplication();
                                 ((MyApplication) application).loadAd(this);
-                            });
+                    });
                 }).start();
+    }
+
+    @Override
+    public void showProgress() {
+        if (progressIndicator != null) {
+            progressIndicator.setVisibility(View.VISIBLE);
+        }
+    }
+
+    @Override
+    public void hideProgress() {
+        if (progressIndicator != null) {
+            progressIndicator.setVisibility(View.GONE);
+        }
     }
 
 }

@@ -23,3 +23,6 @@
 -keep interface com.google.android.gms.ads.** { *; }
 -keep class com.google.ads.** { *; }
 -keep interface com.google.ads.** { *; }
+
+-dontwarn android.media.LoudnessCodecController$OnLoudnessCodecUpdateListener
+-dontwarn android.media.LoudnessCodecController

@@ -12,7 +12,9 @@
         tools:layout="@layout/fragment_manufacturers">
         <action
             android:id="@+id/action_manufacturerFragment2_to_devicesFragment"
-            app:destination="@id/devicesFragment"/>
+            app:destination="@id/devicesFragment"
+            app:popUpTo="@id/manufacturerFragment2"
+            app:popUpToInclusive="true"/>
         <action
             android:id="@+id/action_manufacturerFragment2_to_settingsFragment"
             app:destination="@id/settingsFragment"/>

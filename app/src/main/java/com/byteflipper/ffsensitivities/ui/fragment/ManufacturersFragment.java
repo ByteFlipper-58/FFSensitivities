@@ -1,5 +1,6 @@
 package com.byteflipper.ffsensitivities.ui.fragment;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +11,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 
+import com.byteflipper.ffsensitivities.interfaces.ProgressIndicatorListener;
 import com.byteflipper.ffsensitivities.settingsrequest.SensitivitiesRequestDialog;
 import com.byteflipper.ffsensitivities.databinding.FragmentManufacturersBinding;
 import com.google.android.material.progressindicator.LinearProgressIndicator;
@@ -21,13 +23,22 @@ import com.byteflipper.ffsensitivities.manager.ManufacturersManager;
 public class ManufacturersFragment extends Fragment {
     private FragmentManufacturersBinding binding;
     private ManufacturersManager manager;
-    private LinearProgressIndicator indicator;
+    private ProgressIndicatorListener progressIndicatorListener;
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        if (context instanceof ProgressIndicatorListener) {
+            progressIndicatorListener = (ProgressIndicatorListener) context;
+        } else {
+            throw new RuntimeException(context.toString() + " must implement ProgressIndicatorListener");
+        }
+    }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentManufacturersBinding.inflate(inflater, container, false);
-        indicator = requireActivity().findViewById(R.id.progressIndicator);
         manager = ManufacturersManager.getInstance();
         return binding.getRoot();
     }
@@ -38,12 +49,12 @@ public class ManufacturersFragment extends Fragment {
 
         manager.isRequestFinished().observe(getViewLifecycleOwner(), aBoolean -> {
             if (!aBoolean) {
-                //indicator.setVisibility(View.VISIBLE);
+                progressIndicatorListener.showProgress();
                 binding.shimmerLayout.startShimmer();
                 binding.shimmerLayout.setVisibility(View.VISIBLE);
                 binding.recview.setVisibility(View.GONE);
             } else {
-                //indicator.setVisibility(View.GONE);
+                progressIndicatorListener.hideProgress();
                 binding.shimmerLayout.stopShimmer();
                 binding.shimmerLayout.setVisibility(View.GONE);
                 binding.recview.setVisibility(View.VISIBLE);
