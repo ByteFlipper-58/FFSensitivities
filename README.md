@@ -34,15 +34,13 @@ Feel free to check out the source code in this repository and submit issues or p
 ## Screenshots & Video
 
 <p align="center">
-  <img src="screenshots/screen1.webp" width="235">
-  <img src="screenshots/screen2.webp" width="235">
-  <img src="screenshots/screen3.webp" width="235">
-  <img src="screenshots/screen4.webp" width="235">
+  <img src="screenshots/screen1.webp" width="196">
+  <img src="screenshots/screen2.webp" width="196">
+  <img src="screenshots/screen3.webp" width="196">
+  <img src="screenshots/screen4.webp" width="196">
 </p>
 
-<p align="center">
-  <iframe width="560" height="315" src="https://www.youtube.com/embed/7X_36jwdn0k" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-</p>
+[![Watch the video](https://img.youtube.com/vi/7X_36jwdn0k/maxresdefault.jpg)](https://youtu.be/7X_36jwdn0k)
 
 ## Download
 
