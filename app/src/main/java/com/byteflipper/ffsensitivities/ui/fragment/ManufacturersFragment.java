@@ -9,16 +9,22 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.GridLayoutManager;
 
 import com.byteflipper.ffsensitivities.interfaces.ProgressIndicatorListener;
 import com.byteflipper.ffsensitivities.settingsrequest.SensitivitiesRequestDialog;
 import com.byteflipper.ffsensitivities.databinding.FragmentManufacturersBinding;
+import com.byteflipper.ffsensitivities.utils.NavigationOptionsUtil;
+import com.byteflipper.ffsensitivities.utils.SharedPreferencesUtils;
 import com.google.android.material.progressindicator.LinearProgressIndicator;
 
 import com.byteflipper.ffsensitivities.R;
 import com.byteflipper.ffsensitivities.adapter.ManufacturersListAdapter;
 import com.byteflipper.ffsensitivities.manager.ManufacturersManager;
+
+import java.util.Locale;
 
 public class ManufacturersFragment extends Fragment {
     private FragmentManufacturersBinding binding;
@@ -31,7 +37,7 @@ public class ManufacturersFragment extends Fragment {
         if (context instanceof ProgressIndicatorListener) {
             progressIndicatorListener = (ProgressIndicatorListener) context;
         } else {
-            throw new RuntimeException(context.toString() + " must implement ProgressIndicatorListener");
+            throw new RuntimeException(context + " must implement ProgressIndicatorListener");
         }
     }
 
@@ -61,7 +67,33 @@ public class ManufacturersFragment extends Fragment {
                 binding.recview.setLayoutManager(new GridLayoutManager(requireActivity(), 2));
                 binding.recview.setAdapter(new ManufacturersListAdapter(this, manager.getManufacturersSet()));
             }
+
+            if (SharedPreferencesUtils.getBoolean(requireActivity(), "enableShimmerLayoutInManufacturers")) {
+                progressIndicatorListener.hideProgress();
+                binding.shimmerLayout.setVisibility(View.VISIBLE);
+                binding.recview.setVisibility(View.GONE);
+            }
         });
+
+        if (SharedPreferencesUtils.getBoolean(requireActivity(), "enableShimmerEffectInManufacturers"))
+            binding.shimmerLayout.startShimmer();
+        else
+            binding.shimmerLayout.stopShimmer();
+
+        if (SharedPreferencesUtils.getBoolean(requireActivity(), "enableShimmerLayoutInManufacturers"))
+            binding.shimmerLayout.setOnClickListener(
+                    v -> {
+                        Bundle finalBundle = new Bundle();
+                        finalBundle.putString("model", "samsung");
+                        NavController navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_content_main);
+                        navController.navigate(R.id.action_manufacturerFragment2_to_devicesFragment, finalBundle, NavigationOptionsUtil.getNavOptions());
+                    }
+            );
+
+        if (SharedPreferencesUtils.getBoolean(requireActivity(), "enableShimmerEffectInManufacturers"))
+            binding.shimmerLayout.startShimmer();
+        else
+            binding.shimmerLayout.stopShimmer();
 
         binding.setUserNameBtn.setOnClickListener(v -> {
             SensitivitiesRequestDialog.showSettingsDialog(requireActivity());

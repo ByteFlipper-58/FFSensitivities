@@ -85,7 +85,7 @@ public class WelcomeFragment extends Fragment {
         binding.termsUseMessage.setMovementMethod(LinkMovementMethod.getInstance());
 
         binding.startBtn.setOnClickListener(v -> {
-            SharedPreferencesUtils.writeBoolean(requireActivity(), "isFirstOpen", true);
+            SharedPreferencesUtils.putBoolean(requireActivity(), "isFirstOpen", true);
             Intent intent = new Intent(requireActivity(), MainActivity.class);
             requireActivity().overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             startActivity(intent);

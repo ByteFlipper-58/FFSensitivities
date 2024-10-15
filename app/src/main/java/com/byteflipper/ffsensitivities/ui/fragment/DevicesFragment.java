@@ -12,15 +12,20 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.GridLayoutManager;
 
 import com.byteflipper.ffsensitivities.MyApplication;
+import com.byteflipper.ffsensitivities.R;
 import com.byteflipper.ffsensitivities.interfaces.IScrollHelper;
 import com.byteflipper.ffsensitivities.interfaces.ProgressIndicatorListener;
 
 import com.byteflipper.ffsensitivities.adapter.DevicesListAdapter;
 import com.byteflipper.ffsensitivities.databinding.FragmentDevicesBinding;
 import com.byteflipper.ffsensitivities.manager.SensitivitiesManager;
+import com.byteflipper.ffsensitivities.utils.NavigationOptionsUtil;
+import com.byteflipper.ffsensitivities.utils.SharedPreferencesUtils;
 import com.google.android.gms.ads.AdError;
 import com.google.android.gms.ads.FullScreenContentCallback;
 import com.google.android.gms.ads.interstitial.InterstitialAd;
@@ -112,6 +117,35 @@ public class DevicesFragment extends Fragment implements IScrollHelper {
                 hideLoadingState();
                 setupRecyclerView();
             }
+
+            if (SharedPreferencesUtils.getBoolean(requireActivity(), "enableShimmerLayoutInDevices")) {
+                showLoadingState();
+                progressIndicatorListener.hideProgress();
+            }
+
+            if (SharedPreferencesUtils.getBoolean(requireActivity(), "enableShimmerLayoutInDevices"))
+                binding.shimmerLayout.setOnClickListener(
+                        v -> {
+                            Bundle finalBundle = new Bundle();
+                            finalBundle.putString("device_model", "Samsung S24");
+                            finalBundle.putFloat("review", 128);
+                            finalBundle.putFloat("collimator", 96);
+                            finalBundle.putFloat("x2_scope", 86);
+                            finalBundle.putFloat("x4_scope", 86);
+                            finalBundle.putFloat("sniper_scope", 42);
+                            finalBundle.putFloat("free_review", 51);
+                            finalBundle.putFloat("dpi", 386);
+                            finalBundle.putFloat("fire_button", 42);
+                            finalBundle.putString("settings_source_url", null);
+                            NavController navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_content_main);
+                            navController.navigate(R.id.action_devicesFragment_to_deviceSettingsFragment, finalBundle, NavigationOptionsUtil.getNavOptions());
+                        }
+                );
+
+            if (SharedPreferencesUtils.getBoolean(requireActivity(), "enableShimmerEffectInDevices"))
+                binding.shimmerLayout.startShimmer();
+            else
+                binding.shimmerLayout.stopShimmer();
         });
     }
 

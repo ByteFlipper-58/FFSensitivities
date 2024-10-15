@@ -5,6 +5,7 @@
         <attr name="value" format="float"/>
         <attr name="enabled" format="boolean"/>
     </declare-styleable>
+
     <declare-styleable name="CustomItemView">
         <attr name="listTitle" format="string"/>
         <attr name="listSubtitle" format="string"/>
@@ -14,6 +15,7 @@
         <attr name="switchTitle" format="string"/>
         <attr name="switchSubtitleOn" format="string"/>
         <attr name="switchSubtitleOff" format="string"/>
-        <attr name="switchValue" format="boolean"/>
+        <attr name="defaultValue" format="boolean"/>
+        <attr name="key" format="string" />
     </declare-styleable>
 </resources>

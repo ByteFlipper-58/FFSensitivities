@@ -15,6 +15,7 @@ import androidx.fragment.app.Fragment;
 import com.byteflipper.ffsensitivities.BuildConfig;
 import com.byteflipper.ffsensitivities.R;
 import com.byteflipper.ffsensitivities.databinding.FragmentAboutBinding;
+import com.byteflipper.ffsensitivities.listeners.CustomTouchListener;
 import com.byteflipper.ffsensitivities.utils.ChromeCustomTabUtil;
 import com.byteflipper.ffsensitivities.utils.FeedbackHelper;
 import com.pengrad.telegrambot.Callback;
@@ -95,6 +96,9 @@ public class AboutFragment extends Fragment {
         });
 
         binding.version.setSubtitleText(BuildConfig.VERSION_NAME + "(" + BuildConfig.VERSION_CODE + ")");
+        binding.version.setOnTouchListener(new CustomTouchListener());
+        binding.version.setClickable(true);
+        binding.version.setFocusable(true);
     }
 
     @Override

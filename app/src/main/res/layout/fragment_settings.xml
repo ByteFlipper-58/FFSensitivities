@@ -29,7 +29,8 @@
                 app:switchTitle="@string/switch_use_dynamic_colors_title"
                 app:switchSubtitleOn="@string/switch_use_dynamic_colors_subtitle_on"
                 app:switchSubtitleOff="@string/switch_use_dynamic_colors_subtitle_off"
-                app:switchValue="false"/>
+                app:key="useDynamicColors"
+                app:defaultValue="false"/>
 
             <com.google.android.material.divider.MaterialDivider
                 android:layout_width="match_parent"
@@ -81,6 +82,69 @@
                 app:listTitle="@string/change_language"
                 app:listSubtitle="In development"
                 app:listIcon="@drawable/language_24px"/>
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/devModeSettings"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        app:cardCornerRadius="21dp"
+        app:cardUseCompatPadding="true"
+        style="@style/Widget.Material3.CardView.Elevated">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:orientation="vertical">
+
+            <com.byteflipper.ffsensitivities.ui.components.CustomSwitchView
+                android:id="@+id/enableShimmerLayoutInManufacturers"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:switchTitle="Enable shimmer layout in manufacturers screen"
+                app:switchSubtitleOn="Shimmer layout is enabled"
+                app:switchSubtitleOff="Shimmer layout is disabled"
+                app:key="enableShimmerLayoutInManufacturers"
+                app:defaultValue="false"/>
+
+            <com.byteflipper.ffsensitivities.ui.components.CustomSwitchView
+                android:id="@+id/enableShimmerEffectInManufacturers"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:switchTitle="Enable shimmer effect in manufacturers screen"
+                app:switchSubtitleOn="Shimmer effect is enabled"
+                app:switchSubtitleOff="Shimmer effect is disabled"
+                app:key="enableShimmerEffectInManufacturers"
+                app:defaultValue="false"/>
+
+            <com.google.android.material.divider.MaterialDivider
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="8dp"
+                style="@style/Widget.Material3.MaterialDivider"/>
+
+            <com.byteflipper.ffsensitivities.ui.components.CustomSwitchView
+                android:id="@+id/enableShimmerLayoutInDevices"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:switchTitle="Enable shimmer layout in devices screen"
+                app:switchSubtitleOn="Shimmer layout is enabled"
+                app:switchSubtitleOff="Shimmer layout is disabled"
+                app:key="enableShimmerLayoutInDevices"
+                app:defaultValue="false"/>
+
+            <com.byteflipper.ffsensitivities.ui.components.CustomSwitchView
+                android:id="@+id/enableShimmerEffectInDevices"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:switchTitle="Enable shimmer effect in devices screen"
+                app:switchSubtitleOn="Shimmer effect is enabled"
+                app:switchSubtitleOff="Shimmer effect is disabled"
+                app:key="enableShimmerEffectInDevices"
+                app:defaultValue="false"/>
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 </LinearLayout>

@@ -1,6 +1,7 @@
 package com.byteflipper.ffsensitivities.ui.components;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -16,16 +17,15 @@ public class CustomSwitchView extends RelativeLayout {
     private CustomSwitchViewBinding binding;
     private String switchSubtitleOn;
     private String switchSubtitleOff;
+    private String key;
     private CompoundButton.OnCheckedChangeListener onCheckedChangeListener;
 
     public CustomSwitchView(Context context) {
-        super(context);
-        init(context, null);
+        this(context, null);
     }
 
     public CustomSwitchView(Context context, @Nullable AttributeSet attrs) {
-        super(context, attrs);
-        init(context, attrs);
+        this(context, attrs, 0);
     }
 
     public CustomSwitchView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
@@ -35,29 +35,58 @@ public class CustomSwitchView extends RelativeLayout {
 
     private void init(Context context, AttributeSet attrs) {
         binding = CustomSwitchViewBinding.inflate(LayoutInflater.from(context), this);
+        loadAttributes(context, attrs);
+        setupSwitch(context);
+    }
 
+    private void loadAttributes(Context context, AttributeSet attrs) {
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.CustomSwitchView);
         String switchTitle = a.getString(R.styleable.CustomSwitchView_switchTitle);
         switchSubtitleOn = a.getString(R.styleable.CustomSwitchView_switchSubtitleOn);
         switchSubtitleOff = a.getString(R.styleable.CustomSwitchView_switchSubtitleOff);
-        boolean switchChecked = a.getBoolean(R.styleable.CustomSwitchView_switchValue, false);
+        key = a.getString(R.styleable.CustomSwitchView_key);
+        boolean switchChecked = a.getBoolean(R.styleable.CustomSwitchView_defaultValue, false);
         a.recycle();
 
-        binding.switchViewTitle.setText(switchTitle);
-        binding.switchViewSubtitle.setText(switchChecked ? switchSubtitleOn : switchSubtitleOff);
-        binding.switchView.setChecked(switchChecked);
+        if (key != null) {
+            SharedPreferences prefs = context.getSharedPreferences("app_config", Context.MODE_PRIVATE);
+            switchChecked = prefs.getBoolean(key, switchChecked);
+        }
 
+        binding.switchViewTitle.setText(switchTitle);
+        setCheckedState(switchChecked);
+    }
+
+    private void setupSwitch(Context context) {
         binding.switchView.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            binding.switchViewSubtitle.setText(isChecked ? switchSubtitleOn : switchSubtitleOff);
+            setCheckedState(isChecked);
             if (onCheckedChangeListener != null) {
                 onCheckedChangeListener.onCheckedChanged(buttonView, isChecked);
+            }
+
+            // Сохраняем состояние в SharedPreferences
+            if (key != null) {
+                SharedPreferences prefs = context.getSharedPreferences("app_config", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = prefs.edit();
+                editor.putBoolean(key, isChecked);
+                editor.apply();
             }
         });
     }
 
+    private void setCheckedState(boolean isChecked) {
+        binding.switchView.setChecked(isChecked);
+        binding.switchViewSubtitle.setText(isChecked ? switchSubtitleOn : switchSubtitleOff);
+    }
+
     public void setChecked(boolean checked) {
-        binding.switchView.setChecked(checked);
-        binding.switchViewSubtitle.setText(checked ? switchSubtitleOn : switchSubtitleOff);
+        setCheckedState(checked);
+        if (key != null) {
+            SharedPreferences prefs = getContext().getSharedPreferences("app_config", Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = prefs.edit();
+            editor.putBoolean(key, checked);
+            editor.apply();
+        }
     }
 
     public void setOnCheckedChangeListener(CompoundButton.OnCheckedChangeListener listener) {

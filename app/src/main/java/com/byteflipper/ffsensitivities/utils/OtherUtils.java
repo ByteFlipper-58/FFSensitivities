@@ -3,7 +3,6 @@ package com.byteflipper.ffsensitivities.utils;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
-import android.content.Intent;
 import android.util.Log;
 
 import com.google.android.gms.tasks.Task;
@@ -32,14 +31,14 @@ public class OtherUtils {
     }
 
     public void reviewApp() {
-        SharedPreferencesUtils.writeInteger(context, "click_count", SharedPreferencesUtils.getInteger(context, "click_count", 0));
+        SharedPreferencesUtils.putInteger(context, "click_count", SharedPreferencesUtils.getInteger(context, "click_count", 0));
         int clickCount = SharedPreferencesUtils.getInteger(context, "click_count", 0);
         if (clickCount == 10)
             showReviewDialog();
         if (clickCount == 50)
             showReviewDialog();
         else
-            SharedPreferencesUtils.writeInteger(context, "click_count", clickCount + 1);
+            SharedPreferencesUtils.putInteger(context, "click_count", clickCount + 1);
     }
 
     private void showReviewDialog() {

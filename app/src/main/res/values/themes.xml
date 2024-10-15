@@ -53,7 +53,7 @@
         <item name="colorSurfaceContainerHighest">@color/md_theme_surfaceContainerHighest</item>
 
         <item name="android:statusBarColor">?attr/colorSurface</item>
-        <item name="android:navigationBarColor">?attr/colorSurfaceContainer</item>
+        <item name="android:windowLightStatusBar">@color/md_dark_theme_background</item>
     </style>
 
     <style name="FFSensitivitiesTheme.SplashScreen" parent="Theme.SplashScreen">

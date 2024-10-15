@@ -1,9 +1,12 @@
 package com.byteflipper.ffsensitivities.ui.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -13,9 +16,12 @@ import androidx.fragment.app.Fragment;
 import com.byteflipper.ffsensitivities.R;
 import com.byteflipper.ffsensitivities.callback.CallbackManager;
 import com.byteflipper.ffsensitivities.manager.LanguageManager;
+import com.byteflipper.ffsensitivities.ui.MainActivity;
 import com.google.android.material.color.DynamicColors;
 import com.byteflipper.ffsensitivities.databinding.FragmentSettingsBinding;
 import com.byteflipper.ffsensitivities.utils.SharedPreferencesUtils;
+import com.google.android.material.materialswitch.MaterialSwitch;
+import com.google.android.material.snackbar.Snackbar;
 
 public class SettingsFragment extends Fragment {
     private FragmentSettingsBinding binding;
@@ -58,7 +64,6 @@ public class SettingsFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         binding.appThemeRadioGroup.check(SharedPreferencesUtils.getInteger(requireContext(), "checkedButton", R.id.setFollowSystemTheme));
         binding.dynamicColorsSwitch.setEnabled(DynamicColors.isDynamicColorAvailable());
-        binding.dynamicColorsSwitch.setChecked(SharedPreferencesUtils.getBoolean(requireContext(), "useDynamicColors"));
         int[] setNightModeDescription = {R.string.system_theme_description, R.string.light_theme_description, R.string.night_theme_description};
         binding.themeDescription.setText(setNightModeDescription[SharedPreferencesUtils.getInteger(requireContext(), "nightMode", 0)]);
 
@@ -66,20 +71,20 @@ public class SettingsFragment extends Fragment {
             switch (checkedId) {
                 case R.id.setFollowSystemTheme:
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
-                    SharedPreferencesUtils.writeInteger(requireContext(), "checkedButton", R.id.setFollowSystemTheme);
-                    SharedPreferencesUtils.writeInteger(requireContext(), "nightMode", 0);
+                    SharedPreferencesUtils.putInteger(requireContext(), "checkedButton", R.id.setFollowSystemTheme);
+                    SharedPreferencesUtils.putInteger(requireContext(), "nightMode", 0);
                     requireActivity().recreate();
                     break;
                 case R.id.setLightTheme:
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-                    SharedPreferencesUtils.writeInteger(requireContext(), "checkedButton", R.id.setLightTheme);
-                    SharedPreferencesUtils.writeInteger(requireContext(), "nightMode", 1);
+                    SharedPreferencesUtils.putInteger(requireContext(), "checkedButton", R.id.setLightTheme);
+                    SharedPreferencesUtils.putInteger(requireContext(), "nightMode", 1);
                     requireActivity().recreate();
                     break;
                 case R.id.setNightTheme:
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-                    SharedPreferencesUtils.writeInteger(requireContext(), "checkedButton", R.id.setNightTheme);
-                    SharedPreferencesUtils.writeInteger(requireContext(), "nightMode", 2);
+                    SharedPreferencesUtils.putInteger(requireContext(), "checkedButton", R.id.setNightTheme);
+                    SharedPreferencesUtils.putInteger(requireContext(), "nightMode", 2);
                     requireActivity().recreate();
                     break;
             }
@@ -93,11 +98,27 @@ public class SettingsFragment extends Fragment {
 
         binding.setLanguageButton.setSubtitleText(LanguageManager.getCurrentLanguage(requireActivity()));
 
+
+
+        boolean isDynamicColorsEnabled = SharedPreferencesUtils.getBoolean(requireContext(), "useDynamicColors");
+
         binding.dynamicColorsSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            SharedPreferencesUtils.writeBoolean(requireContext(), "useDynamicColors", isChecked);
-            requireActivity().recreate();
-            CallbackManager.invokeCallback(requireActivity());
+            restartApp();
+            Log.d("CustomSwitchView", "Switch checked: " + isChecked);
         });
+
+        if (SharedPreferencesUtils.getBoolean(requireContext(), "dev_mode"))
+            binding.devModeSettings.setVisibility(View.VISIBLE);
+        else
+            binding.devModeSettings.setVisibility(View.GONE);
+    }
+
+    void restartApp() {
+        requireActivity().finish();
+        Intent intent = new Intent(requireActivity(), MainActivity.class);
+        startActivity(intent);
+        requireActivity().overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+        CallbackManager.invokeCallback(requireActivity());
     }
 
     @Override

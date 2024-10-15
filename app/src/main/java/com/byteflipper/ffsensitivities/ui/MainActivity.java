@@ -15,6 +15,7 @@ import android.view.ViewTreeObserver;
 import android.view.Window;
 import android.widget.Toast;
 
+import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -36,6 +37,7 @@ import com.byteflipper.ffsensitivities.manager.LanguageManager;
 import com.byteflipper.ffsensitivities.manager.ManufacturersManager;
 import com.byteflipper.ffsensitivities.utils.AppUpdateHelper;
 import com.byteflipper.ffsensitivities.utils.SharedPreferencesUtils;
+import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.RequestConfiguration;
 import com.google.android.material.color.DynamicColors;
@@ -73,7 +75,6 @@ public class MainActivity extends AppCompatActivity implements AppUpdateHelper.U
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        //EdgeToEdge.enable(this);
         super.onCreate(savedInstanceState);
         SplashScreen splashScreen = SplashScreen.installSplashScreen(this);
         supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -151,6 +152,9 @@ public class MainActivity extends AppCompatActivity implements AppUpdateHelper.U
         if (googleMobileAdsConsentManager.canRequestAds()) {
             initializeMobileAdsSdk();
         }
+
+        AdRequest adRequest = new AdRequest.Builder().build();
+        binding.bannerAdView.loadAd(adRequest);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
@@ -234,7 +238,7 @@ public class MainActivity extends AppCompatActivity implements AppUpdateHelper.U
 
     @Override
     public void onUpdateAvailable() {
-        appUpdateHelper.startImmediateUpdateFromOutside();
+        //appUpdateHelper.startImmediateUpdate();
         Log.e("AppUpdateHelper", "onUpdateAvailable");
     }
 
@@ -305,12 +309,11 @@ public class MainActivity extends AppCompatActivity implements AppUpdateHelper.U
 
         new Thread(() -> {
                     MobileAds.initialize(this, initializationStatus -> {});
-
                     runOnUiThread(() -> {
-                                Application application = getApplication();
-                                ((MyApplication) application).loadAd(this);
+                        Application application = getApplication();
+                        ((MyApplication) application).loadAd(this);
                     });
-                }).start();
+        }).start();
     }
 
     @Override

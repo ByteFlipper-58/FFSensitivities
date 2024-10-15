@@ -11,8 +11,8 @@ android {
         applicationId "com.byteflipper.ffsensitivities"
         minSdk 26
         targetSdk 34
-        versionCode 35
-        versionName "v1.3.0"
+        versionCode 37
+        versionName "v1.3.2"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -63,7 +63,6 @@ dependencies {
     def nav_version = "2.5.0"
     implementation "androidx.navigation:navigation-fragment:$nav_version"
     implementation "androidx.navigation:navigation-ui:$nav_version"
-    implementation("androidx.activity:activity:1.9.2")
 
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
