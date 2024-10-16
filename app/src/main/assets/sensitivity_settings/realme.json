@@ -3,6 +3,36 @@
     "models": [
         {
             "manufacturer": "Realme",
+            "name": "C53",
+            "settings_source_url": "",
+            "dpi": 0,
+            "fire_button": 48,
+            "sensitivities": {
+                "review": 155,
+                "collimator": 130,
+                "x2_scope": 145,
+                "x4_scope": 140,
+                "sniper_scope": 180,
+                "free_review": 200
+            }
+        },
+        {
+            "manufacturer": "Realme",
+            "name": "C35",
+            "settings_source_url": "",
+            "dpi": 0,
+            "fire_button": 56,
+            "sensitivities": {
+                "review": 152,
+                "collimator": 133,
+                "x2_scope": 200,
+                "x4_scope": 200,
+                "sniper_scope": 200,
+                "free_review": 0
+            }
+        },
+        {
+            "manufacturer": "Realme",
             "name": "C25",
             "settings_source_url": "",
             "dpi": 644,
