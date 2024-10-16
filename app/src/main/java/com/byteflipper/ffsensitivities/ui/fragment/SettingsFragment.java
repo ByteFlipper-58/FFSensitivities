@@ -6,7 +6,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -14,43 +13,20 @@ import androidx.appcompat.app.AppCompatDelegate;
 import androidx.fragment.app.Fragment;
 
 import com.byteflipper.ffsensitivities.R;
-import com.byteflipper.ffsensitivities.callback.CallbackManager;
 import com.byteflipper.ffsensitivities.manager.LanguageManager;
 import com.byteflipper.ffsensitivities.ui.MainActivity;
 import com.google.android.material.color.DynamicColors;
 import com.byteflipper.ffsensitivities.databinding.FragmentSettingsBinding;
 import com.byteflipper.ffsensitivities.utils.SharedPreferencesUtils;
-import com.google.android.material.materialswitch.MaterialSwitch;
-import com.google.android.material.snackbar.Snackbar;
 
 public class SettingsFragment extends Fragment {
     private FragmentSettingsBinding binding;
 
     private static final String TAG = "TEST";
 
-    private String[] languages = {
-            "English",
-            "Belarusian",
-            "German (Austria)",
-            "German (Belgium)",
-            "French",
-            "Polish",
-            "Russian",
-            "Turkish",
-            "Ukrainian"
-    };
+    private String[] languages = {"English", "Belarusian", "German (Austria)", "German (Belgium)", "French", "Polish", "Russian", "Turkish", "Ukrainian"};
 
-    private String[] languageCodes = {
-            "en",
-            "be",
-            "de-rAT",
-            "de-rBE",
-            "fr",
-            "pl",
-            "ru",
-            "tr",
-            "uk"
-    };
+    private String[] languageCodes = {"en", "be", "de-rAT", "de-rBE", "fr", "pl", "ru", "tr", "uk"};
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -73,22 +49,21 @@ public class SettingsFragment extends Fragment {
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
                     SharedPreferencesUtils.putInteger(requireContext(), "checkedButton", R.id.setFollowSystemTheme);
                     SharedPreferencesUtils.putInteger(requireContext(), "nightMode", 0);
-                    requireActivity().recreate();
+                    restartApp();
                     break;
                 case R.id.setLightTheme:
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
                     SharedPreferencesUtils.putInteger(requireContext(), "checkedButton", R.id.setLightTheme);
                     SharedPreferencesUtils.putInteger(requireContext(), "nightMode", 1);
-                    requireActivity().recreate();
+                    restartApp();
                     break;
                 case R.id.setNightTheme:
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
                     SharedPreferencesUtils.putInteger(requireContext(), "checkedButton", R.id.setNightTheme);
                     SharedPreferencesUtils.putInteger(requireContext(), "nightMode", 2);
-                    requireActivity().recreate();
+                    restartApp();
                     break;
             }
-            CallbackManager.invokeCallback(requireActivity());
         });
 
         LanguageManager languageManager = new LanguageManager();
@@ -97,10 +72,6 @@ public class SettingsFragment extends Fragment {
         });
 
         binding.setLanguageButton.setSubtitleText(LanguageManager.getCurrentLanguage(requireActivity()));
-
-
-
-        boolean isDynamicColorsEnabled = SharedPreferencesUtils.getBoolean(requireContext(), "useDynamicColors");
 
         binding.dynamicColorsSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
             restartApp();
@@ -116,9 +87,9 @@ public class SettingsFragment extends Fragment {
     void restartApp() {
         requireActivity().finish();
         Intent intent = new Intent(requireActivity(), MainActivity.class);
+        intent.putExtra("openSettingsFragment", true);
         startActivity(intent);
         requireActivity().overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-        CallbackManager.invokeCallback(requireActivity());
     }
 
     @Override

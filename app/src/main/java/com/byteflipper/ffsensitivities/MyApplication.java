@@ -9,11 +9,13 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.lifecycle.DefaultLifecycleObserver;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.ProcessLifecycleOwner;
 
 import com.byteflipper.ffsensitivities.ads.GoogleMobileAdsConsentManager;
+import com.byteflipper.ffsensitivities.utils.SharedPreferencesUtils;
 import com.google.android.gms.ads.AdError;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.FullScreenContentCallback;
@@ -50,6 +52,14 @@ public class MyApplication extends Application
         ProcessLifecycleOwner.get().getLifecycle().addObserver(this);
         appOpenAdManager = new AppOpenAdManager();
         loadInterstitialAd(this);
+
+        setNightMode();
+    }
+
+    public void setNightMode() {
+        int nightMode = SharedPreferencesUtils.getInteger(this, "nightMode", 0);
+        int[] mode = {AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM, AppCompatDelegate.MODE_NIGHT_NO, AppCompatDelegate.MODE_NIGHT_YES};
+        AppCompatDelegate.setDefaultNightMode(mode[nightMode]);
     }
 
     /**

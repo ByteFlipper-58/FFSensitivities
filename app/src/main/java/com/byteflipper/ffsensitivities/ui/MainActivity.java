@@ -4,24 +4,28 @@ import android.annotation.SuppressLint;
 import android.app.Application;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.view.Window;
-import android.widget.Toast;
+import android.view.WindowManager;
 
-import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.splashscreen.SplashScreen;
+import androidx.core.view.WindowCompat;
+import androidx.core.view.WindowInsetsControllerCompat;
 import androidx.navigation.NavController;
 import androidx.navigation.NavDestination;
 import androidx.navigation.Navigation;
@@ -35,27 +39,24 @@ import com.byteflipper.ffsensitivities.databinding.ActivityMainBinding;
 import com.byteflipper.ffsensitivities.interfaces.ProgressIndicatorListener;
 import com.byteflipper.ffsensitivities.manager.LanguageManager;
 import com.byteflipper.ffsensitivities.manager.ManufacturersManager;
-import com.byteflipper.ffsensitivities.utils.AppUpdateHelper;
 import com.byteflipper.ffsensitivities.utils.SharedPreferencesUtils;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.RequestConfiguration;
 import com.google.android.material.color.DynamicColors;
-import com.google.android.material.color.MaterialColors;
-import com.google.android.material.elevation.SurfaceColors;
 import com.google.android.material.progressindicator.LinearProgressIndicator;
 
 import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-public class MainActivity extends AppCompatActivity implements AppUpdateHelper.UpdateListener, ProgressIndicatorListener {
+public class MainActivity extends AppCompatActivity implements ProgressIndicatorListener {
+    private NavController navController;
+
     private LinearProgressIndicator progressIndicator;
 
     private AppBarConfiguration appBarConfiguration;
     private ActivityMainBinding binding;
-
-    private AppUpdateHelper appUpdateHelper;
 
     private static final String LOG_TAG = "MainActivity";
 
@@ -73,6 +74,7 @@ public class MainActivity extends AppCompatActivity implements AppUpdateHelper.U
 
     private static final int REQUEST_NOTIFICATION_PERMISSION = 1;
 
+    @RequiresApi(api = Build.VERSION_CODES.R)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,14 +83,25 @@ public class MainActivity extends AppCompatActivity implements AppUpdateHelper.U
         if (SharedPreferencesUtils.getBoolean(this, "useDynamicColors"))
             DynamicColors.applyToActivityIfAvailable(this);
 
-        DynamicColors.OnAppliedCallback callback = activity -> {
-            setStatusAndNavigationBarColor(MaterialColors.getColor(this, com.google.android.material.R.attr.colorSurface, SurfaceColors.SURFACE_2.getColor(this)));
-        };
-
-        callback.onApplied(this);
-
         if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.S_V2)
             LanguageManager.loadLocale(this);
+
+        WindowCompat.setDecorFitsSystemWindows(getWindow(), false);
+
+        getWindow().setStatusBarColor(Color.TRANSPARENT);
+        getWindow().setNavigationBarColor(Color.TRANSPARENT);
+
+        WindowInsetsControllerCompat insetsController = WindowCompat.getInsetsController(getWindow(), getWindow().getDecorView());
+        insetsController.setAppearanceLightNavigationBars(true);
+
+        TypedValue value = new TypedValue();
+        getTheme().resolveAttribute(android.R.attr.isLightTheme, value, true);
+        boolean isLightTheme = value.data != 0;
+        insetsController.setAppearanceLightStatusBars(isLightTheme);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            getWindow().getAttributes().layoutInDisplayCutoutMode = WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_ALWAYS;
+        }
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
@@ -115,10 +128,8 @@ public class MainActivity extends AppCompatActivity implements AppUpdateHelper.U
             }
         });
 
-        progressIndicator = binding.progressIndicator;
 
-        appUpdateHelper = new AppUpdateHelper(this, this);
-        appUpdateHelper.checkForAppUpdate();
+        progressIndicator = binding.progressIndicator;
 
         googleMobileAdsConsentManager =
                 GoogleMobileAdsConsentManager.getInstance(getApplicationContext());
@@ -164,10 +175,14 @@ public class MainActivity extends AppCompatActivity implements AppUpdateHelper.U
             }
         }
 
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
+        navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
         NavigationUI.setupWithNavController(binding.bottomAppBar, navController);
         NavigationUI.setupWithNavController(binding.toolbar, navController, appBarConfiguration);
+
+        if (getIntent().getBooleanExtra("openSettingsFragment", false)) {
+            navController.navigate(R.id.settingsFragment);
+        }
     }
 
     @Override
@@ -192,7 +207,6 @@ public class MainActivity extends AppCompatActivity implements AppUpdateHelper.U
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.settings) {
-            NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
             NavDestination currentDestination = navController.getCurrentDestination();
             if (currentDestination != null && currentDestination.getId() == R.id.settingsFragment) {
                 return true;
@@ -209,63 +223,6 @@ public class MainActivity extends AppCompatActivity implements AppUpdateHelper.U
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         return NavigationUI.navigateUp(navController, appBarConfiguration)
                 || super.onSupportNavigateUp();
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-    }
-
-    private void setStatusAndNavigationBarColor(int color) {
-        Window window = getWindow();
-
-        window.setStatusBarColor(color);
-        window.setNavigationBarColor(color);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-            window.setStatusBarContrastEnforced(true);
-        }
-    }
-
-    @Override
-    public void onUpdateCheck() {
-        Log.e("AppUpdateHelper", "onUpdateCheck");
-    }
-
-    @Override
-    public void onUpdateNotAvailable() {
-        Log.e("AppUpdateHelper", "onUpdateNotAvailable");
-    }
-
-    @Override
-    public void onUpdateAvailable() {
-        //appUpdateHelper.startImmediateUpdate();
-        Log.e("AppUpdateHelper", "onUpdateAvailable");
-    }
-
-    @Override
-    public void onUpdateDownloadStarted() {
-        Log.e("AppUpdateHelper", "onUpdateDownloadStarted");
-    }
-
-    @Override
-    public void onDownloadProgress(float progress) {
-        //
-    }
-
-    @Override
-    public void onUpdateDownloaded() {
-        Log.e("AppUpdateHelper", "onUpdateDownloaded");
-    }
-
-    @Override
-    public void onUpdateFailed() {
-        Log.e("AppUpdateHelper", "onUpdateFailed");
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        appUpdateHelper.onActivityResult(requestCode, resultCode);
     }
 
     /** Create the countdown timer, which counts down to zero and show the app open ad. */
