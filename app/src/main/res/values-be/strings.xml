@@ -29,6 +29,9 @@
     <string name="request_sensitivities_settings_message">Інфармацыя, якая будзе адпраўлена распрацоўніку</string>
     <string name="request_sensitivities_settings_message_two">Націсніце кнопку "Запыт", каб адправіць запыт на налады.\nГэта дзеянне не можа быць адмянена.</string>
     <string name="request_sensitivities_settings_button">Запыт</string>
+    <string name="request_sensitivities_settings_success">Запыт паспяхова адпраўлены!\nСкора дадамо новыя налады.</string>
+
+    <string name="subscribe_to_our_telegram_channel">Падпішыся на наш канал у Telegram</string>
 
     <string name="improve_translation">Палепшыць пераклад</string>
     <string name="copy">Скапіяваць</string>

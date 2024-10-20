@@ -29,6 +29,9 @@
     <string name="request_sensitivities_settings_message">Geliştiriciye gönderilecek bilgiler</string>
     <string name="request_sensitivities_settings_message_two">Ayarlar isteği göndermek için İste düğmesine tıklayın, bu işlem geri alınamaz.</string>
     <string name="request_sensitivities_settings_button">İste</string>
+    <string name="request_sensitivities_settings_success">İstek başarıyla gönderildi!\nYakında yeni bir ayar ekleyeceğiz.</string>
+
+    <string name="subscribe_to_our_telegram_channel">Telegram kanalımıza abone olun</string>
 
     <string name="improve_translation">Çeviriyi İyileştir</string>
     <string name="copy">Kopyala</string>

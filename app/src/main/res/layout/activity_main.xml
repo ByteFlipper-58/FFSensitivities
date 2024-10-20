@@ -34,7 +34,7 @@
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingBottom="128dp"
+        android:paddingBottom="180dp"
         android:clipToPadding="false"
         android:fillViewport="true"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
@@ -53,6 +53,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal|bottom"
+        android:fitsSystemWindows="true"
         android:layout_marginBottom="80dp">
         <com.google.android.gms.ads.AdView
             xmlns:ads="http://schemas.android.com/apk/res-auto"
@@ -60,7 +61,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             ads:adSize="BANNER"
-            ads:adUnitId="ca-app-pub-4346225518624754/7047467848" />
+            ads:adUnitId="ca-app-pub-3940256099942544/9214589741" />
     </FrameLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView

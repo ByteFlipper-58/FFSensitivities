@@ -32,6 +32,7 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import com.byteflipper.ffsensitivities.BuildConfig;
 import com.byteflipper.ffsensitivities.MyApplication;
 import com.byteflipper.ffsensitivities.R;
 import com.byteflipper.ffsensitivities.ads.GoogleMobileAdsConsentManager;
@@ -39,6 +40,7 @@ import com.byteflipper.ffsensitivities.databinding.ActivityMainBinding;
 import com.byteflipper.ffsensitivities.interfaces.ProgressIndicatorListener;
 import com.byteflipper.ffsensitivities.manager.LanguageManager;
 import com.byteflipper.ffsensitivities.manager.ManufacturersManager;
+import com.byteflipper.ffsensitivities.utils.InAppReviewHelper;
 import com.byteflipper.ffsensitivities.utils.SharedPreferencesUtils;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.MobileAds;
@@ -102,6 +104,9 @@ public class MainActivity extends AppCompatActivity implements ProgressIndicator
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
             getWindow().getAttributes().layoutInDisplayCutoutMode = WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_ALWAYS;
         }
+
+        ((MyApplication) getApplication()).setCurrentActivity(this);
+        InAppReviewHelper.getInstance(this.getApplication()).onAppOpened();
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());

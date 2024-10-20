@@ -29,6 +29,9 @@
     <string name="request_sensitivities_settings_message">Информация, которая будет отправлена разработчику</string>
     <string name="request_sensitivities_settings_message_two">Нажмите кнопку "Запросить", чтобы отправить запрос на настройки.\nЭто действие нельзя отменить.</string>
     <string name="request_sensitivities_settings_button">Запросить</string>
+    <string name="request_sensitivities_settings_success">Запрос успешно отправлен!\nСкоро добавим новую настройку.</string>
+
+    <string name="subscribe_to_our_telegram_channel">Подпишись на наш канал в Telegram</string>
 
     <string name="improve_translation">Улучшить перевод</string>
     <string name="copy">Копировать</string>

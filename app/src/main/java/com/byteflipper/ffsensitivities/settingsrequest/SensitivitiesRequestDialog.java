@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Build;
 
 import com.byteflipper.ffsensitivities.R;
+import com.byteflipper.ffsensitivities.utils.SharedPreferencesUtils;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 public class SensitivitiesRequestDialog {
@@ -34,6 +35,7 @@ public class SensitivitiesRequestDialog {
                 .setMessage(infoBuffer)
                 .setPositiveButton(R.string.request_sensitivities_settings_button, (dialog, which) -> {
                     new SendSensitivitiesRequestMessageToBot().execute(requestBuffer.toString());
+                    SharedPreferencesUtils.putBoolean(context, "sensitivities_is_requested", true);
                 })
                 .setNeutralButton(android.R.string.cancel, null)
                 .show();

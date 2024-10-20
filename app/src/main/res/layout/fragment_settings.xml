@@ -41,7 +41,8 @@
             <RadioGroup
                 android:id="@+id/appThemeRadioGroup"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:checkedButton="@id/setFollowSystemTheme">
 
                 <com.google.android.material.radiobutton.MaterialRadioButton
                     android:id="@+id/setFollowSystemTheme"

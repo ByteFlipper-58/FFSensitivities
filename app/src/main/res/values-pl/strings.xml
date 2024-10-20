@@ -28,7 +28,10 @@
     <string name="request_sensitivities_settings_title">Poproś o ustawienia wrażliwości</string>
     <string name="request_sensitivities_settings_message">Informacje, które zostaną wysłane do programisty</string>
     <string name="request_sensitivities_settings_message_two">Kliknij przycisk Poproś, aby przesłać żądanie ustawień.\nTa czynność nie może zostać cofnięta.</string>
-    <string name="request_sensitivities_settings_button">Poproś</string>
+    <string name="request_sensitivities_settings_button">Wyślij</string>
+    <string name="request_sensitivities_settings_success">Prośba wysłana pomyślnie!\nWkrótce dodamy nowe ustawienie.</string>
+
+    <string name="subscribe_to_our_telegram_channel">Zasubskrybuj nasz kanał w Telegramie</string>
 
     <string name="improve_translation">Popraw tłumaczenie</string>
     <string name="copy">Kopiuj</string>

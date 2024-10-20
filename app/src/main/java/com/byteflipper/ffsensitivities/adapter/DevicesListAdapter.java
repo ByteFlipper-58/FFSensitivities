@@ -79,7 +79,7 @@ public class DevicesListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         finalBundle.putFloat("dpi", model.getDpi());
         finalBundle.putFloat("fire_button", model.getFireButton());
         finalBundle.putString("settings_source_url", model.getSettingsSourceUrl());
-        NavController navController = Navigation.findNavController(fragment.requireActivity(), R.id.nav_host_fragment_content_main);
+        NavController navController = Navigation.findNavController(fragment.requireView());
         navController.navigate(R.id.action_devicesFragment_to_deviceSettingsFragment, finalBundle, NavigationOptionsUtil.getNavOptions());
     }
 

@@ -29,6 +29,9 @@
     <string name="request_sensitivities_settings_message">Інформація, яка буде відправлена розробнику</string>
     <string name="request_sensitivities_settings_message_two">Клацніть кнопку "Запит", щоб надіслати запит на налаштування.\nЦю дію не можна скасувати.</string>
     <string name="request_sensitivities_settings_button">Запит</string>
+    <string name="request_sensitivities_settings_success">Запит успішно надіслано!\nНезабаром ми додамо нове налаштування.</string>
+
+    <string name="subscribe_to_our_telegram_channel">Підпишіться на наш канал у Telegram</string>
 
     <string name="improve_translation">Покращити переклад</string>
     <string name="copy">Копіювати</string>

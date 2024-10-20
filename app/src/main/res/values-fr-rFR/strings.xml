@@ -29,6 +29,9 @@
     <string name="request_sensitivities_settings_message">Informations qui seront envoyées au développeur</string>
     <string name="request_sensitivities_settings_message_two">Cliquez sur le bouton Demander pour soumettre une demande de réglages.\nCette action est irréversible.</string>
     <string name="request_sensitivities_settings_button">Demander</string>
+    <string name="request_sensitivities_settings_success">Demande envoyée avec succès!\nNous ajouterons bientôt un nouveau réglage.</string>
+
+    <string name="subscribe_to_our_telegram_channel">Abonnez-vous à notre chaîne Telegram</string>
 
     <string name="improve_translation">Améliorer la traduction</string>
     <string name="copy">Copier</string>

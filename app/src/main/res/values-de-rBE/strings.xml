@@ -29,6 +29,9 @@
     <string name="request_sensitivities_settings_message">Informationen, die an den Entwickler gesendet werden</string>
     <string name="request_sensitivities_settings_message_two">Klicken Sie auf die Schaltfläche "Anfrage", um eine Einstellungsanfrage zu senden.\nDiese Aktion kann nicht rückgängig gemacht werden.</string>
     <string name="request_sensitivities_settings_button">Anfrage</string>
+    <string name="request_sensitivities_settings_success">Anfrage erfolgreich gesendet!\nWir werden bald eine neue Einstellung hinzufügen.</string>
+
+    <string name="subscribe_to_our_telegram_channel">Abonniere unseren Telegram-Kanal</string>
 
     <string name="improve_translation">Übersetzung verbessern</string>
     <string name="copy">Kopieren</string>

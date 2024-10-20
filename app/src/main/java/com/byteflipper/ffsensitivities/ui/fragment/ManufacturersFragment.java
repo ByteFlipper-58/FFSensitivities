@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import com.byteflipper.ffsensitivities.interfaces.ProgressIndicatorListener;
 import com.byteflipper.ffsensitivities.settingsrequest.SensitivitiesRequestDialog;
 import com.byteflipper.ffsensitivities.databinding.FragmentManufacturersBinding;
+import com.byteflipper.ffsensitivities.utils.ChromeCustomTabUtil;
 import com.byteflipper.ffsensitivities.utils.NavigationOptionsUtil;
 import com.byteflipper.ffsensitivities.utils.SharedPreferencesUtils;
 import com.google.android.material.progressindicator.LinearProgressIndicator;
@@ -75,6 +76,16 @@ public class ManufacturersFragment extends Fragment {
             }
         });
 
+        binding.subscribeBtn.setOnClickListener(v -> {
+            new ChromeCustomTabUtil.Builder(requireContext(), "https://t.me/byteflipper").open();
+        });
+
+        if (SharedPreferencesUtils.getBoolean(requireActivity(), "sensitivities_is_requested")) {
+            binding.setUserNameBtn.setEnabled(false);
+            binding.welcomeAndUserName.setText(getString(R.string.request_sensitivities_settings_success));
+        }
+
+
         if (SharedPreferencesUtils.getBoolean(requireActivity(), "enableShimmerEffectInManufacturers"))
             binding.shimmerLayout.startShimmer();
         else
@@ -85,7 +96,7 @@ public class ManufacturersFragment extends Fragment {
                     v -> {
                         Bundle finalBundle = new Bundle();
                         finalBundle.putString("model", "samsung");
-                        NavController navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_content_main);
+                        NavController navController = Navigation.findNavController(requireView());
                         navController.navigate(R.id.action_manufacturerFragment2_to_devicesFragment, finalBundle, NavigationOptionsUtil.getNavOptions());
                     }
             );

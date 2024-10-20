@@ -15,6 +15,7 @@ import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.ProcessLifecycleOwner;
 
 import com.byteflipper.ffsensitivities.ads.GoogleMobileAdsConsentManager;
+import com.byteflipper.ffsensitivities.utils.InAppReviewHelper;
 import com.byteflipper.ffsensitivities.utils.SharedPreferencesUtils;
 import com.google.android.gms.ads.AdError;
 import com.google.android.gms.ads.AdRequest;
@@ -53,6 +54,8 @@ public class MyApplication extends Application
         appOpenAdManager = new AppOpenAdManager();
         loadInterstitialAd(this);
 
+        InAppReviewHelper.getInstance(this);
+
         setNightMode();
     }
 
@@ -60,6 +63,10 @@ public class MyApplication extends Application
         int nightMode = SharedPreferencesUtils.getInteger(this, "nightMode", 0);
         int[] mode = {AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM, AppCompatDelegate.MODE_NIGHT_NO, AppCompatDelegate.MODE_NIGHT_YES};
         AppCompatDelegate.setDefaultNightMode(mode[nightMode]);
+    }
+
+    public void setCurrentActivity(Activity activity) {
+        InAppReviewHelper.getInstance(this).setCurrentActivity(activity);
     }
 
     /**

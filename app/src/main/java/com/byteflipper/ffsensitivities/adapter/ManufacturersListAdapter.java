@@ -39,7 +39,7 @@ public class ManufacturersListAdapter extends RecyclerView.Adapter<Manufacturers
         holder.itemView.setOnClickListener(v -> {
             Bundle finalBundle = new Bundle();
             finalBundle.putString("model", models.get(position).getModel().toLowerCase(Locale.ROOT));
-            NavController navController = Navigation.findNavController(fragment.requireActivity(), R.id.nav_host_fragment_content_main);
+            NavController navController = Navigation.findNavController(fragment.requireView());
             navController.navigate(R.id.action_manufacturerFragment2_to_devicesFragment, finalBundle, NavigationOptionsUtil.getNavOptions());
         });
     }

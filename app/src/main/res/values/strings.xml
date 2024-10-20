@@ -29,6 +29,9 @@
     <string name="request_sensitivities_settings_message">Information that will be sent to the developer</string>
     <string name="request_sensitivities_settings_message_two">Click the Request button to submit a settings request, this action cannot be undone.</string>
     <string name="request_sensitivities_settings_button">Request</string>
+    <string name="request_sensitivities_settings_success">Request sent successfully!\nWe will add a new setting soon.</string>
+
+    <string name="subscribe_to_our_telegram_channel">Subscribe to our Telegram Channel</string>
 
     <string name="improve_translation">Improve Translation</string>
     <string name="copy">Copy</string>
@@ -69,7 +72,7 @@
 
     <string name="telegram_title">Telegram</string>
     <string name="telegram_subtitle">Our Telegram Channel</string>
-    <string name="telegram_url" translatable="false">https://t.me/byte_flipper</string>
+    <string name="telegram_url" translatable="false">https://t.me/byteflipper</string>
 
     <string name="youtube_title">YouTube</string>
     <string name="youtube_subtitle">Our YouTube Channel</string>
