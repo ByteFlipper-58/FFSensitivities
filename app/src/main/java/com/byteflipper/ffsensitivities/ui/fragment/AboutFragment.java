@@ -18,6 +18,7 @@ import com.byteflipper.ffsensitivities.databinding.FragmentAboutBinding;
 import com.byteflipper.ffsensitivities.listeners.CustomTouchListener;
 import com.byteflipper.ffsensitivities.utils.ChromeCustomTabUtil;
 import com.byteflipper.ffsensitivities.utils.FeedbackHelper;
+import com.byteflipper.ffsensitivities.utils.InAppReviewHelper;
 import com.pengrad.telegrambot.Callback;
 import com.pengrad.telegrambot.TelegramBot;
 import com.pengrad.telegrambot.model.Message;
@@ -60,11 +61,7 @@ public class AboutFragment extends Fragment {
         });
 
         binding.rateReviewBtn.setOnClickListener(v -> {
-            try {
-                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + BuildConfig.APPLICATION_ID)));
-            } catch (android.content.ActivityNotFoundException anfe) {
-                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + BuildConfig.APPLICATION_ID)));
-            }
+            InAppReviewHelper.getInstance(requireActivity()).launchReviewFlow(requireActivity());
         });
 
         binding.otherAppsBtn.setOnClickListener(v -> {

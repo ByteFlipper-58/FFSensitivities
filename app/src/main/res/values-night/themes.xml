@@ -57,7 +57,7 @@
         <item name="windowSplashScreenAnimatedIcon">@mipmap/ic_launcher</item>
         <item name="windowSplashScreenAnimationDuration">1000</item>
         <item name="windowSplashScreenIconBackgroundColor">@color/md_theme_background</item>
-        <item name="postSplashScreenTheme">@style/FFSensitivitiesTheme</item>
+        <item name="postSplashScreenTheme">@style/BaseFFSensitivitiesTheme</item>
     </style>
 
     <style name="ThemeOverlay.DynamicColors" parent="Theme.Material3.DayNight">
