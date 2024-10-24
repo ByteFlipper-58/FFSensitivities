@@ -61,6 +61,21 @@
           "free_review": 100
         }
       },
+        {
+        "manufacturer": "Tecno",
+        "name": "Pova 6 Neo",
+        "settings_source_url": "",
+        "dpi": 480,
+        "fire_button": 54,
+        "sensitivities": {
+          "review": 185,
+          "collimator": 170,
+          "x2_scope": 190,
+          "x4_scope": 190,
+          "sniper_scope": 156,
+          "free_review": 200
+        }
+        },
       {
         "manufacturer": "Tecno",
         "name": "Pova Neo 2",
