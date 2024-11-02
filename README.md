@@ -1,4 +1,4 @@
-# FF Settings
+# FF Settings 
 
 [![Google Play](https://img.shields.io/badge/Google_Play-Download-brightgreen)](https://play.google.com/store/apps/details?id=com.byteflipper.ffsensitivities)
 [![License](https://img.shields.io/github/license/byteflipper/FFSettings)](LICENSE)
