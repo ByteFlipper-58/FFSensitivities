@@ -54,6 +54,8 @@ public class ManufacturersFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        NavController navController = Navigation.findNavController(requireView());
+
         manager.isRequestFinished().observe(getViewLifecycleOwner(), aBoolean -> {
             if (!aBoolean) {
                 progressIndicatorListener.showProgress();
@@ -66,7 +68,7 @@ public class ManufacturersFragment extends Fragment {
                 binding.shimmerLayout.setVisibility(View.GONE);
                 binding.recview.setVisibility(View.VISIBLE);
                 binding.recview.setLayoutManager(new GridLayoutManager(requireActivity(), 2));
-                binding.recview.setAdapter(new ManufacturersListAdapter(this, manager.getManufacturersSet()));
+                binding.recview.setAdapter(new ManufacturersListAdapter(navController, manager.getManufacturersSet()));
             }
 
             if (SharedPreferencesUtils.getBoolean(requireActivity(), "enableShimmerLayoutInManufacturers")) {
@@ -96,7 +98,6 @@ public class ManufacturersFragment extends Fragment {
                     v -> {
                         Bundle finalBundle = new Bundle();
                         finalBundle.putString("model", "samsung");
-                        NavController navController = Navigation.findNavController(requireView());
                         navController.navigate(R.id.action_manufacturerFragment2_to_devicesFragment, finalBundle, NavigationOptionsUtil.getNavOptions());
                     }
             );

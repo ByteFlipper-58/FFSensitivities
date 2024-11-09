@@ -36,9 +36,6 @@ import java.net.URL;
 
 public class AboutFragment extends Fragment {
     private FragmentAboutBinding binding;
-    TelegramBot bot = new TelegramBot("7043829891:AAHr-dUynjVTrkRVrqRixAm4XGUaV-k9t0s");
-    String botToken = "7043829891:AAHr-dUynjVTrkRVrqRixAm4XGUaV-k9t0s";
-    String chatId = "108342909";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -61,7 +58,8 @@ public class AboutFragment extends Fragment {
         });
 
         binding.rateReviewBtn.setOnClickListener(v -> {
-            InAppReviewHelper.getInstance(requireActivity()).launchReviewFlow(requireActivity());
+            InAppReviewHelper inAppReviewHelper = new InAppReviewHelper(requireActivity());
+            inAppReviewHelper.showRate(requireActivity());
         });
 
         binding.otherAppsBtn.setOnClickListener(v -> {

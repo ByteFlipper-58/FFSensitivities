@@ -7,9 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
@@ -20,11 +18,11 @@ import com.byteflipper.ffsensitivities.model.ManufacturersDataModel;
 import com.byteflipper.ffsensitivities.utils.NavigationOptionsUtil;
 
 public class ManufacturersListAdapter extends RecyclerView.Adapter<ManufacturersListAdapter.ManufacturersHolder> {
-    private final Fragment fragment;
+    private final NavController navController;
     private final List<ManufacturersDataModel> models;
 
-    public ManufacturersListAdapter(Fragment fragment, List<ManufacturersDataModel> models) {
-        this.fragment = fragment;
+    public ManufacturersListAdapter(NavController navController, List<ManufacturersDataModel> models) {
+        this.navController = navController;
         this.models = models;
     }
 
@@ -39,7 +37,6 @@ public class ManufacturersListAdapter extends RecyclerView.Adapter<Manufacturers
         holder.itemView.setOnClickListener(v -> {
             Bundle finalBundle = new Bundle();
             finalBundle.putString("model", models.get(position).getModel().toLowerCase(Locale.ROOT));
-            NavController navController = Navigation.findNavController(fragment.requireView());
             navController.navigate(R.id.action_manufacturerFragment2_to_devicesFragment, finalBundle, NavigationOptionsUtil.getNavOptions());
         });
     }

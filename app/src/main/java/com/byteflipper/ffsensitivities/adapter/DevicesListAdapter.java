@@ -4,13 +4,10 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.byteflipper.ffsensitivities.R;
@@ -20,50 +17,35 @@ import com.byteflipper.ffsensitivities.utils.NavigationOptionsUtil;
 
 import java.util.List;
 
-public class DevicesListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-    private final Fragment fragment;
+public class DevicesListAdapter extends RecyclerView.Adapter<DevicesListAdapter.DeviceNameViewHolder> {
+    private final NavController navController;
+    private final DevicesFragment devicesFragment;
     private final List<SensitivityDataModel> models;
-    private static final int VIEW_TYPE_DEFAULT = 0;
-    private static final int VIEW_TYPE_BANNER = 1;
 
-    public DevicesListAdapter(Fragment fragment, List<SensitivityDataModel> models) {
-        this.fragment = fragment;
+    public DevicesListAdapter(NavController navController, List<SensitivityDataModel> models, DevicesFragment devicesFragment) {
+        this.navController = navController;
         this.models = models;
+        this.devicesFragment = devicesFragment;
     }
 
     @NonNull
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        switch (viewType) {
-            case VIEW_TYPE_BANNER:
-                View bannerView = inflater.inflate(R.layout.banner_item, parent, false);
-                return new BannerViewHolder(bannerView);
-            case VIEW_TYPE_DEFAULT:
-                View deviceView = inflater.inflate(R.layout.device_name_item, parent, false);
-                return new DeviceNameViewHolder(deviceView);
-            default:
-                throw new IllegalArgumentException("Invalid view type");
-        }
+    public DeviceNameViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View deviceView = LayoutInflater.from(parent.getContext()).inflate(R.layout.device_name_item, parent, false);
+        return new DeviceNameViewHolder(deviceView);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int position) {
-        if (viewHolder instanceof DeviceNameViewHolder) {
-            DeviceNameViewHolder holder = (DeviceNameViewHolder) viewHolder;
-            SensitivityDataModel model = models.get(position);
-            if (model != null) {
-                holder.deviceName.setText(model.getManufacturerName() + " " + model.getDeviceName());
-                holder.itemView.setOnClickListener(v -> showInterstitialAndNavigate(position));
-            }
+    public void onBindViewHolder(@NonNull DeviceNameViewHolder holder, int position) {
+        SensitivityDataModel model = models.get(position);
+        if (model != null) {
+            holder.deviceName.setText(model.getManufacturerName() + " " + model.getDeviceName());
+            holder.itemView.setOnClickListener(v -> showInterstitialAndNavigate(position));
         }
     }
 
     private void showInterstitialAndNavigate(int position) {
-        if (fragment instanceof DevicesFragment) {
-            DevicesFragment devicesFragment = (DevicesFragment) fragment;
-            devicesFragment.showInterstitialAd(() -> navigateToDeviceSettings(position));
-        }
+        devicesFragment.showInterstitialAd(() -> navigateToDeviceSettings(position));
     }
 
     private void navigateToDeviceSettings(int position) {
@@ -79,7 +61,6 @@ public class DevicesListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         finalBundle.putFloat("dpi", model.getDpi());
         finalBundle.putFloat("fire_button", model.getFireButton());
         finalBundle.putString("settings_source_url", model.getSettingsSourceUrl());
-        NavController navController = Navigation.findNavController(fragment.requireView());
         navController.navigate(R.id.action_devicesFragment_to_deviceSettingsFragment, finalBundle, NavigationOptionsUtil.getNavOptions());
     }
 
@@ -88,26 +69,12 @@ public class DevicesListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         return models.size();
     }
 
-    @Override
-    public int getItemViewType(int position) {
-        return VIEW_TYPE_DEFAULT;
-    }
-
     public static class DeviceNameViewHolder extends RecyclerView.ViewHolder {
         TextView deviceName;
 
         public DeviceNameViewHolder(@NonNull View itemView) {
             super(itemView);
             deviceName = itemView.findViewById(R.id.categories);
-        }
-    }
-
-    public static class BannerViewHolder extends RecyclerView.ViewHolder {
-        FrameLayout bannerAdContainer;
-
-        public BannerViewHolder(@NonNull View itemView) {
-            super(itemView);
-            bannerAdContainer = itemView.findViewById(R.id.banner_ad_container);
         }
     }
 }

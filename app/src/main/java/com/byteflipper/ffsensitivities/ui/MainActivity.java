@@ -54,7 +54,7 @@ import com.google.android.play.core.appupdate.AppUpdateManagerFactory;
 import com.google.android.play.core.install.model.AppUpdateType;
 import com.google.android.play.core.install.model.UpdateAvailability;
 
-import java.util.Arrays;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -114,7 +114,6 @@ public class MainActivity extends AppCompatActivity implements ProgressIndicator
             getWindow().getAttributes().layoutInDisplayCutoutMode = WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_ALWAYS;
         }
 
-        InAppReviewHelper.getInstance(this).requestReviewInfo();
         checkUpdate();
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
@@ -127,14 +126,13 @@ public class MainActivity extends AppCompatActivity implements ProgressIndicator
             @Override
             public boolean onPreDraw() {
                 if (ManufacturersManager.getInstance().isReady()) {
-                    content.getViewTreeObserver().removeOnPreDrawListener(this);
-
                     if (!SharedPreferencesUtils.getBoolean(MainActivity.this, "isFirstOpen")) {
                         Intent intent = new Intent(MainActivity.this, WelcomeActivity.class);
                         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                         startActivity(intent);
                         finish();
                     }
+                    content.getViewTreeObserver().removeOnPreDrawListener(this);
                     return true;
                 } else {
                     return false;
@@ -166,10 +164,6 @@ public class MainActivity extends AppCompatActivity implements ProgressIndicator
 
                     if (googleMobileAdsConsentManager.canRequestAds()) {
                         initializeMobileAdsSdk();
-                    }
-
-                    if (secondsRemaining <= 0) {
-                        //startMainActivity();
                     }
                 });
 
@@ -250,6 +244,17 @@ public class MainActivity extends AppCompatActivity implements ProgressIndicator
                 || super.onSupportNavigateUp();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
+
+    @Override
+    protected void onDestroy() {
+        binding.bannerAdView.destroy();
+        super.onDestroy();
+    }
+
     /** Create the countdown timer, which counts down to zero and show the app open ad. */
     private void createTimer() {
 
@@ -267,16 +272,13 @@ public class MainActivity extends AppCompatActivity implements ProgressIndicator
                         secondsRemaining = 0;
 
                         Application application = getApplication();
+                        // Check if the consent form is currently on screen before moving to the
+                        // main activity.
+                        //startMainActivity();
                         ((MyApplication) application)
                                 .showAdIfAvailable(
                                         MainActivity.this,
-                                        (MyApplication.OnShowAdCompleteListener) () -> {
-                                            // Check if the consent form is currently on screen before moving to the
-                                            // main activity.
-                                            if (gatherConsentFinished.get()) {
-                                                //startMainActivity();
-                                            }
-                                        });
+                                        (MyApplication.OnShowAdCompleteListener) gatherConsentFinished::get);
                     }
                 };
         countDownTimer.start();
@@ -286,7 +288,7 @@ public class MainActivity extends AppCompatActivity implements ProgressIndicator
 
         MobileAds.setRequestConfiguration(
                 new RequestConfiguration.Builder()
-                        .setTestDeviceIds(Arrays.asList(MyApplication.TEST_DEVICE_HASHED_ID))
+                        .setTestDeviceIds(List.of(MyApplication.TEST_DEVICE_HASHED_ID))
                         .build());
 
         new Thread(() -> {

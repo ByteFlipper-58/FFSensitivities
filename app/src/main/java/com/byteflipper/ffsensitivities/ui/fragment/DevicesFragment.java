@@ -35,6 +35,7 @@ public class DevicesFragment extends Fragment implements IScrollHelper {
     private FragmentDevicesBinding binding;
     private SensitivitiesManager manager;
     private ProgressIndicatorListener progressIndicatorListener;
+    private NavController navController;
 
     @Override
     public void onAttach(@NonNull Context context) {
@@ -105,6 +106,7 @@ public class DevicesFragment extends Fragment implements IScrollHelper {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        navController = Navigation.findNavController(requireView());
         setupDataObserver();
         setupAdapterData();
     }
@@ -137,7 +139,6 @@ public class DevicesFragment extends Fragment implements IScrollHelper {
                             finalBundle.putFloat("dpi", 386);
                             finalBundle.putFloat("fire_button", 42);
                             finalBundle.putString("settings_source_url", null);
-                            NavController navController = Navigation.findNavController(requireView());
                             navController.navigate(R.id.action_devicesFragment_to_deviceSettingsFragment, finalBundle, NavigationOptionsUtil.getNavOptions());
                         }
                 );
@@ -171,7 +172,7 @@ public class DevicesFragment extends Fragment implements IScrollHelper {
 
     private void setupRecyclerView() {
         binding.recview.setLayoutManager(new GridLayoutManager(requireActivity(), 1));
-        binding.recview.setAdapter(new DevicesListAdapter(this, manager.getSensitivitiesSet()));
+        binding.recview.setAdapter(new DevicesListAdapter(navController, manager.getSensitivitiesSet(), this));
     }
 
     @Override
