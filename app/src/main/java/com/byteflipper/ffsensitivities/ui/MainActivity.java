@@ -53,12 +53,14 @@ import com.google.android.play.core.appupdate.AppUpdateManager;
 import com.google.android.play.core.appupdate.AppUpdateManagerFactory;
 import com.google.android.play.core.install.model.AppUpdateType;
 import com.google.android.play.core.install.model.UpdateAvailability;
+import com.unity3d.ads.IUnityAdsInitializationListener;
+import com.unity3d.ads.UnityAds;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-public class MainActivity extends AppCompatActivity implements ProgressIndicatorListener {
+public class MainActivity extends AppCompatActivity implements ProgressIndicatorListener, IUnityAdsInitializationListener {
     private NavController navController;
 
     private LinearProgressIndicator progressIndicator;
@@ -171,6 +173,8 @@ public class MainActivity extends AppCompatActivity implements ProgressIndicator
         if (googleMobileAdsConsentManager.canRequestAds()) {
             initializeMobileAdsSdk();
         }
+
+        UnityAds.initialize(getApplicationContext(), "5715318", false, this);
 
         AdRequest adRequest = new AdRequest.Builder().build();
         binding.bannerAdView.loadAd(adRequest);
@@ -334,4 +338,13 @@ public class MainActivity extends AppCompatActivity implements ProgressIndicator
         }
     }
 
+    @Override
+    public void onInitializationComplete() {
+        Log.d("UnityAds", "Unity Ads initialized");
+    }
+
+    @Override
+    public void onInitializationFailed(UnityAds.UnityAdsInitializationError unityAdsInitializationError, String s) {
+        Log.d("UnityAds", "Unity Ads failed to initialize: " + unityAdsInitializationError.toString());
+    }
 }
