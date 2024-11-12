@@ -25,14 +25,9 @@
         android:label="@string/devices_list"
         tools:layout="@layout/fragment_devices">
         <action
-            android:id="@+id/action_devicesFragment_to_deviceSettingsFragment"
-            app:destination="@id/deviceSettingsFragment"/>
+            android:id="@+id/action_devicesFragment_to_sensitivitiesFragment"
+            app:destination="@id/sensitivitiesFragment" />
     </fragment>
-    <fragment
-        android:id="@+id/deviceSettingsFragment"
-        android:name="com.byteflipper.ffsensitivities.ui.fragment.SensitivitiesFragment"
-        tools:layout="@layout/fragment_sensitivities"
-        android:label="@string/settings" />
     <fragment
         android:id="@+id/aboutAppFragment"
         android:name="com.byteflipper.ffsensitivities.ui.fragment.AboutFragment"
@@ -56,4 +51,9 @@
             android:id="@+id/action_welcomeFragment_to_manufacturerFragment2"
             app:destination="@id/manufacturerFragment2" />
     </fragment>
+    <fragment
+        android:id="@+id/sensitivitiesFragment"
+        android:name="com.byteflipper.ffsensitivities.ui.fragment.SensitivitiesFragment"
+        android:label="@string/sensitivity"
+        tools:layout="@layout/fragment_sensitivities" />
 </navigation>

@@ -139,7 +139,7 @@ public class DevicesFragment extends Fragment implements IScrollHelper {
                             finalBundle.putFloat("dpi", 386);
                             finalBundle.putFloat("fire_button", 42);
                             finalBundle.putString("settings_source_url", null);
-                            navController.navigate(R.id.action_devicesFragment_to_deviceSettingsFragment, finalBundle, NavigationOptionsUtil.getNavOptions());
+                            navController.navigate(R.id.action_devicesFragment_to_sensitivitiesFragment, finalBundle, NavigationOptionsUtil.getNavOptions());
                         }
                 );
 

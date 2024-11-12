@@ -40,7 +40,6 @@ import com.byteflipper.ffsensitivities.databinding.ActivityMainBinding;
 import com.byteflipper.ffsensitivities.interfaces.ProgressIndicatorListener;
 import com.byteflipper.ffsensitivities.manager.LanguageManager;
 import com.byteflipper.ffsensitivities.manager.ManufacturersManager;
-import com.byteflipper.ffsensitivities.utils.InAppReviewHelper;
 import com.byteflipper.ffsensitivities.utils.SharedPreferencesUtils;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.MobileAds;
@@ -55,6 +54,7 @@ import com.google.android.play.core.install.model.AppUpdateType;
 import com.google.android.play.core.install.model.UpdateAvailability;
 import com.unity3d.ads.IUnityAdsInitializationListener;
 import com.unity3d.ads.UnityAds;
+import com.unity3d.ads.metadata.MetaData;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -175,6 +175,14 @@ public class MainActivity extends AppCompatActivity implements ProgressIndicator
         }
 
         UnityAds.initialize(getApplicationContext(), "5715318", false, this);
+
+        MetaData gdprMetaData = new MetaData(this);
+        gdprMetaData.set("gdpr.consent", true);
+        gdprMetaData.commit();
+
+        MetaData ccpaMetaData = new MetaData(this);
+        ccpaMetaData.set("privacy.consent", true);
+        ccpaMetaData.commit();
 
         AdRequest adRequest = new AdRequest.Builder().build();
         binding.bannerAdView.loadAd(adRequest);
