@@ -624,6 +624,22 @@
                 "sniper_scope": 26,
                 "free_review": 32
             }
+        },
+        {
+            "__id__": "wv5mMubgM45vyZRh6OF6",
+            "manufacturer": "Redmi",
+            "name": "2A+",
+            "settings_source_url": "",
+            "dpi": 0,
+            "fire_button": 44,
+            "sensitivities": {
+                "review": 125,
+                "collimator": 170,
+                "x2_scope": 180,
+                "x4_scope": 160,
+                "sniper_scope": 100,
+                "free_review": 105
+            }
         }
     ]
 }
