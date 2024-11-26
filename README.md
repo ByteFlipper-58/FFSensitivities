@@ -1,34 +1,36 @@
 # FF Settings 
 
 [![Google Play](https://img.shields.io/badge/Google_Play-Download-brightgreen)](https://play.google.com/store/apps/details?id=com.byteflipper.ffsensitivities)
-[![License](https://img.shields.io/github/license/byteflipper/FFSettings)](LICENSE)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-**FF Settings** is an open-source app designed for gamers who are constantly seeking the perfect sensitivity settings to enhance their in-game performance.
 
-With our app, you'll always have the latest and most relevant sensitivity settings for a variety of devices from different manufacturers, helping you boost your rank and reputation among friends and the community.
+**FF Sensitivities** is an open-source app designed for **Garena Free Fire** players who want to find the optimal sensitivity settings for their mobile devices and enhance their gameplay.
+
+Recently, the app was rewritten using **Jetpack Compose**, improving performance and enhancing the user interface.
 
 ## Features
 
 - **Cloud Technology**  
-  New sensitivity settings appear without needing to update the app.
+  New sensitivity settings are updated without the need for app updates.
 
 - **Multilingual Support**  
-  Supports multiple languages, with new ones being added regularly.
+  Support for multiple languages, with new ones added regularly.
 
-- **Multiple Manufacturers**  
-  Includes settings for devices from more than 12 different manufacturers.
+- **Support for Various Manufacturers**  
+  Sensitivity settings for devices from over 12 different manufacturers.
 
-- **Minimalist UI**  
-  Simple, self-explanatory interface without overloaded menus.
+- **Minimalist Interface**  
+  A simple and user-friendly interface without cluttered menus.
 
-> **Note**: On the screenshots, the names of well-known manufacturers are displayed for demonstration purposes. This does not imply endorsement or association with the application.
+> **Note**: The screenshots feature names of well-known manufacturers for demonstration purposes only. This does not imply endorsement or association with the app.
 
-## Open Source
+## Open Source  
 
-This project is open-source, and the code is available for anyone to view, use, or contribute to.  
-Feel free to check out the source code in this repository and submit issues or pull requests if you'd like to contribute.
+The project is **open-source**, and the code is available for review, use, or contribution.  
+You can explore the source code in the repository, leave feedback, or submit a **pull request** if you'd like to contribute.
 
-- **Repository**: [GitHub Repository](https://github.com/byteflipper/FFSettings)
+- **Legacy Version Source Code**: [FF Sensitivities](https://github.com/byteflipper/FFSettings) — the original project built with traditional development approaches using **Java** + **Views**.  
+- **New Version Source Code**: [FF Sensitivities 2.0](https://github.com/byteflipper/FFSettings) — the updated version, completely rewritten with **Jetpack Compose** for a modern and user-friendly interface.
 - **License**: This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
 
 ## Screenshots & Video
