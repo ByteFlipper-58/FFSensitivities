@@ -1,7 +1,7 @@
 # FF Settings 
 
 [![Google Play](https://img.shields.io/badge/Google_Play-Download-brightgreen)](https://play.google.com/store/apps/details?id=com.byteflipper.ffsensitivities)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 
 **FF Sensitivities** is an open-source app designed for **Garena Free Fire** players who want to find the optimal sensitivity settings for their mobile devices and enhance their gameplay.
